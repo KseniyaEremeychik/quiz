@@ -1,0 +1,21 @@
+.rounded {
+  width:90px;
+  heifht:40px;
+}
+
+.container {
+  position:relative;
+}
+
+.bottom-indent {
+  margin-bottom:80px;
+}
+
+.btn-danger {
+  border:1px solid black;
+}
+
+.left {
+  float:left;
+  max-width:400px;
+}
