@@ -3,10 +3,6 @@
   heifht:40px;
 }
 
-.container {
-  position:relative;
-}
-
 .bottom-indent {
   margin-bottom:80px;
 }
@@ -15,7 +11,3 @@
   border:1px solid black;
 }
 
-.left {
-  float:left;
-  max-width:400px;
-}

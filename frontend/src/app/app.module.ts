@@ -10,13 +10,23 @@ import {HttpClientModule} from "@angular/common/http";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {RouterModule, Routes} from "@angular/router";
 import { HeaderComponent } from './modules/header/header.component';
+import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
+import { RegisterComponent } from './modules/register/register.component';
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +35,8 @@ import { LoginComponent } from './modules/login/login.component';
     Ng4LoadingSpinnerModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

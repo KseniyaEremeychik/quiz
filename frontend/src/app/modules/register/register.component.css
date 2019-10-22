@@ -1,0 +1,11 @@
+#register #register-row #register-column #register-box {
+  margin-top: 70px;
+  max-width: 600px;
+  height: 490px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+
+#register #register-row #register-column #register-box #register-form {
+  margin-top: 15px;
+}
