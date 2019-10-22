@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid bg-img">
   <table class="table table-hover table-bordered left">
     <thead class="thead-light">
     <tr>
@@ -6,20 +6,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>surgery</td>
-    </tr>
-    <tr>
-      <td>anesthesiology</td>
-    </tr>
-    <tr>
-      <td>cardiology</td>
-    </tr>
-    <tr>
-      <td>neurology</td>
-    </tr>
-    <tr>
-      <td>traumatology</td>
+    <tr *ngFor="let category of categories">
+      <td>{{category.name}}</td>
     </tr>
     </tbody>
   </table>

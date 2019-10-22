@@ -13,6 +13,7 @@ import { HeaderComponent } from './modules/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
+import {CategoryService} from "./services/category.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
