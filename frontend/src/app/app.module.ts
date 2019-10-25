@@ -14,6 +14,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
 import {CategoryService} from "./services/category.service";
+import { CategoryComponent } from './modules/category/category.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
