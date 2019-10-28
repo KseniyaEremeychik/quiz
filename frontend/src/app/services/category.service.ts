@@ -4,8 +4,7 @@ import {Observable} from "rxjs";
 import {Category} from "src/app/modules/category/category";
 
 @Injectable()
-// Data service
-export class CategoryService { //todo create interface
+export class CategoryService {
 
   constructor(private http: HttpClient) {
   }

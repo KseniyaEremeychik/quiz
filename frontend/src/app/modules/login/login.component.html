@@ -4,23 +4,22 @@
       <div id="login-row" class="row justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
           <div id="login-box" class="col-md-12 rounded">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" mGroup="loginForm" id="login-form" class="form" action="" method="post">
+            <form [formGroup]="loginForm" id="login-form">
               <h3 class="text-center text-danger">Log in</h3>
               <div class="form-group">
-                <label for="email" class="text-danger">Email:</label><br>
-                <input formControlName="email" type="email" name="email" id="email" class="form-control">
+                <label class="text-danger">Email:</label><br>
+                <input name="email" class="form-control" formControlName="userEmail">
+                <div class="alert alert-danger" *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">
+                  Incorrect email
+                </div>
               </div>
               <div class="form-group">
-                <label for="password" class="text-danger">Password:</label><br>
-                <input formControlName="password" type="password" name="password" id="password" class="form-control">
-              </div>
-              <div class="alert alert-danger" *ngIf="loginForm.controls['email'].invalid && loginForm.controls['password'].touched">
+                <label class="text-danger">Password:</label><br>
+                <input type="password" name="password" class="form-control" formControlName="userPassword">
               </div>
               <div class="form-group">
-                <label for="remember-me" class="text-danger"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                <button [disabled]="loginForm.invalid" type="submit" name="submit" class="btn btn-danger btn-md" value="Log in">
-                  Login
-                </button>
+                <label class="text-danger"><span>Remember me</span> <span><input name="remember-me" type="checkbox"></span></label><br>
+                <button class="btn btn-danger" [disabled]="loginForm.invalid">Log in</button>
               </div>
             </form>
           </div>
