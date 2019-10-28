@@ -1,11 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-.bg-img{
-  height: 91vh;
+.bg-img1{
+  height: 91.5vh;
   background-image: url(src/app/images/medical.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 
+.bg-img2{
+  height: 91.5vh;
+  background-image: url(src/app/images/choose.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

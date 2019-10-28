@@ -1,23 +1,18 @@
 package com.netcracker.edu.backend.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name = "category")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public Category() {
-    }
-
+    @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -26,6 +21,8 @@ public class Category {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -39,20 +36,12 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return getId() == category.getId() &&
-                getName().equals(category.getName());
+        return id == category.id &&
+                Objects.equals(name, category.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName());
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return Objects.hash(id, name);
     }
 }
