@@ -4,25 +4,25 @@
       <div id="register-row" class="row justify-content-center align-items-center">
         <div id="register-column" class="col-md-6">
           <div id="register-box" class="col-md-12 rounded">
-            <form [formGroup]="registerForm" novalidate (ngSubmit)="submit()" id="register-form">
+            <form [formGroup]="registerForm" id="register-form">
               <h3 class="text-center text-danger">Registration</h3>
               <div class="form-group">
                 <label class="text-danger">Username:</label><br>
-                <input name="name" class="form-control" formControlName="userName">
+                <input name="name" class="form-control" formControlName="userName" #username>
                 <div class="alert alert-danger" *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
                   Username is too short
                 </div>
               </div>
               <div class="form-group">
                 <label class="text-danger">Email:</label><br>
-                <input name="email" class="form-control" formControlName="userEmail">
+                <input name="email" class="form-control" formControlName="userEmail" #email>
                 <div class="alert alert-danger" *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
                   Incorrect email
                 </div>
               </div>
               <div class="form-group">
                 <label class="text-danger">Password:</label><br>
-                <input type="password" name="password" class="form-control" formControlName="userPassword">
+                <input type="password" name="password" class="form-control" formControlName="userPassword" #password>
               </div>
               <div class="form-group">
                 <label class="text-danger">Repeat password:</label><br>
@@ -30,7 +30,7 @@
               </div>
               <div class="form-group">
                 <label class="text-danger"><span>Remember me</span> <span><input name="remember-me" type="checkbox"></span></label><br>
-                <button class="btn btn-danger" [disabled]="registerForm.invalid">Register</button>
+                <button (click)="addUser(username.value, email.value, password.value)" class="btn btn-danger" [disabled]="registerForm.invalid">Register</button>
               </div>
             </form>
           </div>

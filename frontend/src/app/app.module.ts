@@ -15,6 +15,7 @@ import { LoginComponent } from './modules/login/login.component';
 import { RegisterComponent } from './modules/register/register.component';
 import {CategoryService} from "./services/category.service";
 import { CategoryComponent } from './modules/category/category.component';
+import {UserService} from "./services/user.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -42,7 +43,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [CategoryService],
+  providers: [
+    CategoryService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
