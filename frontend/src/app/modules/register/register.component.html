@@ -26,11 +26,18 @@
               </div>
               <div class="form-group">
                 <label class="text-danger">Repeat password:</label><br>
-                <input type="password" name="password" class="form-control" formControlName="userPassword2">
+                <input type="password" name="password" class="form-control" formControlName="userPassword2" #password2>
+                <div class="alert alert-danger" *ngIf="password.value!=password2.value && registerForm.controls['userPassword2'].touched">
+                  Passwords do not match
+                </div>
               </div>
               <div class="form-group">
                 <label class="text-danger"><span>Remember me</span> <span><input name="remember-me" type="checkbox"></span></label><br>
-                <button (click)="addUser(username.value, email.value, password.value)" class="btn btn-danger" [disabled]="registerForm.invalid">Register</button>
+                <a routerLink="/">
+                  <button class="btn btn-danger" (click)="addUser(username.value, email.value, password.value)" [disabled]="registerForm.invalid || password.value!=password2.value">
+                  Register
+                  </button>
+                </a>
               </div>
             </form>
           </div>

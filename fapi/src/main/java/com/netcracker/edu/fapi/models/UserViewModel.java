@@ -8,15 +8,25 @@ public class UserViewModel {
     private String userName;
     private String email;
     private String password;
+    private String role;
 
     public UserViewModel() {
     }
 
-    public UserViewModel(int id, String userName, String email, String password) {
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public UserViewModel(int id, String userName, String email, String password, String role) {
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public int getId() {

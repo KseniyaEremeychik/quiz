@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.registerForm = new FormGroup({
-      "userName": new FormControl("", [Validators.required, Validators.minLength(5)]),
+      "userName": new FormControl("", [Validators.required, Validators.minLength(4)]),
       "userEmail": new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")]),
       "userPassword": new FormControl("", Validators.required),
       "userPassword2": new FormControl("", Validators.required)
@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
     this.user.userName = username
     this.user.email = email
     this.user.password = password
+    this.user.role = 'admin'
 
     this.subscriptions.push(this.userService.saveUser(this.user).subscribe(() => {
 

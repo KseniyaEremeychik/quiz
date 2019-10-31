@@ -3,7 +3,7 @@
 
 .bg-img1{
   height: 91.5vh;
-  background-image: url(src/app/images/medical.jpg);
+  background-image: url(src/app/images/quiz.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -11,8 +11,14 @@
 
 .bg-img2{
   height: 91.5vh;
-  background-image: url(src/app/images/choose.jpg);
+  background-image: url(src/app/images/quiz2.gif);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
+
+body {
+  font-family: "Calibri";
+}
+
+
