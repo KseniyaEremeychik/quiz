@@ -21,9 +21,9 @@ public class UserController {
         return userService.saveUser(user);
     }
 
-    @RequestMapping(value = "email/{email}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByEmail(@PathVariable(name = "email") String email) {
-        User user =userService.findByEmail(email);
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByEmail(@RequestParam(name = "email") String email) {
+        User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
 }

@@ -21,8 +21,8 @@ public class UserDataController {
         return null;
     }
 
-    @GetMapping("/email/{email}")
-    public UserViewModel getUserByEmail(@PathVariable String email) {
+    @GetMapping()
+    public UserViewModel getUserByEmail(@RequestParam(name = "email") String email) {
         return userDataService.findByEmail(email);
     }
 }

@@ -20,7 +20,7 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public UserViewModel findByEmail(String email) {
         RestTemplate restTemplate = new RestTemplate();
-        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/email/" + email, UserViewModel.class);
+        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
         return user;
     }
 }
