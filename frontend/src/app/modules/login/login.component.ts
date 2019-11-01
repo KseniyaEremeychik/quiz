@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../register/user";
+import {Subscription} from "rxjs";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -10,9 +12,11 @@ import {User} from "../register/user";
 export class LoginComponent implements OnInit {
 
   public user:User = new User();
+  private subscriptions: Subscription[] = [];
+
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.loginForm = new FormGroup({
       "userEmail": new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")]),
       "userPassword": new FormControl("", Validators.required)
@@ -22,15 +26,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public getAll(): void {
-
+  //Method to send email for getting user from db
+  public getUserByEmail(email): void {
+    this.subscriptions.push(this.userService.getUserByEmail(email).subscribe(user => {
+      this.user = user as User;
+      localStorage.setItem('userName', user.userName);
+      localStorage.setItem('role', user.role);
+    }));
   }
 
-  public isExist(email, password): boolean {
+  /*public isExist(email, password): boolean {
     if (localStorage.getItem('email') == email && localStorage.getItem('password') == password) {
       return true;
     }
     return false;
-  }
+  }*/
 
 }

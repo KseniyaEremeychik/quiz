@@ -11,8 +11,11 @@ a:visited {
 }
 
 a:hover {
-  color:indianred;
+  color: gold;
 }
 
+.ks-width {
+  width: 200px;
+}
 
 

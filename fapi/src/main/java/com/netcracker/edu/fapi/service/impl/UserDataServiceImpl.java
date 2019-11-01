@@ -16,4 +16,11 @@ public class UserDataServiceImpl implements UserDataService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerURL + "/api/users", user, UserViewModel.class).getBody();
     }
+
+    @Override
+    public UserViewModel findByEmail(String email) {
+        RestTemplate restTemplate = new RestTemplate();
+        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/email/" + email, UserViewModel.class);
+        return user;
+    }
 }
