@@ -21,17 +21,10 @@
               <div class="form-group">
                 <label class="text-danger"><span>Remember me</span> <span><input name="remember-me"
                                                                                  type="checkbox"></span></label><br>
-                <a>
+                <a routerLink="/">
                   <button class="btn btn-danger" (click)="getUserByEmail(email.value)" [disabled]="loginForm.invalid">
                     Log in
                   </button>
-                  <div *ngIf="user!=null">
-                    <br>
-                    <p>{{user.userName}}</p>
-                    <p>{{user.email}}</p>
-                    <p>{{user.password}}</p>
-                    <p>{{user.role}}</p>
-                  </div>
                 </a>
               </div>
             </form>

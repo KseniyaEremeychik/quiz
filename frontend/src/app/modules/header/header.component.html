@@ -4,12 +4,13 @@
       <a routerLink="/">
         <img src="src/app/images/questions.jpg" class="rounded" alt="questions">
       </a>
-      <div>
-
+      <div *ngIf="isLogin()">
+        <a class="btn btn-light un-tools text-center"><b>{{userName}}</b></a>
+        <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
-      <div class="btn-group">
-        <a class="btn btn-danger btn-primary btn-lg" routerLink="/login">Log in</a>
-        <a class="btn btn-danger btn-primary btn-lg" routerLink="/register">Register</a>
+      <div *ngIf="!isLogin()" class="btn-group">
+        <a class="btn btn-danger btn-lg" routerLink="/login">Log in</a>
+        <a class="btn btn-danger btn-lg" routerLink="/register">Register</a>
       </div>
     </div>
   </nav>
