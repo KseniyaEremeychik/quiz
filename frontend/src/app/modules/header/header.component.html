@@ -5,11 +5,24 @@
         <a routerLink="/">
           <img src="../../../assets/questions.jpg" class="rounded" alt="questions">
         </a>
-        <a class="btn" routerLink="/admin">Admin</a>
       </div>
 
-      <div *ngIf="isLogin()">
-        <a class="btn btn-light un-tools text-center"><b>{{userName}}</b></a>
+      <div *ngIf="isLogin() && userService.currentUser.role=='user'">
+        <a class="btn btn-light btn-lg text-center text-danger er-margin1 un-tools">Your profile, {{userName}}</a>
+        <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
+      </div>
+      <div *ngIf="isLogin() && userService.currentUser.role=='admin'">
+        <div class="btn-group" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
+            Admin <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li role="menuitem"><a class="dropdown-item" href="#">User</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Category</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Quiz</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Statistics</a></li>
+          </ul>
+        </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
       <div *ngIf="!isLogin()" class="btn-group">

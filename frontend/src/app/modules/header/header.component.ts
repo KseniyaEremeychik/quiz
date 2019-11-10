@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {CurrentUserService} from "../../services/currentUser.service";
+import {BsDropdownConfig} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class HeaderComponent implements OnInit {
 
