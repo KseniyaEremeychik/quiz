@@ -17,12 +17,16 @@ import {CategoryService} from "./services/category.service";
 import { CategoryComponent } from './modules/category/category.component';
 import {UserService} from "./services/user.service";
 import { QuizComponent } from './modules/quiz/quiz.component';
+import { AdminComponent } from './modules/admin/admin.component';
+import { NewQuizComponent } from './modules/new-quiz/new-quiz.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'quiz', component: QuizComponent}
+  {path: 'quiz', component: QuizComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'newQuiz', component: NewQuizComponent}
 ]
 
 @NgModule({
@@ -33,7 +37,9 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     CategoryComponent,
-    QuizComponent
+    QuizComponent,
+    AdminComponent,
+    NewQuizComponent
   ],
   imports: [
     BrowserModule,

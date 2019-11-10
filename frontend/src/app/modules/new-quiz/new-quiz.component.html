@@ -1,0 +1,25 @@
+<div>
+  <div class="card border-danger er-width">
+    <!--<div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose category
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>-->
+    <div>
+      <label>Choose category</label>
+      <select id="chooseCategory" class="form-control" #category>
+        <option *ngFor="let category of categories">{{category.name}}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label>Enter quiz name: </label><br>
+      <input name="name" class="form-control">
+    </div>
+  </div>
+</div>

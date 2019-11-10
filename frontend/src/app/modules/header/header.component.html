@@ -1,9 +1,13 @@
 <div class="bottom-indent">
   <nav class="navbar bg-dark shadow p-2" role="navigation">
     <div class="container-fluid">
-      <a routerLink="/">
-        <img src="src/app/images/questions.jpg" class="rounded" alt="questions">
-      </a>
+      <div>
+        <a routerLink="/">
+          <img src="../../../assets/questions.jpg" class="rounded" alt="questions">
+        </a>
+        <a class="btn" routerLink="/admin">Admin</a>
+      </div>
+
       <div *ngIf="isLogin()">
         <a class="btn btn-light un-tools text-center"><b>{{userName}}</b></a>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../services/user.service";
+import {CurrentUserService} from "../../services/currentUser.service";
 
 @Component({
   selector: 'app-header',
@@ -9,20 +11,20 @@ export class HeaderComponent implements OnInit {
 
   private userName: string;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
   public isLogin(): boolean {
-    if(localStorage.getItem('userName') != null) {
-      this.userName = localStorage.getItem('userName');
+    if(this.userService.currentUser != null) {
+      this.userName = this.userService.currentUser.userName;
       return true;
     }
     return false;
   }
 
   public logOut(): void {
-    localStorage.clear();
+    this.userService.currentUser = null;
   }
 }

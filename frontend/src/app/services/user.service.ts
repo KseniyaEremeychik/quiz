@@ -5,7 +5,7 @@ import {User} from "src/app/modules/register/user";
 
 @Injectable()
 export class UserService {
-
+  public currentUser: User = null;
   constructor(private http: HttpClient) {
   }
 

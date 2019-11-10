@@ -6,7 +6,7 @@ svg {
   font-size: x-large;
 }
 
-a:visited {
+a:visited, a:link {
   color:black;
 }
 
