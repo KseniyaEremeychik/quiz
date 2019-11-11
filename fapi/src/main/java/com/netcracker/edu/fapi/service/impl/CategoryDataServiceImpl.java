@@ -21,4 +21,10 @@ public class CategoryDataServiceImpl implements CategoryDataService {
         CategoryViewModel[] categoryViewModelResponse = restTemplate.getForObject(backendServerURL + "/api/categories/", CategoryViewModel[].class);
         return categoryViewModelResponse == null ? Collections.emptyList() : Arrays.asList(categoryViewModelResponse);
     }
+
+    @Override
+    public void deleteCategory(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerURL + "api/categories/" + id);
+    }
 }

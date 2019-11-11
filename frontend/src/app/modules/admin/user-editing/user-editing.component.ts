@@ -25,9 +25,9 @@ export class UserEditingComponent implements OnInit {
     }));
   }
 
-  /*private deleteUser(id: string): void {
+  private deleteUser(id: string): void {
     this.subscriptions.push(this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
     }));
-  }*/
+  }
 }

@@ -21,8 +21,7 @@ export class UserService {
     return this.http.get<User[]>('api/userEditing');
   }
 
-  //do not know how to set id (body or path variable)
-  /*deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>;
-  }*/
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>('/api/user/' + id);
+  }
 }

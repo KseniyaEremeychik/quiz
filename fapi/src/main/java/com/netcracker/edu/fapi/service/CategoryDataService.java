@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CategoryDataService {
     List<CategoryViewModel> getAll();
+    void deleteCategory(Integer id);
 }

@@ -26,4 +26,9 @@ public class UserController {
         User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable(name = "id") Integer id) {
+        userService.deleteUser(id);
+    }
 }

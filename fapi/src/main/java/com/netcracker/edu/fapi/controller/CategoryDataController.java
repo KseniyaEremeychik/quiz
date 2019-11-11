@@ -22,4 +22,9 @@ public class CategoryDataController {
     public ResponseEntity<List<CategoryViewModel>> getAllCategories() {
         return ResponseEntity.ok(categoryDataService.getAll());
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteCategory(@PathVariable String id) {
+        categoryDataService.deleteCategory(Integer.valueOf(id));
+    }
 }

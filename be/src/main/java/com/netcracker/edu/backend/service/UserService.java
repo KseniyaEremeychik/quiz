@@ -6,4 +6,5 @@ public interface UserService {
     User saveUser(User user);
     User findByEmail(String email);
     Iterable<User> getAllUsers();
+    void deleteUser(Integer id);
 }

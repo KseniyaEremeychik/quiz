@@ -27,4 +27,9 @@ public class UserDataController {
     public UserViewModel getUserByEmail(@RequestParam(name = "email") String email) {
         return userDataService.findByEmail(email);
     }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable String id) {
+        userDataService.deleteUser(Integer.valueOf(id));
+    }
 }

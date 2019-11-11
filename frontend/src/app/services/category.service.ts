@@ -5,8 +5,6 @@ import {Category} from "src/app/modules/category/category";
 
 @Injectable()
 export class CategoryService {
-
-
   constructor(private http: HttpClient) {
   }
 
@@ -14,4 +12,7 @@ export class CategoryService {
     return this.http.get<Category[]>('/api/cat');
   }
 
+  deleteCategory(id: string): Observable<void> {
+    return this.http.delete<void>('/api/cat/' + id);
+  }
 }
