@@ -27,4 +27,12 @@ public class CategoryDataController {
     public void deleteCategory(@PathVariable String id) {
         categoryDataService.deleteCategory(Integer.valueOf(id));
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<CategoryViewModel> addCategory(@RequestBody CategoryViewModel category) {
+        if(category != null) {
+            return ResponseEntity.ok(categoryDataService.addCategory(category));
+        }
+        return null;
+    }
 }

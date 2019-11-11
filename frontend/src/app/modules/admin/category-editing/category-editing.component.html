@@ -30,9 +30,9 @@
   </div>
   <div class="modal-body">
     <label>Enter the name: </label>
-    <input class="form-control">
+    <input class="form-control" #categoryName>
     <br>
-    <button type="button" class="btn btn-danger m-1 er-right">Cancel</button>
-    <button type="button" class="btn btn-danger m-1 er-right">Add</button>
+    <button type="button" class="btn btn-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-danger m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>
   </div>
 </ng-template>

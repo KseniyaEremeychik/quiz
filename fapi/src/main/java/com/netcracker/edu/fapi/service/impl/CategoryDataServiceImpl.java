@@ -27,4 +27,10 @@ public class CategoryDataServiceImpl implements CategoryDataService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerURL + "api/categories/" + id);
     }
+
+    @Override
+    public CategoryViewModel addCategory(CategoryViewModel category) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerURL + "/api/categories", category, CategoryViewModel.class).getBody();
+    }
 }

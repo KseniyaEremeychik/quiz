@@ -11,6 +11,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap";
 })
 export class CategoryEditingComponent implements OnInit {
 
+  public category: Category = new Category();
   public modalRef: BsModalRef;
   public categories: Category[];
   private subscriptions: Subscription[] = [];
@@ -29,8 +30,21 @@ export class CategoryEditingComponent implements OnInit {
 
   public deleteCategory(id: string): void {
     this.subscriptions.push(this.categoryService.deleteCategory(id).subscribe(() => {
-      this.getAllCategories();
+      this.updateCategories();
     }));
+  }
+
+  public addCategory(name: string): void {
+    this.category.name = name;
+    this.subscriptions.push(this.categoryService.addCategory(this.category).subscribe(() => {
+
+    }));
+    this.modalRef.hide();
+    this.updateCategories();
+  }
+
+  public updateCategories(): void {
+    this.getAllCategories();
   }
 
   openModal(template: TemplateRef<any>) {
