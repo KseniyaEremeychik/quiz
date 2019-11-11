@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   public isLogin(): boolean {
     if(this.userService.currentUser != null) {
       this.userName = this.userService.currentUser.userName;
+      console.log(this.userService.currentUser.id);
       return true;
     }
     return false;

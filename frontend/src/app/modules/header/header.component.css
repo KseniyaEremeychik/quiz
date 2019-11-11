@@ -21,3 +21,7 @@
 .er-margin2 {
   margin-right: 5px;
 }
+
+a:active {
+  background-color: darkgray;
+}

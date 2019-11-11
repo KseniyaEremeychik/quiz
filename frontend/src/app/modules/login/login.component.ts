@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../register/user";
 import {Subscription} from "rxjs";
 import {UserService} from "../../services/user.service";
-import {CurrentUserService} from "../../services/currentUser.service"
 
 @Component({
   selector: 'app-login',

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 @Component
 public class UserDataServiceImpl implements UserDataService {
     @Value("http://localhost:8080/")
@@ -22,5 +26,12 @@ public class UserDataServiceImpl implements UserDataService {
         RestTemplate restTemplate = new RestTemplate();
         UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
         return user;
+    }
+
+    @Override
+    public List<UserViewModel> getAll() {
+        RestTemplate restTemplate = new RestTemplate();
+        UserViewModel[] userViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/usersEditing", UserViewModel[].class);
+        return userViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(userViewModelsResponse);
     }
 }

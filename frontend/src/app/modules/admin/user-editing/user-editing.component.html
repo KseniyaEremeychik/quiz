@@ -1,0 +1,25 @@
+<div class="container mt-lg-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>E-mail</th>
+          <th>Editing</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td scope="row">{{user.id}}</td>
+          <td>{{user.userName}}</td>
+          <td>{{user.email}}</td>
+          <td><button type="button" class="btn btn-danger">Delete</button></td>
+          <!--<td><button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

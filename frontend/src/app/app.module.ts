@@ -20,13 +20,16 @@ import {UserService} from "./services/user.service";
 import { QuizComponent } from './modules/quiz/quiz.component';
 import { NewQuizComponent } from './modules/new-quiz/new-quiz.component';
 import { UserEditingComponent } from './modules/admin/user-editing/user-editing.component';
+import { CategoryEditingComponent } from './modules/admin/category-editing/category-editing.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'quiz', component: QuizComponent},
-  {path: 'newQuiz', component: NewQuizComponent}
+  {path: 'newQuiz', component: NewQuizComponent},
+  {path: 'userEditing', component: UserEditingComponent},
+  {path: 'categoryEditing', component: CategoryEditingComponent}
 ]
 
 @NgModule({
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     CategoryComponent,
     QuizComponent,
     NewQuizComponent,
-    UserEditingComponent
+    UserEditingComponent,
+    CategoryEditingComponent
   ],
   imports: [
     BrowserModule,

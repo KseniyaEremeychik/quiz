@@ -16,4 +16,13 @@ export class UserService {
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(`/api/user/?email=${email}`);
   }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>('api/userEditing');
+  }
+
+  //do not know how to set id (body or path variable)
+  /*deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>;
+  }*/
 }

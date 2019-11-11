@@ -1,0 +1,23 @@
+<div class="container mt-lg-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin">Add new category</button></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of categories">
+          <td scope="row">{{category.id}}</td>
+          <td>{{category.name}}</td>
+          <td><button type="button" class="btn btn-danger">Delete</button></td>
+          <!--<td><button type="button" class="btn btn-danger" (click)="deleteCategory(category.id)">Delete</button></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
