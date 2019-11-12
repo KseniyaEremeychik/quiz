@@ -1,25 +1,45 @@
-<div>
-  <div class="card border-danger er-width">
-    <!--<div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Choose category
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+<div class="er-outer-container">
+  <div class="er-width-outer">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)" class="border-danger er-width"
+          autocomplete="off">
+      <h2>Create new quiz</h2>
+      <div>
+        <label for="quiz-category">Choose category</label>
+        <select formControlName="category" id="quiz-category" class="form-control" #category>
+          <option *ngFor="let category of categories">{{category.name}}</option>
+        </select>
       </div>
-    </div>-->
-    <div>
-      <label>Choose category</label>
-      <select id="chooseCategory" class="form-control" #category>
-        <option *ngFor="let category of categories">{{category.name}}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label>Enter quiz name: </label><br>
-      <input name="name" class="form-control">
-    </div>
+      <br>
+      <div>
+        <label for="quiz-name">Enter quiz name: </label><br>
+        <input #onBlurQuizName formControlName="name" id="quiz-name" name="name" (blur)="onBlurQuizName(onBlurQuizName.value)" class="form-control">
+      </div>
+      <div class="er-questions-container">
+        <div *ngFor="let question of questions; let i = index">
+          <span>Question {{i + 1}}: </span><br>
+          <div formGroupName="questions" class="er-question">
+            <span>text:</span>
+            <input formControlName="text" name="quiz-question-text" class="form-control">
+            <br>
+            <span>answers:</span>
+            <div formGroupName="answers" class="er-answers">
+              <div *ngFor="let ans of questions[i].answers; let j = index">
+                <label>{{j + 1}}.</label>
+                <input name="quiz-question-answer">
+              </div>
+              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)">Add answer</button>
+            </div>
+            <br>
+            <span>right answer:</span>
+            <div>
+              <input formControlName="rightAnswer" name="quiz-question-right-answer">
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-danger" type="button" (click)="onAddQuestion()">Add question</button>
+      </div>
+      <br>
+      <button class="btn btn-danger" type="submit">Create</button>
+    </form>
   </div>
 </div>

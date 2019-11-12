@@ -5,3 +5,11 @@
 .er-right {
   float: right;
 }
+
+a:active {
+  background-color: darkgray;
+}
+
+.er-m-drop {
+  margin-bottom: 5px;
+}

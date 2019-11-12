@@ -1,10 +1,40 @@
+.er-width-outer {
+  margin-top: 30px;
+  width: 800px;
+  background-color: #EAEAEA;
+  display: flex;
+  justify-content: center;
+}
+
 .er-width {
-  width: 400px;
-  height: auto;
-  margin-top: 150px;
-  margin-left: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 650px;
   padding: 20px;
   background-color: #EAEAEA;
 }
 
+.er-question {
+  margin-top:5px;
+  margin-bottom:10px;
+  margin-left: 1rem;
+  border: 1px solid #909090;
+  padding: 10px;
+  border-radius: 5px;
+}
 
+.er-answers {
+  margin-left: 1rem;
+}
+
+.er-outer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.er-questions-container {
+  margin: 10px 0;
+  padding: 10px;
+  overflow-y: scroll;
+}

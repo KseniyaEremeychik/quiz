@@ -29,7 +29,8 @@ const appRoutes: Routes = [
   {path: 'quiz', component: QuizComponent},
   {path: 'newQuiz', component: NewQuizComponent},
   {path: 'userEditing', component: UserEditingComponent},
-  {path: 'categoryEditing', component: CategoryEditingComponent}
+  {path: 'categoryEditing', component: CategoryEditingComponent},
+  {path: 'newQuiz', component: NewQuizComponent}
 ]
 
 @NgModule({

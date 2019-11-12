@@ -1,4 +1,13 @@
 <div class="container mt-lg-5">
+  <div class="btn-group er-m-drop" dropdown>
+    <button id="button-animated" dropdownToggle type="button" class="btn btn-danger dropdown-toggle" aria-controls="dropdown-animated">
+      Sort by <span class="caret"></span>
+    </button>
+    <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+      <li role="menuitem"><a class="dropdown-item">id</a></li>
+      <li role="menuitem"><a class="dropdown-item">name</a></li>
+    </ul>
+  </div>
   <div class="row">
     <div class="col">
       <table class="table table-bordered">
