@@ -33,4 +33,11 @@ public class CategoryDataServiceImpl implements CategoryDataService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerURL + "/api/categories", category, CategoryViewModel.class).getBody();
     }
+
+    @Override
+    public List<CategoryViewModel> getAllSortedCategories(String sortParam) {
+        RestTemplate restTemplate = new RestTemplate();
+        CategoryViewModel[] categoryViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/categoriesSort?sort=" + sortParam, CategoryViewModel[].class);
+        return categoryViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(categoryViewModelsResponse);
+    }
 }

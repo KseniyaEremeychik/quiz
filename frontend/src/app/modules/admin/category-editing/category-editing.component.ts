@@ -28,6 +28,12 @@ export class CategoryEditingComponent implements OnInit {
     }));
   }
 
+  public getAllSortedCategories(sortParam: string): void {
+    this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam).subscribe(sortedCategories => {
+      this.categories = sortedCategories as Category[];
+    }));
+  }
+
   public deleteCategory(id: string): void {
     this.subscriptions.push(this.categoryService.deleteCategory(id).subscribe(() => {
       this.updateCategories();
@@ -37,10 +43,9 @@ export class CategoryEditingComponent implements OnInit {
   public addCategory(name: string): void {
     this.category.name = name;
     this.subscriptions.push(this.categoryService.addCategory(this.category).subscribe(() => {
-
+      this.updateCategories();
     }));
     this.modalRef.hide();
-    this.updateCategories();
   }
 
   public updateCategories(): void {

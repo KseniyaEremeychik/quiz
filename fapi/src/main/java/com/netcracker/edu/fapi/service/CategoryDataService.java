@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CategoryDataService {
     List<CategoryViewModel> getAll();
+    List<CategoryViewModel> getAllSortedCategories(String sortParam);
     void deleteCategory(Integer id);
     CategoryViewModel addCategory(CategoryViewModel category);
 }

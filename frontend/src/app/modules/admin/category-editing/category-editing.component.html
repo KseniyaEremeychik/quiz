@@ -4,8 +4,8 @@
       Sort by <span class="caret"></span>
     </button>
     <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
-      <li role="menuitem"><a class="dropdown-item">id</a></li>
-      <li role="menuitem"><a class="dropdown-item">name</a></li>
+      <li role="menuitem"><a class="dropdown-item" (click)="getAllSortedCategories('id')">id</a></li>
+      <li role="menuitem"><a class="dropdown-item" (click)="getAllSortedCategories('name')">name</a></li>
     </ul>
   </div>
   <div class="row">
