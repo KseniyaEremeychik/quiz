@@ -70,10 +70,12 @@ public class Quiz {
 
     @Basic
     @Column(name = "is_confirmed")
+    @Enumerated(EnumType.STRING)
     public Confirmation getIsConfirmed() {
         return isConfirmed;
     }
 
+    @Enumerated(EnumType.STRING)
     public void setIsConfirmed(Confirmation isConfirmed) {
         this.isConfirmed = isConfirmed;
     }
