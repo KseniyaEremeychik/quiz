@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {Category} from "../../category/category";
+import {Category} from "../../../models/category";
 import {Subscription} from "rxjs";
 import {CategoryService} from "../../../services/category.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";

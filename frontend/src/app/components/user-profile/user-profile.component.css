@@ -1,0 +1,13 @@
+.ks-display {
+  display: flex;
+}
+
+.ks-float {
+  position: absolute;
+  right: 0px;
+}
+
+.ks-center {
+  margin-left: 200px;
+  margin-top: 75px;
+}

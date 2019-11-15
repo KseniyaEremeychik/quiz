@@ -10,17 +10,19 @@ import { AppComponent } from "./app.component";
 import {HttpClientModule} from "@angular/common/http";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {RouterModule, Routes} from "@angular/router";
-import { HeaderComponent } from './modules/header/header.component';
-import { HomeComponent } from './modules/home/home.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import {CategoryService} from "./services/category.service";
-import { CategoryComponent } from './modules/category/category.component';
+import { CategoryComponent } from './components/category/category.component';
 import {UserService} from "./services/user.service";
-import { QuizComponent } from './modules/quiz/quiz.component';
-import { NewQuizComponent } from './modules/new-quiz/new-quiz.component';
-import { UserEditingComponent } from './modules/admin/user-editing/user-editing.component';
-import { CategoryEditingComponent } from './modules/admin/category-editing/category-editing.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+import { NewQuizComponent } from './components/new-quiz/new-quiz.component';
+import { UserEditingComponent } from './components/admin/user-editing/user-editing.component';
+import { CategoryEditingComponent } from './components/admin/category-editing/category-editing.component';
+import { LeaderRatingComponent } from './components/leader-rating/leader-rating.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
   {path: 'newQuiz', component: NewQuizComponent},
   {path: 'userEditing', component: UserEditingComponent},
   {path: 'categoryEditing', component: CategoryEditingComponent},
-  {path: 'newQuiz', component: NewQuizComponent}
+  {path: 'newQuiz', component: NewQuizComponent},
+  {path: 'userProfile', component: UserProfileComponent}
 ]
 
 @NgModule({
@@ -44,7 +47,9 @@ const appRoutes: Routes = [
     QuizComponent,
     NewQuizComponent,
     UserEditingComponent,
-    CategoryEditingComponent
+    CategoryEditingComponent,
+    LeaderRatingComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

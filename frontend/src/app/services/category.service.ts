@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Category} from "src/app/modules/category/category";
+import {Category} from "src/app/models/category";
 
 @Injectable()
 export class CategoryService {

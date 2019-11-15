@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Category} from "../category/category";
+import {Category} from "../../models/category";
 import {Subscription} from "rxjs";
 import {CategoryService} from "../../services/category.service";
 import { FormBuilder } from '@angular/forms';
-import {Question} from './question';
+import {Question} from '../../models/question';
 
 @Component({
   selector: 'app-new-quiz',

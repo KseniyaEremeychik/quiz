@@ -1,0 +1,8 @@
+.ks-display {
+  display: flex;
+}
+
+.ks-float {
+  position: absolute;
+  right: 0px;
+}

@@ -8,7 +8,7 @@
       </div>
 
       <div *ngIf="isLogin() && userService.currentUser.role=='user'">
-        <a class="btn btn-light btn-lg text-center text-danger er-margin1 un-tools">Your profile, {{userName}}</a>
+        <a class="btn btn-light btn-lg text-center text-danger er-margin1 un-tools" routerLink="/userProfile">Your profile, {{userName}}</a>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
       <div *ngIf="isLogin() && userService.currentUser.role=='admin'">
