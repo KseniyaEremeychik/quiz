@@ -3,6 +3,7 @@ import {Category} from "../../models/category";
 import {Subscription} from "rxjs";
 import {CategoryService} from "../../services/category.service";
 import {Quiz} from "../../models/quiz";
+import {QuizService} from "../../services/quiz.service";
 
 @Component({
   selector: 'app-category',
@@ -12,10 +13,9 @@ import {Quiz} from "../../models/quiz";
 export class CategoryComponent implements OnInit {
 
   public categories: Category[];
-  public quizList: Quiz[];
   private subscriptions: Subscription[] = [];
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private quizService: QuizService) {
   }
 
   ngOnInit() {
@@ -31,9 +31,9 @@ export class CategoryComponent implements OnInit {
   }
 
   public findAllQuizByCategoryId(id: string): void {
-    this.subscriptions.push(this.categoryService.findAllQuizByCategoryId(id).subscribe(quiz => {
-      this.quizList = quiz as Quiz[];
-      console.log(this.quizList);
+    this.quizService.currQuizList = null;
+    this.subscriptions.push(this.quizService.findAllQuizByCategoryId(id).subscribe(quiz => {
+      this.quizService.currQuizList = quiz as Quiz[];
     }));
   }
 }

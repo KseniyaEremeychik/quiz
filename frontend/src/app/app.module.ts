@@ -23,6 +23,7 @@ import { UserEditingComponent } from './components/admin/user-editing/user-editi
 import { CategoryEditingComponent } from './components/admin/category-editing/category-editing.component';
 import { LeaderRatingComponent } from './components/leader-rating/leader-rating.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import {QuizService} from "./services/quiz.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     CategoryService,
-    UserService
+    UserService,
+    QuizService
   ],
   bootstrap: [AppComponent]
 })

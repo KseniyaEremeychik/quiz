@@ -24,8 +24,4 @@ export class CategoryService {
   addCategory(category: Category): Observable<Category> {
     return this.http.post<Category>('/api/cat', category);
   }
-
-  findAllQuizByCategoryId(id: string): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>(`/api/quiz/?categoryId=${id}`);
-  }
 }
