@@ -8,7 +8,15 @@
       </div>
 
       <div *ngIf="isLogin() && userService.currentUser.role=='user'">
-        <a class="btn btn-danger btn-lg text-center er-margin1 un-tools" routerLink="/userProfile">Your profile, {{userName}}</a>
+        <div class="btn-group" dropdown>
+          <button id="button-user" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
+            {{userService.currentUser.userName}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li role="menuitem"><a class="dropdown-item" routerLink="/userProfile">Profile</a></li>
+            <li role="menuitem"><a class="dropdown-item">My quiz</a></li>
+          </ul>
+        </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
       <div *ngIf="isLogin() && userService.currentUser.role=='admin'">
@@ -20,7 +28,7 @@
             <li role="menuitem"><a class="dropdown-item" routerLink="/userEditing">User</a></li>
             <li role="menuitem"><a class="dropdown-item" routerLink="/categoryEditing">Category</a></li>
             <li role="menuitem"><a class="dropdown-item" routerLink="/newQuiz">Quiz</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#">Statistics</a></li>
+            <li role="menuitem"><a class="dropdown-item">Statistics</a></li>
           </ul>
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>

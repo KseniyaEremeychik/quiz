@@ -24,6 +24,7 @@ import { CategoryEditingComponent } from './components/admin/category-editing/ca
 import { LeaderRatingComponent } from './components/leader-rating/leader-rating.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {QuizService} from "./services/quiz.service";
+import { QuizPassingComponent } from './components/quiz-passing/quiz-passing.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   {path: 'userEditing', component: UserEditingComponent},
   {path: 'categoryEditing', component: CategoryEditingComponent},
   {path: 'newQuiz', component: NewQuizComponent},
-  {path: 'userProfile', component: UserProfileComponent}
+  {path: 'userProfile', component: UserProfileComponent},
+  {path: 'passQuiz', component: QuizPassingComponent}
 ]
 
 @NgModule({
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     UserEditingComponent,
     CategoryEditingComponent,
     LeaderRatingComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    QuizPassingComponent
   ],
   imports: [
     BrowserModule,

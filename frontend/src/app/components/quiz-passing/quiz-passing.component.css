@@ -1,0 +1,10 @@
+.er-width {
+  width: 500px;
+  margin-left: 350px;
+  margin-top: 30px;
+  background-color: #EAEAEA;
+}
+
+.flex {
+  display: flex;
+}

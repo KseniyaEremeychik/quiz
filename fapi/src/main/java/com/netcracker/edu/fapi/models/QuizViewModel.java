@@ -16,6 +16,7 @@ public class QuizViewModel {
     //private Date creationDate;
     private String creationDate;
     private int userId;
+    //private String userName;
 
     public QuizViewModel() {
     }
@@ -30,6 +31,8 @@ public class QuizViewModel {
         this.creationDate = creationDate;
         this.userId = userId;
     }
+
+
 
     public int getId() {
         return id;

@@ -17,6 +17,10 @@ export class UserService {
     return this.http.get<User>(`/api/user/?email=${email}`);
   }
 
+  /*getUserByEmailAndPassword(): Observable<User> {
+    return this.http.post();
+  }*/
+
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>('api/userEditing');
   }

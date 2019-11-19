@@ -4,6 +4,7 @@ import com.netcracker.edu.backend.entity.Category;
 import com.netcracker.edu.backend.repository.CategoryRepository;
 import com.netcracker.edu.backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
@@ -34,5 +35,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Iterable<Category> getAllSortedCategories(String sortParam) {
         return categoryRepository.findAll(Sort.by(sortParam));
+        /*return categoryRepository.findAll(PageRequest.of(0, 2)).getContent();*/
     }
 }
