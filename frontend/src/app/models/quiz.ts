@@ -8,5 +8,6 @@ export class Quiz {
   time: string;
   creationDate: string;
   userId: string;
+  userName: string;
   questions: Question[];
 }

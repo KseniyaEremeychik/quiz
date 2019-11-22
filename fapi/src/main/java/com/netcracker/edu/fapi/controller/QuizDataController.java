@@ -16,7 +16,6 @@ public class QuizDataController {
     @Autowired
     private QuizDataService quizDataService;
 
-    //todo check field isConfirm (if not approved, do not return to frontend)
     @RequestMapping("/api/allQuiz")
     public ResponseEntity<List<QuizViewModel>> findAllQuizByCategoryId(@RequestParam(name = "categoryId") String id) {
         return ResponseEntity.ok(quizDataService.findAllQuizByCategoryId(Integer.valueOf(id)));

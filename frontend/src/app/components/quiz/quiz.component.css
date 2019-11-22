@@ -1,7 +1,12 @@
 .fix-width {
-  margin: 15px;
-  width: auto;
   display: inline-block;
+  height: auto;
+}
+
+.ks-card {
+  width: 240px;
+  height: 200px;
+  margin: 15px;
 }
 
 li {
@@ -18,8 +23,12 @@ ul {
   display: flex;
 }
 
-.card-columns {
-  column-count: 1;
+.ks-fix {
+  flex-wrap: wrap;
+}
+
+.ks-m {
+  margin-right: 110px;
 }
 
 

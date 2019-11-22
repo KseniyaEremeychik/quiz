@@ -24,7 +24,6 @@ export class QuizComponent implements OnInit {
       this.quizService.currQuiz = quiz;
       this.questions = questions as Question[];
       this.quizService.currQuiz.questions = this.questions;
-      console.log(this.quizService.currQuiz.questions);
     }));
   }
 }

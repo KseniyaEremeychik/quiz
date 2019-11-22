@@ -1,27 +1,24 @@
 <div class="flex">
-  <div>
+  <div class="ks-m">
     <app-category></app-category>
   </div>
 
-  <div class="card-columns">
-    <div class="fix-width">
-      <div *ngFor="let quiz of quizService.currQuizList" class="card border-secondary text-center">
-        <div class="card-header border-secondary p-1">
-          <b>{{quiz.name}}</b>
-        </div>
-        <div class="card-body text-left p-2 er-float">
-          <ul class="p-0">
-            <li>number of questions: {{quiz.questionNumber}}</li>
-            <li>time to accomplish: {{quiz.time}} minutes</li>
-            <li>creation date: {{quiz.creationDate}}</li>
-            <li>author: {{quiz.userId}}</li>
-          </ul>
-        </div>
-        <div class="card-footer p-1">
-          <a class="btn btn-danger text-white" routerLink="/passQuiz" (click)="getQuizById(quiz)">Start quiz</a>
-        </div>
+  <div class="fix-width flex ks-fix">
+    <div *ngFor="let quiz of quizService.currQuizList" class="card border-secondary text-center ks-card flex">
+      <div class="card-header text-white border-secondary p-1 bg-danger">
+        <b>{{quiz.name}}</b>
+      </div>
+      <div class="card-body text-left p-2 er-float">
+        <ul class="p-0">
+          <li><i>number of questions</i>: {{quiz.questionNumber}}</li>
+          <li><i>time to accomplish</i>: {{quiz.time}} minutes</li>
+          <li><i>creation date</i>: {{quiz.creationDate}}</li>
+          <li><i>author</i>: {{quiz.userName}}</li>
+        </ul>
+      </div>
+      <div class="card-footer p-1">
+        <a class="btn btn-outline-danger" routerLink="/passQuiz" (click)="getQuizById(quiz)"><b>Start quiz</b></a>
       </div>
     </div>
-
   </div>
 </div>

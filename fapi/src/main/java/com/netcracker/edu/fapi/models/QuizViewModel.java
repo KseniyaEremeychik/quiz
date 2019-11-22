@@ -13,15 +13,14 @@ public class QuizViewModel {
     private int questionNumber;
     private Integer time;
     private String isConfirmed;
-    //private Date creationDate;
     private String creationDate;
     private int userId;
-    //private String userName;
+    private String userName;
 
     public QuizViewModel() {
     }
 
-    public QuizViewModel(int id, int categoryId, String name, int questionNumber, Integer time, String isConfirmed, String creationDate, int userId) {
+    public QuizViewModel(int id, int categoryId, String name, int questionNumber, Integer time, String isConfirmed, String creationDate, int userId, String userName) {
         this.id = id;
         this.categoryId = categoryId;
         this.name = name;
@@ -30,9 +29,8 @@ public class QuizViewModel {
         this.isConfirmed = isConfirmed;
         this.creationDate = creationDate;
         this.userId = userId;
+        this.userName = userName;
     }
-
-
 
     public int getId() {
         return id;
@@ -96,6 +94,14 @@ public class QuizViewModel {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 

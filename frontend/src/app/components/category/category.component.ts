@@ -34,6 +34,7 @@ export class CategoryComponent implements OnInit {
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.findAllQuizByCategoryId(id).subscribe(quiz => {
       this.quizService.currQuizList = quiz as Quiz[];
+      console.log(this.quizService.currQuizList);
     }));
   }
 }

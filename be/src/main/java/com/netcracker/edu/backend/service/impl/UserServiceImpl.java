@@ -6,6 +6,8 @@ import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
@@ -31,5 +33,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> getUserById(Integer id) {
+        return userRepository.findById(id);
     }
 }

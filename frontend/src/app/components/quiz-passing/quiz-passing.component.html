@@ -10,11 +10,11 @@
         <label class="card-title">{{question.text}}</label>
         <br>
         <div  *ngFor="let answer of question.answers" >
-          <input type="radio" name="answer" value="{{answer.text}}" (change)="radioChangeHandler($event)">  {{answer.text}}<br>
+          <input type="radio" name="{{question.id}}" value="{{answer.text}}" (change)="radioChangeHandler($event)">  {{answer.text}}<br>
         </div>
       </div>
     </div>
-    <a routerLink="/" >
+    <a *ngIf="this.quizService.currQuiz.questions" routerLink="/" >
       <button class="btn btn-danger ks-m" [disabled]="">
         Finish
       </button>

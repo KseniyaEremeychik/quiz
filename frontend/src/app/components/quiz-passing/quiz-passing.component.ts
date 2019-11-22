@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {QuizService} from "../../services/quiz.service";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
   selector: 'app-quiz-passing',
@@ -7,7 +8,7 @@ import {QuizService} from "../../services/quiz.service";
   styleUrls: ['./quiz-passing.component.css']
 })
 export class QuizPassingComponent implements OnInit {
-  private selectedAnswers: string[]
+  private selectedAnswers: string[] = [];
 
   constructor(private quizService: QuizService) { }
 

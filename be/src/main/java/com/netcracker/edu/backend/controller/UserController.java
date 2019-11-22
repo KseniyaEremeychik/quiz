@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api/users")
 public class UserController {
     private UserService userService;
 
@@ -16,19 +17,29 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/api/users", method = RequestMethod.POST)
     public User saveUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByEmail(@RequestParam(name = "email") String email) {
         User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/users/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable(name = "id") Integer id) {
         userService.deleteUser(id);
+    }
+
+    @RequestMapping(value = "/api/userBe/", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserById(@RequestParam(name = "userId") Integer id) {
+        Optional<User> user = userService.getUserById(id);
+        if(user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
