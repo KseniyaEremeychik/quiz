@@ -19,7 +19,7 @@ export class NewQuizComponent implements OnInit {
   checkoutForm;
 
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) {
-    this.questions.push(
+    /*this.questions.push(
       {text: '', answers: ['', ''], rightAnswer: ''},
       {text: '', answers: ['', ''], rightAnswer: ''}
     );
@@ -34,7 +34,7 @@ export class NewQuizComponent implements OnInit {
         }),
         rightAnswer: '',
       })
-    });
+    });*/
   }
 
   ngOnInit() {
@@ -54,13 +54,13 @@ export class NewQuizComponent implements OnInit {
     console.warn('Your order has been submitted', data);
   }
 
-  onAddAnswer(ind) {
+  /*onAddAnswer(ind) {
     this.questions[ind].answers.push('');
-  }
+  }*/
 
-  onAddQuestion() {
+  /*onAddQuestion() {
     this.questions.push({text: '', answers: ['', ''], rightAnswer: ''})
-  }
+  }*/
 
   onBlurQuizName(name) {
     this.quizName = name;

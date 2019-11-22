@@ -1,5 +1,7 @@
-export interface Question {
+import {Answer} from "./answer";
+
+export class Question {
+  id: string;
   text: string;
-  answers: string[];
-  rightAnswer: string;
+  answers: Answer[];
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {QuizService} from "../../services/quiz.service";
 
 @Component({
   selector: 'app-quiz-passing',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quiz-passing.component.css']
 })
 export class QuizPassingComponent implements OnInit {
+  private selectedAnswers: string[]
 
-  constructor() { }
+  constructor(private quizService: QuizService) { }
 
   ngOnInit() {
   }
 
+  public radioChangeHandler(event: any) {
+    this.selectedAnswers.push(event.target.value);
+    console.log(this.selectedAnswers);
+  }
 }

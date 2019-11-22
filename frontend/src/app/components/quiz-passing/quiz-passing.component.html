@@ -2,26 +2,22 @@
   <div>
     <app-category></app-category>
   </div>
-  <div>
-    <div class="card text-left border-danger er-width">
+  <div class="text-center">
+    <br>
+    <h1>{{this.quizService.currQuiz.name}}</h1>
+    <div *ngFor="let question of this.quizService.currQuiz.questions" class="card text-left border-danger er-width">
       <div class="card-body">
-        <label class="card-title">Question text</label>
+        <label class="card-title">{{question.text}}</label>
         <br>
-        <input type="radio" name="answer"> answer1<br>
-        <input type="radio" name="answer"> answer2<br>
-        <input type="radio" name="answer"> answer3<br>
-        <input type="radio" name="answer"> answer4<br>
+        <div  *ngFor="let answer of question.answers" >
+          <input type="radio" name="answer" value="{{answer.text}}" (change)="radioChangeHandler($event)">  {{answer.text}}<br>
+        </div>
       </div>
     </div>
-    <div class="card text-left border-danger er-width">
-      <div class="card-body">
-        <label class="card-title">Question text</label>
-        <br>
-        <input type="radio" name="answer"> answer1<br>
-        <input type="radio" name="answer"> answer2<br>
-        <input type="radio" name="answer"> answer3<br>
-        <input type="radio" name="answer"> answer4<br>
-      </div>
-    </div>
+    <a routerLink="/" >
+      <button class="btn btn-danger ks-m" [disabled]="">
+        Finish
+      </button>
+    </a>
   </div>
 </div>

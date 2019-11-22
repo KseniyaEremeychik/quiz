@@ -2,9 +2,15 @@
   width: 500px;
   margin-left: 350px;
   margin-top: 30px;
+  margin-bottom: 30px;
   background-color: #EAEAEA;
 }
 
 .flex {
   display: flex;
+}
+
+.ks-m {
+  margin-bottom: 30px;
+  width: 150px;
 }

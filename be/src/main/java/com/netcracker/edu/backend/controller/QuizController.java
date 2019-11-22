@@ -1,5 +1,6 @@
 package com.netcracker.edu.backend.controller;
 
+import com.netcracker.edu.backend.entity.Question;
 import com.netcracker.edu.backend.entity.Quiz;
 import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/quizBe")
 public class QuizController {
     private QuizService quizService;
 
@@ -18,7 +18,7 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/quizBe",  method = RequestMethod.GET)
     public Iterable<Quiz> findAllQuizByCategoryId(@RequestParam(name = "categoryId") Integer id) {
         return this.quizService.findAllQuizByCategoryId(id);
     }
