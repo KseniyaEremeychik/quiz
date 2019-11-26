@@ -8,4 +8,5 @@ import java.util.List;
 public interface QuizDataService {
     List<QuizViewModel> findAllQuizByCategoryId(Integer id);
     List<QuestionViewModel> getAllQuestionsByQuizId(Integer id);
+    List<QuizViewModel> findAllQuizLike(String searchParam);
 }

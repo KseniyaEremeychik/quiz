@@ -46,7 +46,7 @@ public class QuizDataServiceImpl implements QuizDataService {
     @Override
     public List<QuestionViewModel> getAllQuestionsByQuizId(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
-        QuestionViewModel[] questionViewModels = restTemplate.getForObject(backendServerURL + "/api/questionsBe/?quizId=" + id, QuestionViewModel[].class);
+        QuestionViewModel[] questionViewModels = restTemplate.getForObject(backendServerURL + "api/questionsBe/?quizId=" + id, QuestionViewModel[].class);
 
         RestTemplate restTemplate1 = new RestTemplate();
         for(int i=0; i<questionViewModels.length; i++) {
@@ -54,5 +54,13 @@ public class QuizDataServiceImpl implements QuizDataService {
             questionViewModels[i].setAnswers(Arrays.asList(answers));
         }
         return questionViewModels == null ? Collections.emptyList() : Arrays.asList(questionViewModels);
+    }
+
+    @Override
+    public List<QuizViewModel> findAllQuizLike(String searchParam) {
+        RestTemplate restTemplate = new RestTemplate();
+        QuizViewModel[] quizViewModels = restTemplate.getForObject(backendServerURL + "api/quizLike/?searchParam=" + searchParam, QuizViewModel[].class);
+
+        return quizViewModels == null ? Collections.emptyList(): Arrays.asList(quizViewModels);
     }
 }

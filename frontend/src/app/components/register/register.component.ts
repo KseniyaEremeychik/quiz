@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      "userName": new FormControl("", [Validators.required, Validators.minLength(4)]),
+      "userName": new FormControl("", [Validators.required, Validators.minLength(4), Validators.pattern("[a-zA-Z_]+")]),
       "userEmail": new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")]),
-      "userPassword": new FormControl("", Validators.required),
-      "userPassword2": new FormControl("", Validators.required)
+      "userPassword": new FormControl("", [Validators.required, Validators.minLength(8)]),
+      "userPassword2": new FormControl("", [Validators.required, Validators.minLength(8)])
     });
   }
 

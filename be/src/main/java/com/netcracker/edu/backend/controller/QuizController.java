@@ -22,4 +22,9 @@ public class QuizController {
     public Iterable<Quiz> findAllQuizByCategoryId(@RequestParam(name = "categoryId") Integer id) {
         return this.quizService.findAllQuizByCategoryId(id);
     }
+
+    @RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
+    public Iterable<Quiz> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam) {
+        return this.quizService.findAllQuizLike(searchParam);
+    }
 }

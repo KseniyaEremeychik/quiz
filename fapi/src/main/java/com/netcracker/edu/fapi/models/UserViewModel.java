@@ -2,6 +2,8 @@ package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Map;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserViewModel {
     private int id;
@@ -9,24 +11,18 @@ public class UserViewModel {
     private String email;
     private String password;
     private String role;
+    private Map<String, String> errors;
 
     public UserViewModel() {
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public UserViewModel(int id, String userName, String email, String password, String role) {
+    public UserViewModel(int id, String userName, String email, String password, String role, Map<String, String> errors) {
         this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.errors = errors;
     }
 
     public int getId() {
@@ -59,5 +55,21 @@ public class UserViewModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Map<String, String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(Map<String, String> errors) {
+        this.errors = errors;
     }
 }

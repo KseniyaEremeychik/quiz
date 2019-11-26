@@ -25,6 +25,7 @@ import { LeaderRatingComponent } from './components/leader-rating/leader-rating.
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {QuizService} from "./services/quiz.service";
 import { QuizPassingComponent } from './components/quiz-passing/quiz-passing.component';
+import { MyquizComponent } from './components/myquiz/myquiz.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     CategoryEditingComponent,
     LeaderRatingComponent,
     UserProfileComponent,
-    QuizPassingComponent
+    QuizPassingComponent,
+    MyquizComponent
   ],
   imports: [
     BrowserModule,

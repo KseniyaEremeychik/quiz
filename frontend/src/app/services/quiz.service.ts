@@ -18,4 +18,8 @@ export class QuizService {
   getQuizById(id: string): Observable<Question[]> {
     return this.http.get<Question[]>(`/api/quiz/?quizId=${id}`);
   }
+
+  findQuizLike(searchParam: string): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`/api/quizLike/?searchParam=${searchParam}`);
+  }
 }

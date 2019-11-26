@@ -19,4 +19,9 @@ public class QuizServiceImpl implements QuizService {
     public Iterable<Quiz> findAllQuizByCategoryId(Integer id) {
         return quizRepository.findByCategoryId(id);
     }
+
+    @Override
+    public Iterable<Quiz> findAllQuizLike(String searchParam) {
+        return quizRepository.findByNameContaining(searchParam);
+    }
 }

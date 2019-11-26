@@ -10,7 +10,7 @@
                 <label class="text-danger">Username:</label><br>
                 <input name="name" class="form-control" formControlName="userName" #username>
                 <div class="alert alert-danger" *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
-                  Username is too short
+                  Incorrect username
                 </div>
               </div>
               <div class="form-group">
@@ -23,6 +23,9 @@
               <div class="form-group">
                 <label class="text-danger">Password:</label><br>
                 <input type="password" name="password" class="form-control" formControlName="userPassword" #password>
+                <div class="alert alert-danger" *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
+                  Incorrect password
+                </div>
               </div>
               <div class="form-group">
                 <label class="text-danger">Repeat password:</label><br>

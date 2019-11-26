@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class UserDataServiceImpl implements UserDataService {
@@ -22,9 +20,20 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     @Override
-    public UserViewModel findByEmail(String email) {
+    public UserViewModel findByEmail(String email, String password) {
         RestTemplate restTemplate = new RestTemplate();
+        Map<String, String> err = new HashMap<>();
         UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
+        if(user != null) {
+            if(!user.getPassword().equals(password)) {
+                user = new UserViewModel();
+                err.put("password", "Incorrect password");
+            }
+        } else {
+            user = new UserViewModel();
+            err.put("email", "Incorrect email");
+        }
+        user.setErrors(err);
         return user;
     }
 
@@ -38,6 +47,6 @@ public class UserDataServiceImpl implements UserDataService {
     @Override
     public void deleteUser(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerURL + "api/users/" + id);
+        restTemplate.delete(backendServerURL + "/api/users/" + id);
     }
 }

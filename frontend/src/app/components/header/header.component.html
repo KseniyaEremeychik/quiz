@@ -7,9 +7,14 @@
         </a>
       </div>
 
-      <div *ngIf="isLogin() && userService.currentUser.role=='user'">
+      <div class="ks-flex" *ngIf="isLogin() && userService.currentUser.role=='user' && userService.currentUser.id!=0">
+        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter quiz name" #search>
+        <a class="btn btn-lg btn-danger" type="submit" (click)="findQuizLike(search.value)" routerLink="/quiz">Search</a>
+      </div>
+      <div *ngIf="isLogin() && userService.currentUser.role=='user' && userService.currentUser.id!=0">
         <div class="btn-group" dropdown>
-          <button id="button-user" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
+          <button id="button-user" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2"
+                  aria-controls="dropdown-animated">
             {{userService.currentUser.userName}} <span class="caret"></span>
           </button>
           <ul id="dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
@@ -19,9 +24,10 @@
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
-      <div *ngIf="isLogin() && userService.currentUser.role=='admin'">
+      <div *ngIf="isLogin() && userService.currentUser.role=='admin' && userService.currentUser.id!=0">
         <div class="btn-group" dropdown>
-          <button id="button-animated" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
+          <button id="button-animated" dropdownToggle type="button"
+                  class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
             Admin <span class="caret"></span>
           </button>
           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
@@ -33,7 +39,7 @@
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
-      <div *ngIf="!isLogin()" class="btn-group">
+      <div *ngIf="!isLogin() || userService.currentUser.id==0" class="btn-group">
         <a class="btn btn-danger btn-lg" routerLink="/login">Log in</a>
         <a class="btn btn-danger btn-lg" routerLink="/register">Register</a>
       </div>

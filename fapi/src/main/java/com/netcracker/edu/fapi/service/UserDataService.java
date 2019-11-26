@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDataService {
     UserViewModel saveUser(UserViewModel user);
-    UserViewModel findByEmail(String email);
+    UserViewModel findByEmail(String email, String password);
     List<UserViewModel> getAll();
     void deleteUser(Integer id);
 }
