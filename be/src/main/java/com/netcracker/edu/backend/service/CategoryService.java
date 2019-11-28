@@ -6,5 +6,5 @@ public interface CategoryService {
     Iterable<Category> getAllCategories();
     void deleteCategory(Integer id);
     Category addCategory(Category category);
-    Iterable<Category> getAllSortedCategories(String sortParam);
+    Iterable<Category> getAllSortedCategories(String sortParam, String sortFormat);
 }

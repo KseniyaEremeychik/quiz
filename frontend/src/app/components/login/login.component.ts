@@ -33,6 +33,13 @@ export class LoginComponent implements OnInit {
     this.userLoginData.password = password;
     this.subscriptions.push(this.userService.findUserByEmail(this.userLoginData).subscribe(user => {
       this.userService.currentUser = user as User;
+
+      if(this.userService.currentUser.errors != null) {
+        this.router.navigate(['/login']);
+      }
+      else {
+        this.router.navigate(['/']);
+      }
     }));
   }
 }

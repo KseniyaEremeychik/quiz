@@ -4,6 +4,7 @@ import {BsDropdownConfig} from "ngx-bootstrap";
 import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../models/quiz";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,9 @@ export class HeaderComponent implements OnInit {
   private userName: string;
   private subscriptions: Subscription[] = [];
 
-  constructor(private userService: UserService, private quizService: QuizService) { }
+  constructor(private userService: UserService,
+              private quizService: QuizService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,8 +40,7 @@ export class HeaderComponent implements OnInit {
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.findQuizLike(searchParam).subscribe(quizList => {
       this.quizService.currQuizList = quizList as Quiz[];
-      console.log(this.quizService.currQuizList);
-      console.log(this.quizService.currQuizList.length);
+      this.router.navigate(['/quiz']);
     }));
   }
 }

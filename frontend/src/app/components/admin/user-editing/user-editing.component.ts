@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {User} from "../../../models/user";
 import {Subscription} from "rxjs";
 import {UserService} from "../../../services/user.service";
+import {Template} from "@angular/compiler/src/render3/r3_ast";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-user-editing',
@@ -10,24 +12,31 @@ import {UserService} from "../../../services/user.service";
 })
 export class UserEditingComponent implements OnInit {
 
-  public users: User[];
+  private users: User[];
   private subscriptions: Subscription[] = [];
+  private modalRef: BsModalRef;
+  private curUserId: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getAllUsers();
   }
 
-  private getAllUsers(): void {
+  public getAllUsers(): void {
     this.subscriptions.push(this.userService.getAllUsers().subscribe(users => {
       this.users = users as User[];
     }));
   }
 
-  private deleteUser(id: string): void {
+  public deleteUser(id: string): void {
     this.subscriptions.push(this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
     }));
+  }
+
+  openModal(template: TemplateRef<any>, curUser: string) {
+    this.modalRef = this.modalService.show(template);
+    this.curUserId = curUser;
   }
 }

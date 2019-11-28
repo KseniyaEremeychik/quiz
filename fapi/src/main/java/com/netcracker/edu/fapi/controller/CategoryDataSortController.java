@@ -17,7 +17,7 @@ public class CategoryDataSortController {
     private CategoryDataService categoryDataService;
 
     @RequestMapping
-    public ResponseEntity<List<CategoryViewModel>> getAllSortedCategories(@RequestParam(name = "sort") String sortParam) {
-        return ResponseEntity.ok(categoryDataService.getAllSortedCategories(sortParam));
+    public ResponseEntity<List<CategoryViewModel>> getAllSortedCategories(@RequestParam(name = "sort") String sortParam, @RequestParam(name = "format") String sortFormat) {
+        return ResponseEntity.ok(categoryDataService.getAllSortedCategories(sortParam, sortFormat));
     }
 }

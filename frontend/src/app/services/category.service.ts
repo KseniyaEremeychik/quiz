@@ -13,8 +13,8 @@ export class CategoryService {
     return this.http.get<Category[]>('/api/cat');
   }
 
-  getAllSortedCategories(sortParam: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`/api/catSort/?sort=${sortParam}`);
+  getAllSortedCategories(sortParam: string, sortFormat: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`/api/catSort/?sort=${sortParam}&format=${sortFormat}`);
   }
 
   deleteCategory(id: string): Observable<void> {

@@ -1,5 +1,5 @@
 <div class="container mt-lg-5">
-  <div class="btn-group er-m-drop" dropdown>
+  <!--<div class="btn-group er-m-drop" dropdown>
     <button id="button-animated" dropdownToggle type="button" class="btn btn-danger dropdown-toggle" aria-controls="dropdown-animated">
       Sort by <span class="caret"></span>
     </button>
@@ -7,22 +7,22 @@
       <li role="menuitem"><a class="dropdown-item" (click)="getAllSortedCategories('id')">id</a></li>
       <li role="menuitem"><a class="dropdown-item" (click)="getAllSortedCategories('name')">name</a></li>
     </ul>
-  </div>
+  </div>-->
   <div class="row">
     <div class="col">
-      <table class="table table-bordered">
+      <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin" (click)="openModal(template)">Add new category</button></th>
+          <th>Id<i class="btn dropdown-toggle" (click)="getAllSortedCategories('id')"></i></th>
+          <th>Name<i class="btn dropdown-toggle" (click)="getAllSortedCategories('name')"></i></th>
+          <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin" (click)="openModalAdd(template)">Add new category</button></th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let category of categories">
           <td scope="row">{{category.id}}</td>
           <td>{{category.name}}</td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(category.id)">Delete</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="openModalDelete(template1, category.id)">Delete</button></td>
         </tr>
         </tbody>
       </table>
@@ -41,7 +41,22 @@
     <label>Enter the name: </label>
     <input class="form-control" #categoryName>
     <br>
-    <button type="button" class="btn btn-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
     <button type="button" class="btn btn-danger m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>
+  </div>
+</ng-template>
+
+<ng-template #template1>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">Confirmation of action</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>Are you sure you want to delete this category? </label>
+    <br>
+    <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-danger m-1 er-right" (click)="deleteCategory(curCategoryId)">Yes</button>
   </div>
 </ng-template>

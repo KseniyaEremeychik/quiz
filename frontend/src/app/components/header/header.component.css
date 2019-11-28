@@ -27,6 +27,39 @@ a:active {
 
 .ks-flex {
   display: flex;
-  position: relative;
-  right: 410px;
 }
+
+.ks-margin {
+  margin-right: 10px;
+}
+
+.has-search .ks-form-control {
+  padding-left: 3rem;
+}
+
+.ks-form-control {
+  display: block;
+  width: 100%;
+  height: 42.51px;
+  padding: .375rem .75rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: black;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 3rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: gray;
+}
+

@@ -35,9 +35,9 @@ public class CategoryDataServiceImpl implements CategoryDataService {
     }
 
     @Override
-    public List<CategoryViewModel> getAllSortedCategories(String sortParam) {
+    public List<CategoryViewModel> getAllSortedCategories(String sortParam, String sortFormat) {
         RestTemplate restTemplate = new RestTemplate();
-        CategoryViewModel[] categoryViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/categoriesSort?sort=" + sortParam, CategoryViewModel[].class);
+        CategoryViewModel[] categoryViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/categoriesSort?sort=" + sortParam + "&format=" + sortFormat, CategoryViewModel[].class);
         return categoryViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(categoryViewModelsResponse);
     }
 }

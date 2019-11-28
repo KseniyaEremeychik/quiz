@@ -19,7 +19,7 @@ public class CategorySortController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<Category> getAllSortedCategories(@RequestParam(name = "sort") String sortParam) {
-        return categoryService.getAllSortedCategories(sortParam);
+    public Iterable<Category> getAllSortedCategories(@RequestParam(name = "sort") String sortParam, @RequestParam(name = "format") String sortFormat) {
+        return categoryService.getAllSortedCategories(sortParam, sortFormat);
     }
 }

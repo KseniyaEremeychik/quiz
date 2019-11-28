@@ -11,10 +11,13 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap";
 })
 export class CategoryEditingComponent implements OnInit {
 
-  public category: Category = new Category();
-  public modalRef: BsModalRef;
+  private category: Category = new Category();
+  private modalRef: BsModalRef;
   public categories: Category[];
   private subscriptions: Subscription[] = [];
+  private sortFormatId: string = 'desc';
+  private sortFormatName: string = 'desc';
+  private curCategoryId: string;
 
   constructor(private categoryService: CategoryService, private modalService: BsModalService) { }
 
@@ -29,15 +32,32 @@ export class CategoryEditingComponent implements OnInit {
   }
 
   public getAllSortedCategories(sortParam: string): void {
-    this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam).subscribe(sortedCategories => {
-      this.categories = sortedCategories as Category[];
-    }));
+    if(sortParam == 'name') {
+      if(this.sortFormatName == 'desc') {
+        this.sortFormatName = 'asc';
+      } else {
+        this.sortFormatName = 'desc';
+      }
+      this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam, this.sortFormatName).subscribe(sortedCategories => {
+        this.categories = sortedCategories as Category[];
+      }));
+    } else {
+      if(this.sortFormatId == 'desc') {
+        this.sortFormatId = 'asc';
+      } else {
+        this.sortFormatId = 'desc';
+      }
+      this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam, this.sortFormatId).subscribe(sortedCategories => {
+        this.categories = sortedCategories as Category[];
+      }));
+    }
   }
 
   public deleteCategory(id: string): void {
     this.subscriptions.push(this.categoryService.deleteCategory(id).subscribe(() => {
       this.updateCategories();
     }));
+    this.modalRef.hide();
   }
 
   public addCategory(name: string): void {
@@ -52,7 +72,12 @@ export class CategoryEditingComponent implements OnInit {
     this.getAllCategories();
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModalDelete(template: TemplateRef<any>, curCategory: string) {
+    this.modalRef = this.modalService.show(template);
+    this.curCategoryId = curCategory;
+  }
+
+  openModalAdd(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 }

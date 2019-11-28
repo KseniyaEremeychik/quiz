@@ -4,8 +4,8 @@
   </div>
   <div class="text-center">
     <br>
-    <h1>{{this.quizService.currQuiz.name}}</h1>
-    <div *ngFor="let question of this.quizService.currQuiz.questions" class="card text-left border-danger er-width">
+    <h1>{{this.quizService.currQuiz?.name}}</h1>
+    <div *ngFor="let question of this.quizService.currQuiz?.questions" class="card text-left border-danger er-width">
       <div class="card-body">
         <label class="card-title">{{question.text}}</label>
         <br>
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <a *ngIf="this.quizService.currQuiz.questions" routerLink="/" >
+    <a *ngIf="this.quizService.currQuiz?.questions" routerLink="/" >
       <button class="btn btn-danger ks-m" [disabled]="">
         Finish
       </button>

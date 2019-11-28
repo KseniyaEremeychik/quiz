@@ -1,17 +1,21 @@
 <div class="bottom-indent">
   <nav class="navbar bg-dark shadow p-2" role="navigation">
     <div class="container-fluid">
-      <div>
-        <a routerLink="/">
+      <div class="ks-flex">
+        <a class="ks-margin" routerLink="/">
           <img src="../../../assets/questions.jpg" class="rounded" alt="questions">
         </a>
+        <!--<div class="ks-flex" *ngIf="isLogin() && userService.currentUser.role=='user'">
+          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter quiz name" (keydown.enter)="findQuizLike($event.target.value)">
+          <i class="fas fa-search"></i>
+        </div>-->
+        <div class="has-search">
+          <span class="fa fa-search form-control-feedback"></span>
+          <input type="text" class="ks-form-control" placeholder="Enter quiz name">
+        </div>
       </div>
 
-      <div class="ks-flex" *ngIf="isLogin() && userService.currentUser.role=='user' && userService.currentUser.id!=0">
-        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter quiz name" #search>
-        <a class="btn btn-lg btn-danger" type="submit" (click)="findQuizLike(search.value)" routerLink="/quiz">Search</a>
-      </div>
-      <div *ngIf="isLogin() && userService.currentUser.role=='user' && userService.currentUser.id!=0">
+      <div *ngIf="isLogin() && userService.currentUser.role=='user'">
         <div class="btn-group" dropdown>
           <button id="button-user" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2"
                   aria-controls="dropdown-animated">
@@ -24,7 +28,7 @@
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
-      <div *ngIf="isLogin() && userService.currentUser.role=='admin' && userService.currentUser.id!=0">
+      <div *ngIf="isLogin() && userService.currentUser.role=='admin'">
         <div class="btn-group" dropdown>
           <button id="button-animated" dropdownToggle type="button"
                   class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
@@ -39,7 +43,7 @@
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>
       </div>
-      <div *ngIf="!isLogin() || userService.currentUser.id==0" class="btn-group">
+      <div *ngIf="!isLogin() || userService.currentUser.errors!=null" class="btn-group">
         <a class="btn btn-danger btn-lg" routerLink="/login">Log in</a>
         <a class="btn btn-danger btn-lg" routerLink="/register">Register</a>
       </div>

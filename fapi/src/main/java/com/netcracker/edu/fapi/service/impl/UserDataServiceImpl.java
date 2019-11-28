@@ -27,11 +27,13 @@ public class UserDataServiceImpl implements UserDataService {
         if(user != null) {
             if(!user.getPassword().equals(password)) {
                 user = new UserViewModel();
-                err.put("password", "Incorrect password");
+                err.put("password", "Password is incorrect");
+            } else {
+                err = null;
             }
         } else {
             user = new UserViewModel();
-            err.put("email", "Incorrect email");
+            err.put("email", "Email not found");
         }
         user.setErrors(err);
         return user;
