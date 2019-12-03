@@ -30,4 +30,9 @@ public class QuizDataController {
     public ResponseEntity<List<QuizViewModel>> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam) {
         return ResponseEntity.ok(quizDataService.findAllQuizLike(searchParam));
     }
+
+    @RequestMapping("/api/allUsersQuiz")
+    public ResponseEntity<List<QuizViewModel>> findAllQuizByUserId(@RequestParam(name = "userId") String id) {
+        return ResponseEntity.ok(quizDataService.findAllQuizByUserId(Integer.valueOf(id)));
+    }
 }

@@ -5,13 +5,9 @@
         <a class="ks-margin" routerLink="/">
           <img src="../../../assets/questions.jpg" class="rounded" alt="questions">
         </a>
-        <!--<div class="ks-flex" *ngIf="isLogin() && userService.currentUser.role=='user'">
-          <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter quiz name" (keydown.enter)="findQuizLike($event.target.value)">
-          <i class="fas fa-search"></i>
-        </div>-->
-        <div class="has-search">
+        <div class="has-search" *ngIf="isLogin() && userService.currentUser.role=='user'">
           <span class="fa fa-search form-control-feedback"></span>
-          <input type="text" class="ks-form-control" placeholder="Enter quiz name">
+          <input type="text" class="ks-form-control" placeholder="Enter quiz name" (keydown.enter)="findQuizLike($event.target.value)">
         </div>
       </div>
 
@@ -23,7 +19,8 @@
           </button>
           <ul id="dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
             <li role="menuitem"><a class="dropdown-item" routerLink="/userProfile">Profile</a></li>
-            <li role="menuitem"><a class="dropdown-item">My quiz</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/myQuiz">My quiz</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/newQuiz">Create new quiz</a></li>
           </ul>
         </div>
         <a class="btn btn-danger btn-lg" routerLink="/" (click)="logOut()">Log out</a>

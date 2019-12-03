@@ -8,17 +8,24 @@ public class Answer {
     private int questionId;
     private int order;
     private String text;
-    private byte isRight;
+    //private byte isRight;
 
     public Answer() {
     }
 
-    public Answer(int id, int questionId, int order, String text, byte isRight) {
+    /*public Answer(int id, int questionId, int order, String text, byte isRight) {
         this.id = id;
         this.questionId = questionId;
         this.order = order;
         this.text = text;
         this.isRight = isRight;
+    }*/
+
+    public Answer(int id, int questionId, int order, String text) {
+        this.id = id;
+        this.questionId = questionId;
+        this.order = order;
+        this.text = text;
     }
 
     public int getId() {
@@ -53,11 +60,11 @@ public class Answer {
         this.text = text;
     }
 
-    public byte getIsRight() {
+    /*public byte getIsRight() {
         return isRight;
     }
 
     public void setIsRight(byte isRight) {
         this.isRight = isRight;
-    }
+    }*/
 }

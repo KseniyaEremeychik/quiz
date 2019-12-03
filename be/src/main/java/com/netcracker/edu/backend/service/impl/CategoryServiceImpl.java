@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
@@ -40,5 +42,10 @@ public class CategoryServiceImpl implements CategoryService {
             return categoryRepository.findAll(Sort.by(sortParam).descending());
         }
         /*return categoryRepository.findAll(PageRequest.of(0, 2)).getContent();*/
+    }
+
+    @Override
+    public Optional<Category> getCategoryById(Integer id) {
+        return categoryRepository.findById(id);
     }
 }

@@ -22,4 +22,8 @@ export class QuizService {
   findQuizLike(searchParam: string): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`/api/quizLike/?searchParam=${searchParam}`);
   }
+
+  getAllQuizByUserId(id: string): Observable<Quiz[]> {
+    return this.http.get<Quiz[]>(`/api/allUsersQuiz/?userId=${id}`);
+  }
 }

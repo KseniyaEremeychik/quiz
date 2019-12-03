@@ -19,4 +19,9 @@ public class AnswerServiceImpl implements AnswerService {
     public Iterable<Answer> findAllAnswersByQuestionId(Integer id) {
         return this.answerRepository.findByQuestionId(id);
     }
+
+    @Override
+    public Answer getRightAnswers(Integer questionId, byte isRight) {
+        return this.answerRepository.findByQuestionIdAndIsRight(questionId, isRight);
+    }
 }

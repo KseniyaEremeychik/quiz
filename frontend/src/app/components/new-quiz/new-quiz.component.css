@@ -20,7 +20,7 @@
   margin-bottom:10px;
   margin-left: 1rem;
   border: 1px solid #909090;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 5px;
 }
 
@@ -35,6 +35,5 @@
 
 .er-questions-container {
   margin: 10px 0;
-  padding: 10px;
   overflow-y: scroll;
 }

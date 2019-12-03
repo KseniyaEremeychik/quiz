@@ -9,9 +9,10 @@ import java.util.Date;
 public class QuizViewModel {
     private int id;
     private int categoryId;
+    private String categoryName;
     private String name;
     private int questionNumber;
-    private Integer time;
+    //private Integer time;
     private String isConfirmed;
     private String creationDate;
     private int userId;
@@ -20,12 +21,12 @@ public class QuizViewModel {
     public QuizViewModel() {
     }
 
-    public QuizViewModel(int id, int categoryId, String name, int questionNumber, Integer time, String isConfirmed, String creationDate, int userId, String userName) {
+    public QuizViewModel(int id, int categoryId, String categoryName, String name, int questionNumber, String isConfirmed, String creationDate, int userId, String userName) {
         this.id = id;
         this.categoryId = categoryId;
+        this.categoryName = categoryName;
         this.name = name;
         this.questionNumber = questionNumber;
-        this.time = time;
         this.isConfirmed = isConfirmed;
         this.creationDate = creationDate;
         this.userId = userId;
@@ -64,13 +65,13 @@ public class QuizViewModel {
         this.questionNumber = questionNumber;
     }
 
-    public Integer getTime() {
+    /*public Integer getTime() {
         return time;
     }
 
     public void setTime(Integer time) {
         this.time = time;
-    }
+    }*/
 
     public String getIsConfirmed() {
         return isConfirmed;
@@ -102,6 +103,14 @@ public class QuizViewModel {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
 

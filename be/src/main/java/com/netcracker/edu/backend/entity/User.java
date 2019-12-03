@@ -1,5 +1,7 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class User {
     @Id

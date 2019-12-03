@@ -1,3 +1,9 @@
 .ks-width {
-  width: 300px;
+  width: 255px;
+  border-radius: .20rem;
+  margin-top: 150px;
+}
+
+.ks-font {
+  font-size: x-large;
 }

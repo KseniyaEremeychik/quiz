@@ -26,6 +26,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import {QuizService} from "./services/quiz.service";
 import { QuizPassingComponent } from './components/quiz-passing/quiz-passing.component';
 import { MyquizComponent } from './components/myquiz/myquiz.component';
+import {AnswerService} from "./services/answer.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
   {path: 'categoryEditing', component: CategoryEditingComponent},
   {path: 'newQuiz', component: NewQuizComponent},
   {path: 'userProfile', component: UserProfileComponent},
-  {path: 'passQuiz', component: QuizPassingComponent}
+  {path: 'passQuiz', component: QuizPassingComponent},
+  {path: 'myQuiz', component: MyquizComponent}
 ]
 
 @NgModule({
@@ -72,7 +74,8 @@ const appRoutes: Routes = [
   providers: [
     CategoryService,
     UserService,
-    QuizService
+    QuizService,
+    AnswerService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,29 @@
 package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserViewModel {
     private int id;
+
+    @NotEmpty(message = "Username is required")
+    @Size(min = 4, message = "Username should be at least 4 characters")
+    @Pattern(regexp = "[a-zA-Z_]+", message = "Username should contain only latin letters and underscores")
     private String userName;
+
+    @NotEmpty(message = "Email is required")
+    @Pattern(regexp = "[a-zA-Z_.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}", message="Email is invalid")
     private String email;
+
+    @NotEmpty(message = "Password is required")
+    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
     private String role;
     private Map<String, String> errors;

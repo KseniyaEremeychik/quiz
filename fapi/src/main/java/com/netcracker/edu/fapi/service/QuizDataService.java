@@ -9,4 +9,5 @@ public interface QuizDataService {
     List<QuizViewModel> findAllQuizByCategoryId(Integer id);
     List<QuestionViewModel> getAllQuestionsByQuizId(Integer id);
     List<QuizViewModel> findAllQuizLike(String searchParam);
+    List<QuizViewModel> findAllQuizByUserId(Integer id);
 }

@@ -10,4 +10,6 @@ public interface UserService {
     Iterable<User> getAllUsers();
     void deleteUser(Integer id);
     Optional<User> getUserById(Integer id);
+    Boolean isUserNameExist(String userName);
+    Boolean isEmailExist(String email);
 }

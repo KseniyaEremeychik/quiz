@@ -42,4 +42,14 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @RequestMapping(value = "/api/userCheckName", method = RequestMethod.GET)
+    public Boolean isUserNameExist(@RequestParam(name = "userName") String userName) {
+        return userService.isUserNameExist(userName);
+    }
+
+    @RequestMapping(value = "/api/usersCheckEmail", method = RequestMethod.GET)
+    public Boolean isEmailExist(@RequestParam(name = "email") String email) {
+        return userService.isEmailExist(email);
+    }
 }

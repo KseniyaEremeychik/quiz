@@ -9,22 +9,40 @@
               <div class="form-group">
                 <label class="text-danger">Username:</label><br>
                 <input name="name" class="form-control" formControlName="userName" #username>
-                <div class="alert alert-danger" *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
-                  Incorrect username
+                <div class="alert alert-danger"
+                     *ngIf="(registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched) || userService.currentUser?.errors['userName']">
+                  <span *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
+                    Incorrect username<br/>
+                  </span>
+                  <span *ngIf="userService.currentUser?.errors['userName']">
+                    {{userService.currentUser.errors['userName']}}
+                  </span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="text-danger">Email:</label><br>
                 <input name="email" class="form-control" formControlName="userEmail" #email>
-                <div class="alert alert-danger" *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
-                  Incorrect email
+                <div class="alert alert-danger"
+                     *ngIf="(registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched) || userService.currentUser?.errors['email']">
+                  <span *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
+                    Incorrect email<br/>
+                  </span>
+                  <span *ngIf="userService.currentUser?.errors['email']">
+                    {{userService.currentUser.errors['email']}}
+                  </span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="text-danger">Password:</label><br>
                 <input type="password" name="password" class="form-control" formControlName="userPassword" #password>
-                <div class="alert alert-danger" *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
-                  Incorrect password
+                <div class="alert alert-danger"
+                     *ngIf="(registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched) || userService.currentUser?.errors['password']">
+                  <span *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
+                    Incorrect password<br/>
+                  </span>
+                  <span *ngIf="userService.currentUser?.errors['password']">
+                    {{userService.currentUser.errors['password']}}
+                  </span>
                 </div>
               </div>
               <div class="form-group">

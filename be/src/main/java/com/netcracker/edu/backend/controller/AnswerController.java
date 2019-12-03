@@ -20,4 +20,9 @@ public class AnswerController {
     public Iterable<Answer> findAllAnswersByQuestionId(@RequestParam(name = "questionId") Integer id) {
         return answerService.findAllAnswersByQuestionId(id);
     }
+
+    @RequestMapping(value = "/api/rightAnswers")
+    public Answer getRightAnswers(@RequestParam(name = "questionId") Integer questionId, @RequestParam(name = "isRight") byte isRight) {
+        return answerService.getRightAnswers(questionId, isRight);
+    }
 }

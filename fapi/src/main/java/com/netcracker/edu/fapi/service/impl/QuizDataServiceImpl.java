@@ -1,18 +1,12 @@
 package com.netcracker.edu.fapi.service.impl;
 
-import com.netcracker.edu.fapi.models.Answer;
-import com.netcracker.edu.fapi.models.QuestionViewModel;
-import com.netcracker.edu.fapi.models.QuizViewModel;
-import com.netcracker.edu.fapi.models.UserViewModel;
+import com.netcracker.edu.fapi.models.*;
 import com.netcracker.edu.fapi.service.QuizDataService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class QuizDataServiceImpl implements QuizDataService {
@@ -60,6 +54,20 @@ public class QuizDataServiceImpl implements QuizDataService {
     public List<QuizViewModel> findAllQuizLike(String searchParam) {
         RestTemplate restTemplate = new RestTemplate();
         QuizViewModel[] quizViewModels = restTemplate.getForObject(backendServerURL + "api/quizLike/?searchParam=" + searchParam, QuizViewModel[].class);
+
+        return quizViewModels == null ? Collections.emptyList(): Arrays.asList(quizViewModels);
+    }
+
+    @Override
+    public List<QuizViewModel> findAllQuizByUserId(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        QuizViewModel[] quizViewModels = restTemplate.getForObject(backendServerURL + "api/quizByUser/?userId=" + id, QuizViewModel[].class);
+
+        for(int i=0; i < quizViewModels.length; i++) {
+            RestTemplate restTemplate1 = new RestTemplate();
+            CategoryViewModel category = restTemplate1.getForObject(backendServerURL + "api/categoryName/?categoryId=" + quizViewModels[i].getCategoryId(), CategoryViewModel.class);
+            quizViewModels[i].setCategoryName(category.getName());
+        }
 
         return quizViewModels == null ? Collections.emptyList(): Arrays.asList(quizViewModels);
     }
