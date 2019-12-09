@@ -17,7 +17,7 @@ export class CategoryEditingComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   private sortFormatId: string = 'desc';
   private sortFormatName: string = 'desc';
-  private curCategoryId: string;
+  private curCategoryId: number;
 
   constructor(private categoryService: CategoryService, private modalService: BsModalService) { }
 
@@ -53,7 +53,7 @@ export class CategoryEditingComponent implements OnInit {
     }
   }
 
-  public deleteCategory(id: string): void {
+  public deleteCategory(id: number): void {
     this.subscriptions.push(this.categoryService.deleteCategory(id).subscribe(() => {
       this.updateCategories();
     }));
@@ -72,7 +72,7 @@ export class CategoryEditingComponent implements OnInit {
     this.getAllCategories();
   }
 
-  openModalDelete(template: TemplateRef<any>, curCategory: string) {
+  openModalDelete(template: TemplateRef<any>, curCategory: number) {
     this.modalRef = this.modalService.show(template);
     this.curCategoryId = curCategory;
   }

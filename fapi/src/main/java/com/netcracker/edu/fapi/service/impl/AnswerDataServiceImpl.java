@@ -5,6 +5,7 @@ import com.netcracker.edu.fapi.models.RightAnswerModel;
 import com.netcracker.edu.fapi.service.AnswerDataService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Service
 public class AnswerDataServiceImpl implements AnswerDataService {
     @Value("http://localhost:8080/")
     private String backendServerURL;

@@ -3,9 +3,7 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.Answer;
 import com.netcracker.edu.backend.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AnswerController {
@@ -24,5 +22,10 @@ public class AnswerController {
     @RequestMapping(value = "/api/rightAnswers")
     public Answer getRightAnswers(@RequestParam(name = "questionId") Integer questionId, @RequestParam(name = "isRight") byte isRight) {
         return answerService.getRightAnswers(questionId, isRight);
+    }
+
+    @RequestMapping(value = "api/saveAnswer", method = RequestMethod.POST)
+    public Answer saveAnswerForQuestion(@RequestBody Answer answer) {
+        return answerService.saveAnswer(answer);
     }
 }

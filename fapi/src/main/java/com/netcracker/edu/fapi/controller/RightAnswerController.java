@@ -20,10 +20,10 @@ public class RightAnswerController {
     @Autowired
     private AnswerDataService answerDataService;
 
+    //todo do not send right answers to front
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<RightAnswerModel> getRightAnswer(@RequestBody Map<String, String> userAnswersMap) {
         if(userAnswersMap != null) {
-            //System.out.println("Map size: " + userAnswersMap.size());
             List<Integer> questionsId = new ArrayList<>();
             List<Integer> userAnswers = new ArrayList<>();
             for(Map.Entry<String, String> entry: userAnswersMap.entrySet()) {

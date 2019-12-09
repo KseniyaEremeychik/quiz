@@ -1,56 +1,12 @@
-<!--<div class="er-outer-container">
-  <div class="er-width-outer">
-    <form  class="border-danger er-width"
-           autocomplete="off">
-      <h2>Create new quiz</h2>
-      <div>
-        <label for="quiz-category">Choose category</label>
-        <select id="quiz-category" class="form-control" #category>
-          <option *ngFor="let category of categories">{{category.name}}</option>
-        </select>
-      </div>
-      <div>
-        <label for="quiz-name">Enter quiz name: </label><br>
-        <input #onChangeQuizName id="quiz-name" name="name" (change)="onChangeQuizName(onChangeQuizName.value)" class="form-control">
-      </div>
-      <div class="er-questions-container">
-        <div *ngFor="let question of questions; let i = index">
-          <span>Question {{i + 1}}: </span><br>
-          <div class="er-question">
-            <span>text:</span>
-            <input #onChangeText name="quiz-question-text" class="form-control" (change)="onChangeQuestionText(i, onChangeText.value)">
-            <br>
-            <span>answers:</span>
-            <div class="er-answers">
-              <div *ngFor="let ans of questions[i].answers; let j = index">
-                <label>{{j + 1}}.</label>
-                <input (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j]}}>
-              </div>
-              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)">Add answer</button>
-            </div>
-            <br>
-            <span>right answer:</span>
-            <div>
-              <input name="quiz-question-right-answer">
-            </div>
-          </div>
-        </div>
-        <button class="btn btn-danger" type="button" (click)="onAddQuestion()">Add question</button>
-      </div>
-      <br>
-      <button class="btn btn-danger" type="submit">Create</button>
-    </form>
-  </div>
-</div>-->
-
 <div class="er-outer-container">
   <div class="er-width-outer">
     <form  class="border-danger er-width"
            autocomplete="off">
       <h2>Create new quiz</h2>
+      <div class="er-overflow-scroll">
       <div>
         <label for="quiz-category">Choose category</label>
-        <select id="quiz-category" class="form-control" #category>
+        <select id="quiz-category" class="form-control" #selectedCategory>
           <option *ngFor="let category of categories">{{category.name}}</option>
         </select>
       </div>
@@ -69,24 +25,23 @@
             <div class="er-answers">
               <div *ngFor="let ans of questions[i].answers; let j = index">
                 <label>{{j + 1}}.</label>
-                <input (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}}>
+                <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}}>
               </div>
-              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)">Add answer</button>
+              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 4">Add answer</button>
             </div>
             <br>
+            <div class="er-flex-right-answer">
             <span>right answer:</span>
-            <!--<div>
-              <input name="quiz-question-right-answer">
-            </div>-->
-            <select id="right-answer" class="form-control" #onChangeRightAnswer>
-              <option *ngFor="let ans of questions[i].answers">{{ans.text}}</option>
+            <select id="right-answer" class="form-control er-right-answer-input" #rightAnswer (change)="onChangeRightAnswer(i, rightAnswer.value)">
+              <option *ngFor="let ans of questions[i].answers; let k = index">{{k+1}}</option>
             </select>
+              </div>
           </div>
         </div>
-        <button class="btn btn-danger" type="button" (click)="onAddQuestion()">Add question</button>
+        <button class="btn btn-danger" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">Add question</button>
       </div>
-      <br>
-      <button class="btn btn-danger" type="submit">Create</button>
+      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value)">Create</button>
+      </div>
     </form>
   </div>
 </div>

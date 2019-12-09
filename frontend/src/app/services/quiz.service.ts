@@ -11,11 +11,11 @@ export class QuizService {
   constructor(private http: HttpClient) {
   }
 
-  findAllQuizByCategoryId(id: string): Observable<Quiz[]> {
+  findAllQuizByCategoryId(id: number): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`/api/allQuiz/?categoryId=${id}`);
   }
 
-  getQuizById(id: string): Observable<Question[]> {
+  getQuizById(id: number): Observable<Question[]> {
     return this.http.get<Question[]>(`/api/quiz/?quizId=${id}`);
   }
 
@@ -23,7 +23,11 @@ export class QuizService {
     return this.http.get<Quiz[]>(`/api/quizLike/?searchParam=${searchParam}`);
   }
 
-  getAllQuizByUserId(id: string): Observable<Quiz[]> {
+  getAllQuizByUserId(id: number): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`/api/allUsersQuiz/?userId=${id}`);
+  }
+
+  saveNewQuiz(quiz: Quiz): Observable<Quiz> {
+    return this.http.post<Quiz>('/api/newQuiz', quiz);
   }
 }

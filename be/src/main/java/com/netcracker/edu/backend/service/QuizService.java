@@ -6,4 +6,5 @@ public interface QuizService {
     Iterable<Quiz> findAllQuizByCategoryId(Integer id);
     Iterable<Quiz> findAllQuizLike(String searchParam);
     Iterable<Quiz> findAllQuizByUserId(Integer id);
+    Quiz saveQuiz(Quiz quiz);
 }

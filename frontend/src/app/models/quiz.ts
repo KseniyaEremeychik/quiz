@@ -1,14 +1,15 @@
 import {Question} from "./question";
 
 export class Quiz {
-  id: string;
-  categoryId: string;
+  id: number;
+  categoryId: number;
   categoryName: string;
   name: string;
-  questionNumber: string;
+  questionNumber: number;
+  isConfirmed: string;
   //time: string;
   creationDate: string;
-  userId: string;
+  userId: number;
   userName: string;
   questions: Question[];
 }

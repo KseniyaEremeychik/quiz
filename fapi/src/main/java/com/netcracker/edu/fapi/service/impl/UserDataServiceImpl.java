@@ -2,17 +2,27 @@ package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
-@Component
-public class UserDataServiceImpl implements UserDataService {
+@Service("customUserDetailsService")
+public class UserDataServiceImpl implements UserDataService, UserDetailsService {
     @Value("http://localhost:8080/")
     private String backendServerURL;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserViewModel saveUser(UserViewModel user) {
@@ -31,6 +41,7 @@ public class UserDataServiceImpl implements UserDataService {
         }
 
         if(err.size() == 0) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             UserViewModel newUser = restTemplate.postForEntity(backendServerURL + "/api/users", user, UserViewModel.class).getBody();
             newUser.setErrors(null);
             return newUser;
@@ -40,7 +51,7 @@ public class UserDataServiceImpl implements UserDataService {
         }
     }
 
-    @Override
+    /*@Override
     public UserViewModel findByEmail(String email, String password) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> err = new HashMap<>();
@@ -52,6 +63,21 @@ public class UserDataServiceImpl implements UserDataService {
             } else {
                 err = null;
             }
+        } else {
+            user = new UserViewModel();
+            err.put("email", "Email not found");
+        }
+        user.setErrors(err);
+        return user;
+    }*/
+
+    @Override
+    public UserViewModel findByEmail(String email) {
+        RestTemplate restTemplate = new RestTemplate();
+        Map<String, String> err = new HashMap<>();
+        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
+        if(user != null) {
+            err = null;
         } else {
             user = new UserViewModel();
             err.put("email", "Email not found");
@@ -71,5 +97,20 @@ public class UserDataServiceImpl implements UserDataService {
     public void deleteUser(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerURL + "/api/users/" + id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserViewModel user = findByEmail(email);
+        if(user.getErrors() != null) {
+            throw new UsernameNotFoundException("User with email: " + email + " not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthority(user));
+    }
+
+    private Set<SimpleGrantedAuthority> getAuthority(UserViewModel user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        return authorities;
     }
 }

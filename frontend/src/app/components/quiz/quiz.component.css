@@ -21,6 +21,7 @@ ul {
 
 .flex {
   display: flex;
+  justify-content: center;
 }
 
 .ks-fix {
@@ -28,7 +29,8 @@ ul {
 }
 
 .ks-m {
-  margin-right: 110px;
+  /*margin-right: 110px;*/
+  flex: auto;
 }
 
 

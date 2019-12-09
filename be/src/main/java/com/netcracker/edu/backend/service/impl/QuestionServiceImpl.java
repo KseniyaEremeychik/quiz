@@ -19,4 +19,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Iterable<Question> findAllQuestionsByQuizId(Integer id) {
         return this.questionRepository.findByQuizId(id);
     }
+
+    @Override
+    public Question saveQuestion(Question question) {
+        return this.questionRepository.save(question);
+    }
 }

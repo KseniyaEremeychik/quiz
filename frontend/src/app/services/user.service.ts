@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "src/app/models/user";
+import {UserWithToken} from "../models/userWithToken";
 
 @Injectable()
 export class UserService {
@@ -13,19 +14,15 @@ export class UserService {
     return this.http.post<User>('/api/user', user);
   }
 
-  /*getUserByEmail(email: string): Observable<User> {
-    return this.http.get<User>(`/api/user/?email=${email}`);
-  }*/
-
-  findUserByEmail(userLogin: User): Observable<User> {
-    return this.http.post<User>('/api/userLogin', userLogin);
+  findUserByEmail(userLogin: User): Observable<UserWithToken> {
+    return this.http.post<UserWithToken>('/api/userLogin', userLogin);
   }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>('api/userEditing');
   }
 
-  deleteUser(id: string): Observable<void> {
+  deleteUser(id: number): Observable<void> {
     return this.http.delete<void>('/api/user/' + id);
   }
 }

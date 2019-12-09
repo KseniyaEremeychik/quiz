@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   public findUserByEmail(email: string, password: string): void {
     this.userLoginData.email = email;
     this.userLoginData.password = password;
-    this.subscriptions.push(this.userService.findUserByEmail(this.userLoginData).subscribe(user => {
-      this.userService.currentUser = user as User;
-
+    this.subscriptions.push(this.userService.findUserByEmail(this.userLoginData).subscribe(userWithToken => {
+      this.userService.currentUser = userWithToken.user as User;
+      localStorage.setItem("token", userWithToken.token);
       if(this.userService.currentUser.errors != null) {
         this.router.navigate(['/login']);
       }

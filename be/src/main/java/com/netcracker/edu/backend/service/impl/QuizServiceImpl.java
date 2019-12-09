@@ -29,4 +29,9 @@ public class QuizServiceImpl implements QuizService {
     public Iterable<Quiz> findAllQuizByUserId(Integer id) {
         return quizRepository.findByUserId(id);
     }
+
+    @Override
+    public Quiz saveQuiz(Quiz quiz) {
+        return quizRepository.save(quiz);
+    }
 }

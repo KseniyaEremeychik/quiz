@@ -1,20 +1,18 @@
 package com.netcracker.edu.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Answer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int questionId;
-    private int order;
+    private int ordering;
     private String text;
     private byte isRight;
 
-    @Id
     @Column(name = "id")
     public int getId() {
         return id;
@@ -35,13 +33,13 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "order")
-    public int getOrder() {
-        return order;
+    @Column(name = "ordering")
+    public int getOrdering() {
+        return ordering;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setOrdering(int ordering) {
+        this.ordering = ordering;
     }
 
     @Basic
@@ -71,13 +69,13 @@ public class Answer {
         Answer answer = (Answer) o;
         return id == answer.id &&
                 questionId == answer.questionId &&
-                order == answer.order &&
+                ordering == answer.ordering &&
                 isRight == answer.isRight &&
                 Objects.equals(text, answer.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, questionId, order, text, isRight);
+        return Objects.hash(id, questionId, ordering, text, isRight);
     }
 }

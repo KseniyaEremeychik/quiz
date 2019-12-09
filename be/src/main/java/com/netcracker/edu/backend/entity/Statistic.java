@@ -1,22 +1,20 @@
 package com.netcracker.edu.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
 @Entity
 public class Statistic {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quizId;
     private double rightAnswersPercent;
     private Time timeSpent;
     private Date passageDate;
 
-    @Id
     @Column(name = "id")
     public int getId() {
         return id;

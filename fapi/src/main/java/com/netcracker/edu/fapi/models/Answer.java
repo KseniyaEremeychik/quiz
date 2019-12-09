@@ -6,27 +6,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Answer {
     private int id;
     private int questionId;
-    private int order;
+    private int ordering;
     private String text;
-    //private byte isRight;
+    private byte isRight;
 
     public Answer() {
     }
 
-    /*public Answer(int id, int questionId, int order, String text, byte isRight) {
+    public Answer(int id, int questionId, int ordering, String text, byte isRight) {
         this.id = id;
         this.questionId = questionId;
-        this.order = order;
+        this.ordering = ordering;
         this.text = text;
         this.isRight = isRight;
-    }*/
+    }
 
-    public Answer(int id, int questionId, int order, String text) {
+    /*public Answer(int id, int questionId, int order, String text) {
         this.id = id;
         this.questionId = questionId;
         this.order = order;
         this.text = text;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -44,12 +44,12 @@ public class Answer {
         this.questionId = questionId;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrdering() {
+        return ordering;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setOrdering(int ordering) {
+        this.ordering = ordering;
     }
 
     public String getText() {
@@ -60,11 +60,13 @@ public class Answer {
         this.text = text;
     }
 
-    /*public byte getIsRight() {
+    public byte getIsRight() {
         return isRight;
     }
 
     public void setIsRight(byte isRight) {
         this.isRight = isRight;
-    }*/
+    }
+
+
 }

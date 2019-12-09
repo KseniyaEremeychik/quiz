@@ -1,7 +1,7 @@
 import {Answer} from "./answer";
 
 export class Question {
-  id: string;
+  id: number;
   text: string;
   answers: Answer[];
 }

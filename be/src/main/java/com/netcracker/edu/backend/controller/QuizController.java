@@ -4,10 +4,7 @@ import com.netcracker.edu.backend.entity.Question;
 import com.netcracker.edu.backend.entity.Quiz;
 import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class QuizController {
@@ -31,5 +28,10 @@ public class QuizController {
     @RequestMapping(value = "api/quizByUser", method = RequestMethod.GET)
     public Iterable<Quiz> findAllQuizByUserId(@RequestParam(name = "userId") Integer id) {
         return this.quizService.findAllQuizByUserId(id);
+    }
+
+    @RequestMapping(value = "api/newQuiz", method = RequestMethod.POST)
+    public Quiz saveQuiz(@RequestBody Quiz quiz) {
+        return this.quizService.saveQuiz(quiz);
     }
 }

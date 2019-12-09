@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from "./app.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {RouterModule, Routes} from "@angular/router";
 import { HeaderComponent } from './components/header/header.component';
@@ -27,6 +27,7 @@ import {QuizService} from "./services/quiz.service";
 import { QuizPassingComponent } from './components/quiz-passing/quiz-passing.component';
 import { MyquizComponent } from './components/myquiz/myquiz.component';
 import {AnswerService} from "./services/answer.service";
+import {AuthInterceptor} from "./services/token.interceptor";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -75,7 +76,12 @@ const appRoutes: Routes = [
     CategoryService,
     UserService,
     QuizService,
-    AnswerService
+    AnswerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

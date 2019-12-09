@@ -2,24 +2,33 @@
   <div>
     <app-category></app-category>
   </div>
-  <div class="text-center">
+  <div class="text-center ks-margin">
     <br>
     <h1>{{this.quizService.currQuiz?.name}}</h1>
-    <div *ngFor="let question of this.quizService.currQuiz?.questions" class="card text-left border-danger er-width">
-      <div class="card-body">
-        <label class="card-title">{{question.text}}</label>
-        <br>
-        <div *ngFor="let answer of question.answers">
-          <input type="radio" name="{{question.id}}" value="{{answer.text}}" (change)="onChange(question.id, answer.id)">
-          {{answer.text}}
+    <div *ngFor="let question of this.quizService.currQuiz?.questions; let i = index">
+      <div [ngClass]="rightAnswers && ((rightAnswers?.isRight[i]) ? '_green' : '_red')" class="card text-left border-dark er-width">
+        <!--<div class="card text-left border-danger er-width">-->
+        <div class="card-body">
+          <label class="card-title">{{question.text}}</label>
           <br>
+          <div *ngFor="let answer of question.answers">
+            <input type="radio" name="{{question.id}}" value="{{answer.text}}"
+                   [disabled]="rightAnswers"
+                   (change)="onChange(question.id, answer.id)">
+            {{answer.text}}
+            <br>
+          </div>
         </div>
       </div>
     </div>
     <a *ngIf="this.quizService.currQuiz?.questions" routerLink="/passQuiz">
-      <button class="btn btn-danger ks-m" [disabled]="userAnswers.size < quizService.currQuiz.questions.length" (click)="finishPassing()">
+      <button class="btn btn-danger ks-m" [disabled]="userAnswers.size < quizService.currQuiz.questions.length || rightAnswers"
+              (click)="finishPassing()">
         Finish
       </button>
     </a>
+  </div>
+  <div class="quiz-percentage" *ngIf="rightAnswers?.percent">
+    {{rightAnswers.percent}}%
   </div>
 </div>

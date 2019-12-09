@@ -1,18 +1,16 @@
 package com.netcracker.edu.backend.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Question {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quizId;
     private String text;
 
-    @Id
     @Column(name = "id")
     public int getId() {
         return id;

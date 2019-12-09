@@ -1,10 +1,16 @@
 package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.models.UserViewModel;
+import com.netcracker.edu.fapi.models.UserWithAuthToken;
+import com.netcracker.edu.fapi.security.JwtTokenProvider;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +20,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 public class UserDataController {
     @Autowired
     private UserDataService userDataService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenProvider tokenProvider;
 
     @RequestMapping(value = "/api/user", method = RequestMethod.POST)
     public ResponseEntity<UserViewModel> saveUser(@RequestBody @Valid UserViewModel user) {
@@ -47,9 +60,41 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "/api/userLogin", method = RequestMethod.POST)
-    public UserViewModel findUserByEmail(@RequestBody UserViewModel userLogin) {
-        return userDataService.findByEmail(userLogin.getEmail(), userLogin.getPassword());
+    public UserWithAuthToken findUserByEmail(@RequestBody UserViewModel userLogin) {
+
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        userLogin.getEmail(),
+                        userLogin.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final String token = tokenProvider.generateToken(authentication);
+        UserViewModel signedUser = userDataService.findByEmail(userLogin.getEmail());
+        signedUser.setPassword(null);
+
+        return new UserWithAuthToken(signedUser, token);
     }
+
+    /*@RequestMapping(value = "/api/userLogin", method = RequestMethod.POST)
+    public Map<Object, Object> findUserByEmail(@RequestBody UserViewModel userLogin) {
+        UserViewModel signedUser =  userDataService.findByEmail(userLogin.getEmail());
+
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        userLogin.getEmail(),
+                        userLogin.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final String token = tokenProvider.generateToken(authentication);
+
+        Map<Object, Object> response = new HashMap<>();
+        response.put("user", signedUser);
+        response.put("token", token);
+
+        return response;
+    }*/
 
     @RequestMapping(value="/api/user/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable String id) {

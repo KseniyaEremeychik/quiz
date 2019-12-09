@@ -24,4 +24,9 @@ public class AnswerServiceImpl implements AnswerService {
     public Answer getRightAnswers(Integer questionId, byte isRight) {
         return this.answerRepository.findByQuestionIdAndIsRight(questionId, isRight);
     }
+
+    @Override
+    public Answer saveAnswer(Answer answer) {
+        return this.answerRepository.save(answer);
+    }
 }

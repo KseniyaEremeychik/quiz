@@ -52,4 +52,13 @@ public class QuestionViewModel {
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionViewModel{" +
+                "id=" + id +
+                ", quizId=" + quizId +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

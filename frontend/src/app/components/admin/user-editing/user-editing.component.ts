@@ -15,7 +15,7 @@ export class UserEditingComponent implements OnInit {
   private users: User[];
   private subscriptions: Subscription[] = [];
   private modalRef: BsModalRef;
-  private curUserId: string;
+  private curUserId: number;
 
   constructor(private userService: UserService, private modalService: BsModalService) { }
 
@@ -29,13 +29,13 @@ export class UserEditingComponent implements OnInit {
     }));
   }
 
-  public deleteUser(id: string): void {
+  public deleteUser(id: number): void {
     this.subscriptions.push(this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
     }));
   }
 
-  openModal(template: TemplateRef<any>, curUser: string) {
+  openModal(template: TemplateRef<any>, curUser: number) {
     this.modalRef = this.modalService.show(template);
     this.curUserId = curUser;
   }

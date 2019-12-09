@@ -12,15 +12,16 @@ import {RightAnswers} from "../../models/rightAnswers";
 })
 export class QuizPassingComponent implements OnInit {
   private request = {};
-  private userAnswers: Map<string, string> = new Map<string, string>();
+  private userAnswers: Map<number, number> = new Map<number, number>();
   private subscriptions: Subscription[] = [];
+  private rightAnswers: RightAnswers = null;
 
   constructor(private quizService: QuizService, private answerService: AnswerService) { }
 
   ngOnInit() {
   }
 
-  public onChange(questionId: string, answerId: string): void {
+  public onChange(questionId: number, answerId: number): void {
     this.userAnswers.set(questionId, answerId);
   }
 
@@ -32,9 +33,9 @@ export class QuizPassingComponent implements OnInit {
 
   public finishPassing(): void {
     this.changeFormat();
+    this.rightAnswers = null;
     this.subscriptions.push(this.answerService.getRightAnswer(this.request).subscribe((rightAnswersModel) => {
-        let rightAnswers = rightAnswersModel as RightAnswers;
-        console.log(rightAnswers);
+        this.rightAnswers = rightAnswersModel as RightAnswers;
     }));
   }
 }

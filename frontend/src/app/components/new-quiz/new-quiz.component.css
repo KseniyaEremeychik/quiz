@@ -11,7 +11,7 @@
   flex-direction: column;
   width: 600px;
   height: 650px;
-  padding: 20px;
+  padding: 20px 0;
   background-color: #EAEAEA;
 }
 
@@ -35,5 +35,36 @@
 
 .er-questions-container {
   margin: 10px 0;
-  overflow-y: scroll;
+}
+
+.er-overflow-scroll {
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.er-answer-input {
+  margin-left: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 5px;
+}
+
+.er-right-answer-input {
+  width: 60px;
+  margin-left: 10px;
+}
+
+.er-flex-right-answer > .er-right-answer-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(206,212,218, 0.8);
+  border-color: #ced4da;
+}
+
+.er-flex-right-answer {
+  display: flex;
+  align-items: baseline;
+}
+
+.er-full-width {
+  width: 100%;
 }

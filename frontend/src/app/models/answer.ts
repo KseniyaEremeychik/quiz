@@ -1,5 +1,6 @@
 export class Answer {
-  id: string;
+  id: number;
+  ordering: number;
   text: string;
-  isRight: string;
+  isRight: number;
 }

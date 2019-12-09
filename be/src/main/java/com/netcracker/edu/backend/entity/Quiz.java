@@ -7,6 +7,8 @@ import java.util.Objects;
 
 @Entity
 public class Quiz {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int categoryId;
     private String name;
@@ -18,7 +20,6 @@ public class Quiz {
     private Date creationDate;
     private int userId;
 
-    @Id
     @Column(name = "id")
     public int getId() {
         return id;

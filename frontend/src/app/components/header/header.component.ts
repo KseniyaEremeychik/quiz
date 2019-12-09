@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   public logOut(): void {
     this.userService.currentUser = null;
+    localStorage.clear();
   }
 
   public findQuizLike(searchParam: string): void {

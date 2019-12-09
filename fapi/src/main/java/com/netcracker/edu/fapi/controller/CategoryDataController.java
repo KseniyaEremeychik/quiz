@@ -5,6 +5,7 @@ import com.netcracker.edu.fapi.service.CategoryDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,23 +13,24 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
-@RequestMapping("/api/cat")
 public class CategoryDataController {
 
     @Autowired
     private CategoryDataService categoryDataService;
 
-    @RequestMapping
+    @RequestMapping(value = "/api/catAll")
     public ResponseEntity<List<CategoryViewModel>> getAllCategories() {
         return ResponseEntity.ok(categoryDataService.getAll());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @Secured ({"ROLE_ADMIN"})
+    @RequestMapping(value = "/api/catDel/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable String id) {
         categoryDataService.deleteCategory(Integer.valueOf(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    //todo check if category exists
+    @RequestMapping(value = "/api/catAdd", method = RequestMethod.POST)
     public ResponseEntity<CategoryViewModel> addCategory(@RequestBody CategoryViewModel category) {
         if(category != null) {
             return ResponseEntity.ok(categoryDataService.addCategory(category));
