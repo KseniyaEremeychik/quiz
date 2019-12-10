@@ -9,3 +9,7 @@
 #register #register-row #register-column #register-box #register-form {
   margin-top: 15px;
 }
+
+.er-right {
+  float: right;
+}

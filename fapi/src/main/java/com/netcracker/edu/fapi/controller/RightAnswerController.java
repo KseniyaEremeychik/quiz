@@ -20,7 +20,6 @@ public class RightAnswerController {
     @Autowired
     private AnswerDataService answerDataService;
 
-    //todo do not send right answers to front
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<RightAnswerModel> getRightAnswer(@RequestBody Map<String, String> userAnswersMap) {
         if(userAnswersMap != null) {

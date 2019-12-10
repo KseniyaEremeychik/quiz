@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,11 +30,9 @@ public class AnswerDataServiceImpl implements AnswerDataService {
             rightAnswers.add(rightAnswer.getId());
         }
 
-        Map<Integer, Integer> answers = new HashMap<>();
         List<Boolean> isRight = new ArrayList<>();
         double sum = 0.0;
         for(int i = 0; i < userAnswers.size(); i++) {
-            answers.put(userAnswers.get(i), rightAnswers.get(i));
             if(userAnswers.get(i) == rightAnswers.get(i)) {
                 sum+=1;
                 isRight.add(true);
@@ -41,9 +40,10 @@ public class AnswerDataServiceImpl implements AnswerDataService {
                 isRight.add(false);
             }
         }
-        double percent = (sum / questionsId.size()) * 100;
+        double percent = Double.valueOf(new DecimalFormat(".##").format(sum / questionsId.size() * 100));
 
-        RightAnswerModel rightAnswerModel = new RightAnswerModel(percent, questionsId, answers, isRight);
+
+        RightAnswerModel rightAnswerModel = new RightAnswerModel(percent, questionsId, isRight);
         return rightAnswerModel;
     }
 }

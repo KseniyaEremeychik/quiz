@@ -10,12 +10,12 @@
                 <label class="text-danger">Username:</label><br>
                 <input name="name" class="form-control" formControlName="userName" #username>
                 <div class="alert alert-danger"
-                     *ngIf="(registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched) || userService.currentUser?.errors['userName']">
+                     *ngIf="(registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched) || userService.userForRegister?.errors['userName']">
                   <span *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">
                     Incorrect username<br/>
                   </span>
-                  <span *ngIf="userService.currentUser?.errors['userName']">
-                    {{userService.currentUser.errors['userName']}}
+                  <span *ngIf="userService.userForRegister?.errors['userName']">
+                    {{userService.userForRegister.errors['userName']}}
                   </span>
                 </div>
               </div>
@@ -23,12 +23,12 @@
                 <label class="text-danger">Email:</label><br>
                 <input name="email" class="form-control" formControlName="userEmail" #email>
                 <div class="alert alert-danger"
-                     *ngIf="(registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched) || userService.currentUser?.errors['email']">
+                     *ngIf="(registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched) || userService.userForRegister?.errors['email']">
                   <span *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
                     Incorrect email<br/>
                   </span>
-                  <span *ngIf="userService.currentUser?.errors['email']">
-                    {{userService.currentUser.errors['email']}}
+                  <span *ngIf="userService.userForRegister?.errors['email']">
+                    {{userService.userForRegister.errors['email']}}
                   </span>
                 </div>
               </div>
@@ -36,12 +36,12 @@
                 <label class="text-danger">Password:</label><br>
                 <input type="password" name="password" class="form-control" formControlName="userPassword" #password>
                 <div class="alert alert-danger"
-                     *ngIf="(registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched) || userService.currentUser?.errors['password']">
+                     *ngIf="(registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched) || userService.userForRegister?.errors['password']">
                   <span *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
                     Incorrect password<br/>
                   </span>
-                  <span *ngIf="userService.currentUser?.errors['password']">
-                    {{userService.currentUser.errors['password']}}
+                  <span *ngIf="userService.userForRegister?.errors['password']">
+                    {{userService.userForRegister.errors['password']}}
                   </span>
                 </div>
               </div>
@@ -54,7 +54,7 @@
               </div>
               <div class="form-group">
                 <a routerLink="/">
-                  <button class="btn btn-danger" (click)="addUser(username.value, email.value, password.value)" [disabled]="registerForm.invalid || password.value!=password2.value">
+                  <button class="btn btn-danger" (click)="addUser(username.value, email.value, password.value, template)" [disabled]="registerForm.invalid || password.value!=password2.value">
                   Register
                   </button>
                 </a>
@@ -66,3 +66,17 @@
     </div>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">Confirmation of registration</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>You have been successfully registered!</label>
+    <br>
+    <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">OK</button>
+  </div>
+</ng-template>

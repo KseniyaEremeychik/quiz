@@ -10,6 +10,7 @@ public class Statistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int userId;
     private int quizId;
     private double rightAnswersPercent;
     private Time timeSpent;
@@ -22,6 +23,16 @@ public class Statistic {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -70,6 +81,7 @@ public class Statistic {
         if (o == null || getClass() != o.getClass()) return false;
         Statistic statistic = (Statistic) o;
         return id == statistic.id &&
+                userId == statistic.userId &&
                 quizId == statistic.quizId &&
                 Double.compare(statistic.rightAnswersPercent, rightAnswersPercent) == 0 &&
                 Objects.equals(timeSpent, statistic.timeSpent) &&
@@ -78,6 +90,18 @@ public class Statistic {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quizId, rightAnswersPercent, timeSpent, passageDate);
+        return Objects.hash(id, userId, quizId, rightAnswersPercent, timeSpent, passageDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Statistic{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", quizId=" + quizId +
+                ", rightAnswersPercent=" + rightAnswersPercent +
+                ", timeSpent=" + timeSpent +
+                ", passageDate=" + passageDate +
+                '}';
     }
 }

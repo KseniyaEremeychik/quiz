@@ -28,6 +28,7 @@ import { QuizPassingComponent } from './components/quiz-passing/quiz-passing.com
 import { MyquizComponent } from './components/myquiz/myquiz.component';
 import {AnswerService} from "./services/answer.service";
 import {AuthInterceptor} from "./services/token.interceptor";
+import {StatisticsService} from "./services/statistics.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
     UserService,
     QuizService,
     AnswerService,
+    StatisticsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

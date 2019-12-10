@@ -23,7 +23,6 @@ public class CategoryDataController {
         return ResponseEntity.ok(categoryDataService.getAll());
     }
 
-    @Secured ({"ROLE_ADMIN"})
     @RequestMapping(value = "/api/catDel/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable String id) {
         categoryDataService.deleteCategory(Integer.valueOf(id));

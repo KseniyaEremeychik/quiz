@@ -1,6 +1,5 @@
 export class RightAnswers {
-  percent: string;
+  percent: number;
   questionsId: string[];
-  answers: Map<string, string>;
   isRight: boolean[];
 }

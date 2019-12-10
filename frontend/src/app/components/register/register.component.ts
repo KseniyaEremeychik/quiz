@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-register',
@@ -12,12 +13,13 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  public user: User = new User();
+  private user: User = new User();
+  private modalRef: BsModalRef;
   private subscriptions: Subscription[] = []
 
   registerForm: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private modalService: BsModalService) {
 
   }
 
@@ -34,20 +36,20 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  public addUser(username, email, password): void {
+  public addUser(username, email, password, template: TemplateRef<any>): void {
     this.user.userName = username
     this.user.email = email
     this.user.password = password
     this.user.role = 'user'
 
     this.subscriptions.push(this.userService.saveUser(this.user).subscribe((user) => {
-      this.userService.currentUser = user as User;
-      console.log(this.userService.currentUser);
-      if(this.userService.currentUser.errors != null) {
+      this.userService.userForRegister = user as User;
+      if(this.userService.userForRegister.errors != null) {
         this.router.navigate(['/register']);
       }
       else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
+        this.modalRef = this.modalService.show(template);
       }
     }));
   }

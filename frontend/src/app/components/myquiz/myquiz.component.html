@@ -12,14 +12,16 @@
             <th>Id</th>
             <th>Name</th>
             <th>Category</th>
+            <th>Status</th>
             <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin" routerLink="/newQuiz">Create new quiz</button></th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let quiz of quizList">
-            <td scope="row">{{quiz.id}}</td>
-            <td>{{quiz.name}}</td>
-            <td>{{quiz.categoryName}}</td>
+            <td scope="row">{{quiz?.id}}</td>
+            <td>{{quiz?.name}}</td>
+            <td>{{quiz?.categoryName}}</td>
+            <td>{{quiz?.isConfirmed}}</td>
             <td><button type="button" class="btn btn-danger" (click)="deleteQuiz(quiz.id)">Delete</button></td>
           </tr>
           </tbody>

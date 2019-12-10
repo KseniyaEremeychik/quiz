@@ -10,6 +10,7 @@ public class Rating {
     private int id;
     private int userId;
     private double percent;
+    private int quizNum;
 
     @Column(name = "id")
     public int getId() {
@@ -40,18 +41,30 @@ public class Rating {
         this.percent = percent;
     }
 
+    @Basic
+    @Column(name = "quiz_num")
+    public int getQuizNum() {
+        return quizNum;
+    }
+
+    public void setQuizNum(int quizNum) {
+        this.quizNum = quizNum;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rating rating = (Rating) o;
-        return id == rating.id &&
-                userId == rating.userId &&
-                Double.compare(rating.percent, percent) == 0;
+        return getId() == rating.getId() &&
+                getUserId() == rating.getUserId() &&
+                Double.compare(rating.getPercent(), getPercent()) == 0 &&
+                getQuizNum() == rating.getQuizNum();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, percent);
+        return Objects.hash(getId(), getUserId(), getPercent(), getQuizNum());
     }
 }

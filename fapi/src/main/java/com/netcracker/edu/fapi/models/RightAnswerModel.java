@@ -9,16 +9,14 @@ import java.util.Map;
 public class RightAnswerModel {
     private double percent;
     private List<Integer> questionsId;
-    private Map<Integer, Integer> answers;
     private List<Boolean> isRight;
 
     public RightAnswerModel() {
     }
 
-    public RightAnswerModel(double percent, List<Integer> questionsId, Map<Integer, Integer> answers, List<Boolean> isRight) {
+    public RightAnswerModel(double percent, List<Integer> questionsId, List<Boolean> isRight) {
         this.percent = percent;
         this.questionsId = questionsId;
-        this.answers = answers;
         this.isRight = isRight;
     }
 
@@ -36,14 +34,6 @@ public class RightAnswerModel {
 
     public void setQuestionsId(List<Integer> questionsId) {
         this.questionsId = questionsId;
-    }
-
-    public Map<Integer, Integer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(Map<Integer, Integer> answers) {
-        this.answers = answers;
     }
 
     public List<Boolean> getIsRight() {

@@ -6,6 +6,7 @@ import {UserWithToken} from "../models/userWithToken";
 
 @Injectable()
 export class UserService {
+  public userForRegister: User = null;
   public currentUser: User = null;
   constructor(private http: HttpClient) {
   }
