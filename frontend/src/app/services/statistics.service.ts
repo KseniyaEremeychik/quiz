@@ -11,4 +11,12 @@ export class StatisticsService {
   addNewStatistic(newStat: InfoForStat): Observable<InfoForStat> {
     return this.http.post<InfoForStat>('/api/newStat', newStat);
   }
+
+  getUserStatistic(userId: number): Observable<InfoForStat[]> {
+    return this.http.get<InfoForStat[]>(`/api/userStat/?userId=${userId}`);
+  }
+
+  getFullStatistic(): Observable<InfoForStat[]> {
+    return this.http.get<InfoForStat[]>('/api/fullStat');
+  }
 }

@@ -24,4 +24,9 @@ public class RatingController {
     public Rating saveRating(@RequestBody Rating rating) {
         return this.ratingService.saveRating(rating);
     }
+
+    @RequestMapping(value = "api/topTen")
+    public Iterable<Rating> getTopTen() {
+        return this.ratingService.getTopTen();
+    }
 }

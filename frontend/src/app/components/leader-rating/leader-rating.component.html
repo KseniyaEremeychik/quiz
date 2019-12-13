@@ -6,22 +6,14 @@
         <th class="ks-font text-danger">Top-10</th>
       </tr>
       <tr>
-        <th>Username</th>
-        <th>Right answer %</th>
+        <th class="text-danger">Username</th>
+        <th class="text-danger">Right answer %</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>ann</td>
-        <td>98</td>
-      </tr>
-      <tr>
-        <td>mark</td>
-        <td>72</td>
-      </tr>
-      <tr>
-        <td>kate</td>
-        <td>27</td>
+      <tr *ngFor="let rating of topTen">
+        <td><b>{{rating.userName}}</b></td>
+        <td><b>{{rating.percent}}</b></td>
       </tr>
       </tbody>
     </table>

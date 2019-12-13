@@ -12,4 +12,5 @@ public interface QuizDataService {
     List<QuizViewModel> findAllQuizLike(String searchParam);
     List<QuizViewModel> findAllQuizByUserId(Integer id);
     QuizWithQuestionsModel saveNewQuiz(QuizWithQuestionsModel newQuiz);
+    void deleteQuizById(Integer quizId);
 }

@@ -26,11 +26,9 @@ ul {
 
 .ks-fix {
   flex-wrap: wrap;
-}
-
-.ks-m {
-  /*margin-right: 110px;*/
   flex: auto;
 }
+
+
 
 

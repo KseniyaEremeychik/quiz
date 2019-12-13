@@ -33,6 +33,7 @@ export class UserEditingComponent implements OnInit {
     this.subscriptions.push(this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
     }));
+    this.modalRef.hide();
   }
 
   openModal(template: TemplateRef<any>, curUser: number) {

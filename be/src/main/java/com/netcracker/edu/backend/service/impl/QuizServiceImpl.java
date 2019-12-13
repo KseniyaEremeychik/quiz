@@ -6,6 +6,8 @@ import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class QuizServiceImpl implements QuizService {
     private QuizRepository quizRepository;
@@ -33,5 +35,15 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Quiz saveQuiz(Quiz quiz) {
         return quizRepository.save(quiz);
+    }
+
+    @Override
+    public void deleteQuizById(Integer quizId) {
+        quizRepository.deleteById(quizId);
+    }
+
+    @Override
+    public Optional<Quiz> getQuizById(Integer id) {
+        return quizRepository.findById(id);
     }
 }

@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StatisticViewModel {
     private int userId;
+    private String userName;
     private int quizId;
+    private String quizName;
     private double rightAnswersPercent;
     private String passageDate;
 
@@ -15,6 +17,23 @@ public class StatisticViewModel {
     public StatisticViewModel(int userId, int quizId, double rightAnswersPercent, String passageDate) {
         this.userId = userId;
         this.quizId = quizId;
+        this.rightAnswersPercent = rightAnswersPercent;
+        this.passageDate = passageDate;
+    }
+
+    public StatisticViewModel(int userId, int quizId, String quizName, double rightAnswersPercent, String passageDate) {
+        this.userId = userId;
+        this.quizId = quizId;
+        this.quizName = quizName;
+        this.rightAnswersPercent = rightAnswersPercent;
+        this.passageDate = passageDate;
+    }
+
+    public StatisticViewModel(int userId, String userName, int quizId, String quizName, double rightAnswersPercent, String passageDate) {
+        this.userId = userId;
+        this.userName = userName;
+        this.quizId = quizId;
+        this.quizName = quizName;
         this.rightAnswersPercent = rightAnswersPercent;
         this.passageDate = passageDate;
     }
@@ -49,5 +68,21 @@ public class StatisticViewModel {
 
     public void setPassageDate(String passageDate) {
         this.passageDate = passageDate;
+    }
+
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -87,6 +90,14 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
     }
 
     @Override
+    public UserViewModel getUserByToken(String emailByToken) {
+        RestTemplate restTemplate = new RestTemplate();
+        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + emailByToken, UserViewModel.class);
+        user.setPassword(null);
+        return user;
+    }
+
+    @Override
     public List<UserViewModel> getAll() {
         RestTemplate restTemplate = new RestTemplate();
         UserViewModel[] userViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/usersEditing", UserViewModel[].class);
@@ -113,4 +124,14 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return authorities;
     }
+
+    /*@ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<UserViewModel> handleUserNotFound(UsernameNotFoundException ex) {
+        UserViewModel user = new UserViewModel();
+        Map<String, String> errors = new HashMap<>();
+        errors.put("login", "Incorrect email or password");
+        user.setErrors(errors);
+        return ResponseEntity.ok(user);
+    }*/
 }

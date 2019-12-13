@@ -34,6 +34,9 @@ export class RegisterComponent implements OnInit {
       "userPassword": new FormControl("", []),
       "userPassword2": new FormControl("", [])*/
     });
+
+    localStorage.clear();
+    this.userService.currentUser = null;
   }
 
   public addUser(username, email, password, template: TemplateRef<any>): void {

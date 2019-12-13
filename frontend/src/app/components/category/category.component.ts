@@ -23,14 +23,13 @@ export class CategoryComponent implements OnInit {
   }
 
   private getAllCategories(): void {
-    // Get data from CategoryService
     this.subscriptions.push(this.categoryService.getAllCategories().subscribe(categories => {
-      // Parse json response into local array
       this.categories = categories as Category[];
     }));
   }
 
   public findAllQuizByCategoryId(id: number): void {
+    localStorage.setItem("categoryId", '' + id);
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.findAllQuizByCategoryId(id).subscribe(quiz => {
       this.quizService.currQuizList = quiz as Quiz[];

@@ -16,9 +16,18 @@ export class QuizComponent implements OnInit {
   constructor(private quizService: QuizService) { }
 
   ngOnInit() {
+    if(localStorage.getItem("categoryId")) {
+      this.quizService.currQuizList = null;
+      this.subscriptions.push(this.quizService.findAllQuizByCategoryId(+localStorage.getItem("categoryId")).subscribe(quiz => {
+        this.quizService.currQuizList = quiz as Quiz[];
+      }));
+    }
   }
 
   public getQuizById(quiz: Quiz): void {
+    localStorage.setItem("quizId", '' + quiz.id);
+    localStorage.setItem("quizName", '' + quiz.name);
+    localStorage.setItem("userName", '' + quiz.userName);
     this.quizService.currQuiz = null;
     this.subscriptions.push(this.quizService.getQuizById(quiz.id).subscribe(questions => {
       this.quizService.currQuiz = quiz;

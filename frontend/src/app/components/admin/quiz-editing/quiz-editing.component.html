@@ -1,0 +1,49 @@
+<div class="container mt-lg-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered ks-font">
+        <thead class="thead-light">
+        <tr>
+          <th>Id<i class="btn dropdown-toggle"></i></th>
+          <th>Name<i class="btn dropdown-toggle"></i></th>
+          <th>Question number<i class="btn dropdown-toggle"></i></th>
+          <th>Creation date<i class="btn dropdown-toggle"></i></th>
+<!--          <th >Category<i class="btn dropdown-toggle ks-color"></i></th>-->
+<!--          <th >Status<i class="btn dropdown-toggle ks-color"></i></th>-->
+          <th>User<i class="btn dropdown-toggle"></i></th>
+          <th>Editing <button type="button" class="btn btn-danger er-margin" routerLink="/newQuiz">Create new quiz</button></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<tr *ngFor="let quiz of quizList">
+          <td scope="row">{{quiz?.id}}</td>
+          <td>{{quiz?.name}}</td>
+          <td>{{quiz?.categoryName}}</td>
+          <td>{{quiz?.isConfirmed}}</td>
+          <td>
+            <button type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">Delete</button>
+            <button type="button" class="btn btn-danger"
+                    (click)="showQuiz(quiz.id, quiz.name, userService.currentUser.userName)"
+                    routerLink="/passQuiz">View</button>
+          </td>
+        </tr>-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--<ng-template #template>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">Confirmation of action</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>Are you sure you want to delete this quiz? </label>
+    <br>
+    <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="btn btn-danger m-1 er-right" (click)="deleteQuiz(curQuizId)">Yes</button>
+  </div>
+</ng-template>-->

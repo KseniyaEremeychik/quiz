@@ -6,6 +6,8 @@ import com.netcracker.edu.backend.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class StatisticServiceImpl implements StatisticService {
     private StatisticRepository statisticRepository;
@@ -18,5 +20,15 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     public Statistic saveNewStat(Statistic newStat) {
         return statisticRepository.save(newStat);
+    }
+
+    @Override
+    public Iterable<Statistic> getUserStatistic(Integer userId) {
+        return statisticRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Iterable<Statistic> getFullStatistic() {
+        return statisticRepository.findAll();
     }
 }

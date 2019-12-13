@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         })
       );*/
-    } else if (req.url === "/api/catAll" || req.url === "/api/userLogin" || req.url === "/api/user") {
+    } else if (req.url === "/api/catAll" || req.url === "/api/userLogin" || req.url === "/api/user" || req.url === "/api/getTop") {
       return next.handle(req);
     } else {
       this.router.navigate(['/login']);

@@ -17,3 +17,7 @@ a:active {
 .ks-font {
   font-size: large;
 }
+
+table td, .table th {
+  padding: 4px 15px;
+}

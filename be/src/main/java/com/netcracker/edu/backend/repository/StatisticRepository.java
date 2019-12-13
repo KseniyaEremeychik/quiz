@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StatisticRepository extends CrudRepository<Statistic, Integer> {
+    Iterable<Statistic> findByUserId(Integer userId);
 }

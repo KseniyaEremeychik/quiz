@@ -6,10 +6,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class RatingViewModel {
     private int id;
     private int userId;
+    private String userName;
     private double percent;
     private int quizNum;
 
     public RatingViewModel() {
+    }
+
+    public RatingViewModel(int id, int userId, String userName, double percent, int quizNum) {
+        this.id = id;
+        this.userId = userId;
+        this.userName = userName;
+        this.percent = percent;
+        this.quizNum = quizNum;
     }
 
     public RatingViewModel(int id, int userId, double percent, int quizNum) {
@@ -33,6 +42,14 @@ public class RatingViewModel {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public double getPercent() {

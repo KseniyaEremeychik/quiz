@@ -4,7 +4,10 @@ import com.netcracker.edu.backend.entity.Question;
 import com.netcracker.edu.backend.entity.Quiz;
 import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class QuizController {
@@ -33,5 +36,20 @@ public class QuizController {
     @RequestMapping(value = "api/newQuiz", method = RequestMethod.POST)
     public Quiz saveQuiz(@RequestBody Quiz quiz) {
         return this.quizService.saveQuiz(quiz);
+    }
+
+    @RequestMapping(value = "/api/deleteQuizBe/{quizId}", method = RequestMethod.DELETE)
+    public void deleteQuizById(@PathVariable(name = "quizId") Integer quizId) {
+        quizService.deleteQuizById(quizId);
+    }
+
+    @RequestMapping(value = "api/quizById", method = RequestMethod.GET)
+    public ResponseEntity<Quiz> getQuizById(@RequestParam(name = "quizId") Integer id) {
+        Optional<Quiz> quiz = quizService.getQuizById(id);
+        if(quiz.isPresent()) {
+            return ResponseEntity.ok(quiz.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

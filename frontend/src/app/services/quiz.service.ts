@@ -30,4 +30,8 @@ export class QuizService {
   saveNewQuiz(quiz: Quiz): Observable<Quiz> {
     return this.http.post<Quiz>('/api/newQuiz', quiz);
   }
+
+  deleteQuiz(quizId: number): Observable<void> {
+    return this.http.delete<void>('/api/quizDel/' + quizId);
+  }
 }

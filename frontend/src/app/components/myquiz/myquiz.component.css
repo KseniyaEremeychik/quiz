@@ -5,3 +5,26 @@
 .flex {
   display: flex;
 }
+
+.ks-font {
+  font-size: large;
+}
+
+.er-margin {
+  margin-left: 150px;
+}
+
+table td, .table th {
+  padding: 4px 15px;
+}
+
+.ks-color {
+  color: #e9ecef;
+}
+.ks-margin {
+  margin-right: 10px;
+}
+
+.er-right {
+  float: right;
+}

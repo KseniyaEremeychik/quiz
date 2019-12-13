@@ -1,13 +1,18 @@
 package com.netcracker.edu.fapi.service.impl;
 
+import com.netcracker.edu.fapi.models.QuizViewModel;
 import com.netcracker.edu.fapi.models.RatingViewModel;
 import com.netcracker.edu.fapi.models.StatisticViewModel;
+import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.StatisticDataService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class StatisticDataServiceImpl implements StatisticDataService {
@@ -36,5 +41,37 @@ public class StatisticDataServiceImpl implements StatisticDataService {
         RatingViewModel updatedRatingResponse = restTemplate2.postForEntity(backendServerURL + "api/saveRating", updateUserGlobalRating, RatingViewModel.class).getBody();
 
         return statisticResponse;
+    }
+
+    @Override
+    public List<StatisticViewModel> getUserStatistic(Integer userId) {
+        RestTemplate restTemplate = new RestTemplate();
+        StatisticViewModel[] statisticResponse = restTemplate.getForObject(backendServerURL + "api/userStatBe/?userId=" + userId, StatisticViewModel[].class);
+
+        for(StatisticViewModel stat: statisticResponse) {
+            RestTemplate restTemplate1 = new RestTemplate();
+            QuizViewModel quiz = restTemplate1.getForObject(backendServerURL + "api/quizById/?quizId=" + stat.getQuizId(), QuizViewModel.class);
+            stat.setQuizName(quiz.getName());
+        }
+
+        return statisticResponse == null ? Collections.emptyList() : Arrays.asList(statisticResponse);
+    }
+
+    @Override
+    public List<StatisticViewModel> getFullStatistic() {
+        RestTemplate restTemplate = new RestTemplate();
+        StatisticViewModel[] fullStatistic = restTemplate.getForObject(backendServerURL + "api/fullStatBe", StatisticViewModel[].class);
+
+        for(StatisticViewModel stat: fullStatistic) {
+            RestTemplate restTemplate1 = new RestTemplate();
+            UserViewModel user = restTemplate1.getForObject(backendServerURL + "api/userBe/?userId=" + stat.getUserId(), UserViewModel.class);
+            stat.setUserName(user.getUserName());
+
+            RestTemplate restTemplate2 = new RestTemplate();
+            QuizViewModel quiz = restTemplate2.getForObject(backendServerURL + "api/quizById/?quizId=" + stat.getQuizId(), QuizViewModel.class);
+            stat.setQuizName(quiz.getName());
+        }
+
+        return fullStatistic == null ? Collections.emptyList() : Arrays.asList(fullStatistic);
     }
 }

@@ -42,4 +42,9 @@ public class QuizDataController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/api/quizDel/{quizId}", method = RequestMethod.DELETE)
+    public void deleteQuizById(@PathVariable(name = "quizId") String quizId) {
+        quizDataService.deleteQuizById(Integer.valueOf(quizId));
+    }
 }

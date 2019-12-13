@@ -121,14 +121,11 @@ public class QuizDataServiceImpl implements QuizDataService {
         savedQuizWithQuestions.setQuestions(savedQuestionList);
 
         return savedQuizWithQuestions;
+    }
 
-        /*List<QuestionViewModel> questionList = new ArrayList<>(newQuiz.getQuestions());
-        for (QuestionViewModel question : questionList) {
-            System.out.println(question);
-            for (Answer ans : question.getAnswers()) {
-                System.out.println(ans);
-            }
-        }
-        return null;*/
+    @Override
+    public void deleteQuizById(Integer quizId) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerURL + "/api/deleteQuizBe/" + quizId);
     }
 }

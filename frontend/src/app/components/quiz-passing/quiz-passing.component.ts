@@ -7,6 +7,8 @@ import {RightAnswers} from "../../models/rightAnswers";
 import {InfoForStat} from "../../models/infoForStat";
 import {UserService} from "../../services/user.service";
 import {StatisticsService} from "../../services/statistics.service";
+import {Question} from "../../models/question";
+import {Quiz} from "../../models/quiz";
 
 @Component({
   selector: 'app-quiz-passing',
@@ -26,6 +28,16 @@ export class QuizPassingComponent implements OnInit {
               private statisticService: StatisticsService) { }
 
   ngOnInit() {
+    if(localStorage.getItem("quizId")) {
+      this.quizService.currQuiz = null;
+      this.subscriptions.push(this.quizService.getQuizById(+localStorage.getItem("quizId")).subscribe(questions => {
+        this.quizService.currQuiz = new Quiz();
+        this.quizService.currQuiz.id = +localStorage.getItem("quizId");
+        this.quizService.currQuiz.name = localStorage.getItem("quizName");
+        this.quizService.currQuiz.userName = localStorage.getItem("userName");
+        this.quizService.currQuiz.questions = questions as Question[];
+      }));
+    }
   }
 
   public onChange(questionId: number, answerId: number): void {
@@ -54,7 +66,7 @@ export class QuizPassingComponent implements OnInit {
       this.rightAnswers = rightAnswersModel as RightAnswers;
       this.infoForStat.rightAnswersPercent = this.rightAnswers.percent;
       this.subscriptions.push(this.statisticService.addNewStatistic(this.infoForStat).subscribe((savedStat) => {
-        
+
       }));
     }));
 

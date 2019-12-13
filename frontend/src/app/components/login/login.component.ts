@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
       "userEmail": new FormControl("", [Validators.required, Validators.pattern("[a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}")]),
       "userPassword": new FormControl("", [Validators.required, Validators.minLength(8)])
     });
+
+    localStorage.clear();
+    this.userService.currentUser = null;
   }
 
   //Method to send email for getting user from db
