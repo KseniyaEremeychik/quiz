@@ -25,14 +25,14 @@
             <div class="er-answers">
               <div *ngFor="let ans of questions[i].answers; let j = index">
                 <label>{{j + 1}}.</label>
-                <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}}>
+                <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}} #answerText>
               </div>
-              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 4">Add answer</button>
+              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 5">Add answer</button>
             </div>
             <br>
             <div class="er-flex-right-answer">
             <span>right answer:</span>
-            <select id="right-answer" class="form-control er-right-answer-input" #rightAnswer (change)="onChangeRightAnswer(i, rightAnswer.value)">
+            <select id="right-answer" class="form-control er-right-answer-input" #rightAnswer (click)="onChangeRightAnswer(i, rightAnswer.value)">
               <option *ngFor="let ans of questions[i].answers; let k = index">{{k+1}}</option>
             </select>
               </div>
@@ -40,8 +40,22 @@
         </div>
         <button class="btn btn-danger" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">Add question</button>
       </div>
-      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value)">Create</button>
+      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value, template)">Create</button>
       </div>
     </form>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">{{modalTitle}}</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>{{modalMessage}}</label>
+    <br>
+    <button type="button" class="btn btn-danger m-1 er-right" (click)="modalRef.hide()">OK</button>
+  </div>
+</ng-template>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {BsDropdownConfig} from "ngx-bootstrap";
 import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../models/quiz";
 import {Router} from "@angular/router";
+import {PageQuiz} from "../../models/pageQuiz";
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ import {Router} from "@angular/router";
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('search') search: ElementRef;
 
   private userName: string;
   private subscriptions: Subscription[] = [];
@@ -38,10 +40,15 @@ export class HeaderComponent implements OnInit {
   }
 
   public findQuizLike(searchParam: string): void {
-    this.quizService.currQuizList = null;
-    this.subscriptions.push(this.quizService.findQuizLike(searchParam).subscribe(quizList => {
-      this.quizService.currQuizList = quizList as Quiz[];
+    localStorage.removeItem("categoryId");
+    this.quizService.quizPage = null;
+    this.quizService.searchParam = searchParam;
+    //this.quizService.currQuizList = null;
+    this.subscriptions.push(this.quizService.findQuizLike(searchParam, 0, 8).subscribe(quizPage => {
+      this.quizService.quizPage = quizPage as PageQuiz;
+      this.quizService.currQuizList = this.quizService.quizPage.content;
       this.router.navigate(['/quiz']);
+      this.search.nativeElement.value = '';
     }));
   }
 }

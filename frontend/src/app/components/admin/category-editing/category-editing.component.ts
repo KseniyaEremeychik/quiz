@@ -19,7 +19,8 @@ export class CategoryEditingComponent implements OnInit {
   private sortFormatName: string = 'desc';
   private curCategoryId: number;
 
-  constructor(private categoryService: CategoryService, private modalService: BsModalService) { }
+  constructor(private categoryService: CategoryService,
+              private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getAllCategories();

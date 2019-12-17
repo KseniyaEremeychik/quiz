@@ -4,6 +4,7 @@ import com.netcracker.edu.backend.entity.Question;
 import com.netcracker.edu.backend.entity.Quiz;
 import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,16 @@ public class QuizController {
         return this.quizService.findAllQuizByCategoryId(id);
     }
 
-    @RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
     public Iterable<Quiz> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam) {
         return this.quizService.findAllQuizLike(searchParam);
+    }*/
+
+    @RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
+    public Page<Quiz> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam,
+                                      @RequestParam(name = "page") Integer page,
+                                      @RequestParam(name = "size") Integer size) {
+        return this.quizService.findAllQuizLike(searchParam, page, size);
     }
 
     @RequestMapping(value = "api/quizByUser", method = RequestMethod.GET)
@@ -51,5 +59,33 @@ public class QuizController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @RequestMapping(value = "api/quizPage", method = RequestMethod.GET)
+    public Page<Quiz> getQuizByPage(@RequestParam(name = "categoryId") Integer categoryId,
+                                    @RequestParam(name = "page") Integer page,
+                                    @RequestParam(name = "size") Integer size) {
+        return quizService.getQuizByPage(categoryId, page, size);
+    }
+
+    @RequestMapping(value = "api/quizPageAndStatus", method = RequestMethod.GET)
+    public Page<Quiz> getQuizByPageAndStatus(@RequestParam(name = "categoryId") Integer categoryId,
+                                             @RequestParam(name = "page") Integer page,
+                                             @RequestParam(name = "size") Integer size,
+                                             @RequestParam(name = "status") String status) {
+        return quizService.getQuizByPageAndStatus(status, categoryId, page, size);
+    }
+
+    @RequestMapping(value = "api/allQuizBe", method = RequestMethod.GET)
+    public Page<Quiz> getAll(@RequestParam(name = "page") Integer page,
+                             @RequestParam(name = "size") Integer size) {
+        return quizService.getAll(page, size);
+    }
+
+    @RequestMapping(value = "api/allQuizWithStatus", method = RequestMethod.GET)
+    public Page<Quiz> getAllQuizWithStatus(@RequestParam(name = "page") Integer page,
+                                           @RequestParam(name = "size") Integer size,
+                                           @RequestParam(name = "status") String status) {
+        return quizService.getAllQuizWithStatus(page, size, status);
     }
 }

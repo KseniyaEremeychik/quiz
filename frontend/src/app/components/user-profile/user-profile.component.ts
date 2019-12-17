@@ -23,7 +23,6 @@ export class UserProfileComponent implements OnInit {
   public getUserStatistic(): void {
     this.subscriptions.push(this.statisticService.getUserStatistic(this.userService.currentUser.id).subscribe((stat) => {
       this.userStatistic = stat as InfoForStat[];
-      console.log(this.userStatistic);
     }));
   }
 }

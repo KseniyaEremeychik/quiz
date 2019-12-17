@@ -11,4 +11,5 @@ public interface UserDataService {
     UserViewModel getUserByToken(String emailByToken);
     List<UserViewModel> getAll();
     void deleteUser(Integer id);
+    UserViewModel getUserById(Integer id);
 }

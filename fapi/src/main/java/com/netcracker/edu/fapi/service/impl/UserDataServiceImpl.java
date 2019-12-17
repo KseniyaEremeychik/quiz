@@ -125,13 +125,9 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         return authorities;
     }
 
-    /*@ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<UserViewModel> handleUserNotFound(UsernameNotFoundException ex) {
-        UserViewModel user = new UserViewModel();
-        Map<String, String> errors = new HashMap<>();
-        errors.put("login", "Incorrect email or password");
-        user.setErrors(errors);
-        return ResponseEntity.ok(user);
-    }*/
+    @Override
+    public UserViewModel getUserById(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerURL + "api/userBe/?userId=" + id, UserViewModel.class);
+    }
 }

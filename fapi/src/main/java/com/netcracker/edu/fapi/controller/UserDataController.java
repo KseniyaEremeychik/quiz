@@ -69,18 +69,6 @@ public class UserDataController {
         return new UserWithAuthToken(signedUser, token);
     }
 
-
-    // todo check why do not work
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(UsernameNotFoundException.class)
-    public ResponseEntity<UserViewModel> handleUserNotFound(UsernameNotFoundException ex) {
-        UserViewModel user = new UserViewModel();
-        Map<String, String> errors = new HashMap<>();
-        errors.put("login", "Incorrect email or password");
-        user.setErrors(errors);
-        return ResponseEntity.ok(user);
-    }
-
     @RequestMapping(value="/api/user/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable String id) {
         userDataService.deleteUser(Integer.valueOf(id));

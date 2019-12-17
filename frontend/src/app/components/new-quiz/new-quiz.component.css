@@ -68,3 +68,7 @@
 .er-full-width {
   width: 100%;
 }
+
+.er-right {
+  float: right;
+}

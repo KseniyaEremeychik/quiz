@@ -21,4 +21,17 @@ body {
   font-family: "Calibri";
 }
 
+.pagination {
+  justify-content: center;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+a.page-link, .page-link:hover{
+  color: #dc3545;
+  /*border-color: #dc3545;*/
+}
 

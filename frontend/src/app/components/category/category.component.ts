@@ -4,6 +4,8 @@ import {Subscription} from "rxjs";
 import {CategoryService} from "../../services/category.service";
 import {Quiz} from "../../models/quiz";
 import {QuizService} from "../../services/quiz.service";
+import {Router} from "@angular/router";
+import {PageQuiz} from "../../models/pageQuiz";
 
 @Component({
   selector: 'app-category',
@@ -15,7 +17,9 @@ export class CategoryComponent implements OnInit {
   public categories: Category[];
   private subscriptions: Subscription[] = [];
 
-  constructor(private categoryService: CategoryService, private quizService: QuizService) {
+  constructor(private categoryService: CategoryService,
+              private quizService: QuizService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -28,11 +32,20 @@ export class CategoryComponent implements OnInit {
     }));
   }
 
-  public findAllQuizByCategoryId(id: number): void {
+  /*public findAllQuizByCategoryId(id: number): void {
     localStorage.setItem("categoryId", '' + id);
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.findAllQuizByCategoryId(id).subscribe(quiz => {
       this.quizService.currQuizList = quiz as Quiz[];
+    }));
+  }*/
+
+  public findAllQuizByCategoryId(id: number): void {
+    localStorage.setItem("categoryId", '' + id);
+    this.quizService.currQuizList = null;
+    this.subscriptions.push(this.quizService.getQuizByPageAndStatus(id, 0, 8, 'approved').subscribe(resp => {
+      this.quizService.quizPage = resp as PageQuiz;
+      this.quizService.currQuizList = this.quizService.quizPage.content;
     }));
   }
 }

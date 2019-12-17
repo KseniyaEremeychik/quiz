@@ -15,7 +15,6 @@ public class StatisticDataController {
 
     @RequestMapping(value = "/api/newStat", method = RequestMethod.POST)
     public ResponseEntity<StatisticViewModel> addNewStatistic(@RequestBody StatisticViewModel newStat) {
-        System.out.println(newStat);
         if(newStat != null) {
             return ResponseEntity.ok(statisticDataService.addNewStatistic(newStat));
         }

@@ -8,13 +8,6 @@
   height: 170px;
   margin: 15px;
 }
-
-li {
-  margin-left: 15px;
-  margin-bottom: 0px;
-  padding: 0px;
-}
-
 ul {
   margin: 0px;
 }
@@ -28,6 +21,13 @@ ul {
   flex-wrap: wrap;
   flex: auto;
 }
+
+.ks-li {
+  margin-left: 15px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
 
 
 

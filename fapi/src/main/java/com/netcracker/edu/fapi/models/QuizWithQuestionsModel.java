@@ -2,17 +2,26 @@ package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class QuizWithQuestionsModel {
     private int id;
     private int categoryId;
+
+    @NotEmpty()
+    @Size(max = 100)
+    @Pattern(regexp = "^[a-zA-Z0-9!?,._\\s-]+$")
     private String name;
     private int questionNumber;
     private String isConfirmed;
     private String creationDate;
     private int userId;
+
+    @NotEmpty
     private List<QuestionViewModel> questions;
 
     public QuizWithQuestionsModel() {

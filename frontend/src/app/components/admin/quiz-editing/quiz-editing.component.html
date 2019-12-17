@@ -4,29 +4,33 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>Id<i class="btn dropdown-toggle"></i></th>
           <th>Name<i class="btn dropdown-toggle"></i></th>
           <th>Question number<i class="btn dropdown-toggle"></i></th>
           <th>Creation date<i class="btn dropdown-toggle"></i></th>
 <!--          <th >Category<i class="btn dropdown-toggle ks-color"></i></th>-->
 <!--          <th >Status<i class="btn dropdown-toggle ks-color"></i></th>-->
           <th>User<i class="btn dropdown-toggle"></i></th>
-          <th>Editing <button type="button" class="btn btn-danger er-margin" routerLink="/newQuiz">Create new quiz</button></th>
+          <th>Editing<i class="btn dropdown-toggle ks-color"></i></th>
         </tr>
         </thead>
         <tbody>
-        <!--<tr *ngFor="let quiz of quizList">
-          <td scope="row">{{quiz?.id}}</td>
+        <tr *ngFor="let quiz of quizList">
           <td>{{quiz?.name}}</td>
-          <td>{{quiz?.categoryName}}</td>
-          <td>{{quiz?.isConfirmed}}</td>
+          <td>{{quiz?.questionNumber}}</td>
+          <td>{{quiz?.creationDate}}</td>
+          <td>{{quiz?.userName}}</td>
           <td>
-            <button type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">Delete</button>
+            <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin">Delete</button>
+            <button type="button" class="btn btn-outline-danger ks-margin"
+                    routerLink="/passQuiz">View</button>
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin">Approve</button>
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin">Reject</button>
+            <!--<button type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">Delete</button>
             <button type="button" class="btn btn-danger"
                     (click)="showQuiz(quiz.id, quiz.name, userService.currentUser.userName)"
-                    routerLink="/passQuiz">View</button>
+                    routerLink="/passQuiz">View</button>-->
           </td>
-        </tr>-->
+        </tr>
         </tbody>
       </table>
     </div>

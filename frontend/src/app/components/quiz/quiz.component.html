@@ -4,20 +4,29 @@
   </div>
 
   <div class="fix-width flex ks-fix">
-    <div *ngFor="let quiz of quizService.currQuizList" class="card border-secondary text-center ks-card flex">
+    <div *ngFor="let quiz of quizService?.currQuizList" class="card border-secondary text-center ks-card flex">
       <div class="card-header text-white border-secondary p-1 bg-danger">
         <b>{{quiz.name}}</b>
       </div>
       <div class="card-body text-left p-2 er-float">
         <ul class="p-0">
-          <li><i>number of questions</i>: {{quiz.questionNumber}}</li>
-          <li><i>creation date</i>: {{quiz.creationDate}}</li>
-          <li><i>author</i>: {{quiz.userName}}</li>
+          <li class="ks-li"><i>number of questions</i>: {{quiz.questionNumber}}</li>
+          <li class="ks-li"><i>creation date</i>: {{quiz.creationDate}}</li>
+          <li class="ks-li"><i>author</i>: {{quiz.userName}}</li>
         </ul>
       </div>
       <div class="card-footer p-1">
-        <a class="btn btn-outline-danger" routerLink="/passQuiz" (click)="getQuizById(quiz)"><b>Start quiz</b></a>
+        <a class="btn btn-outline-danger" routerLink="/passQuiz" (click)="getQuizById(quiz)"><b>{{buttonText}}</b></a>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="quizService.quizPage?.totalElements > 8" class="qwe">
+  <pagination
+    [itemsPerPage]="pageSize"  [totalItems]="quizService.quizPage?.totalElements" (pageChanged)="pageChanged($event)"
+  ></pagination>
+</div>
+
+
+

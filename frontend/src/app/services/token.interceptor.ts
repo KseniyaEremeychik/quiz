@@ -23,16 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if(token) {
       return next.handle(authReq)
-      /*.pipe(
-        tap(event => {
-          if (event instanceof HttpResponse)
-            console.log('Server response');
-        }, err => {
-          if (err instanceof HttpErrorResponse) {
-            if(err.status == 401) console.log('Unauthorized');
-          }
-        })
-      );*/
     } else if (req.url === "/api/catAll" || req.url === "/api/userLogin" || req.url === "/api/user" || req.url === "/api/getTop") {
       return next.handle(req);
     } else {

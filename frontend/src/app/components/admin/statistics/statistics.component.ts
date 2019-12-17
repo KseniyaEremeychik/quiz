@@ -21,7 +21,6 @@ export class StatisticsComponent implements OnInit {
   public getAllStatistic(): void {
     this.subscriptions.push(this.statisticService.getFullStatistic().subscribe((stat) => {
       this.fullStat = stat as InfoForStat[];
-      console.log(this.fullStat);
     }));
   }
 }

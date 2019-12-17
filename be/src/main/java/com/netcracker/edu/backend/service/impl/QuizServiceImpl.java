@@ -4,6 +4,8 @@ import com.netcracker.edu.backend.entity.Quiz;
 import com.netcracker.edu.backend.repository.QuizRepository;
 import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -22,10 +24,20 @@ public class QuizServiceImpl implements QuizService {
         return quizRepository.findByCategoryId(id);
     }
 
-    @Override
+    /*@Override
     public Iterable<Quiz> findAllQuizLike(String searchParam) {
         return quizRepository.findByNameContaining(searchParam);
-    }
+    }*/
+
+    /*@Override
+    public Page<Quiz> findAllQuizLike(String searchParam, Integer page, Integer size) {
+        return quizRepository.findByNameContaining(searchParam, PageRequest.of(page, size));
+    }*/
+
+    /*@Override
+    public Page<Quiz> findAllQuizLike(String searchParam, Integer page, Integer size, String status) {
+        return quizRepository.findByNameContainingAndIsConfirmed(searchParam, status, PageRequest.of(page, size));
+    }*/
 
     @Override
     public Iterable<Quiz> findAllQuizByUserId(Integer id) {
@@ -45,5 +57,38 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Optional<Quiz> getQuizById(Integer id) {
         return quizRepository.findById(id);
+    }
+
+    @Override
+    public Page<Quiz> getQuizByPage(Integer categoryId, Integer page, Integer size) {
+        return quizRepository.findByCategoryId(categoryId, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Quiz> findAllQuizLike(String searchParam, Integer page, Integer size) {
+        return quizRepository.findByIsConfirmedAndNameContaining(Quiz.Confirmation.approved, searchParam, PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Quiz> getQuizByPageAndStatus(String status, Integer categoryId, Integer page, Integer size) {
+        if(status.equals("approved")) {
+            return quizRepository.findByCategoryIdAndIsConfirmed(categoryId, Quiz.Confirmation.approved, PageRequest.of(page, size));
+        } else {
+            return quizRepository.findByCategoryIdAndIsConfirmed(categoryId, Quiz.Confirmation.unseen, PageRequest.of(page, size));
+        }
+    }
+
+    @Override
+    public Page<Quiz> getAll(Integer page, Integer size) {
+        return quizRepository.findAll(PageRequest.of(page, size));
+    }
+
+    @Override
+    public Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status) {
+        if(status.equals("approved")) {
+            return quizRepository.findByIsConfirmed(Quiz.Confirmation.approved, PageRequest.of(page, size));
+        } else {
+            return quizRepository.findByIsConfirmed(Quiz.Confirmation.unseen, PageRequest.of(page, size));
+        }
     }
 }

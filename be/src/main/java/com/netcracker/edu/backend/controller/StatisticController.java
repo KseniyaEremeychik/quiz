@@ -17,7 +17,6 @@ public class StatisticController {
 
     @RequestMapping(value = "api/newStatBe", method = RequestMethod.POST)
     public Statistic addNewStatistic(@RequestBody Statistic newStat) {
-        System.out.println(newStat);
         return statisticService.saveNewStat(newStat);
     }
 
