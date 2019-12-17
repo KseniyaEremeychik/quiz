@@ -3,6 +3,7 @@ import {PageQuiz} from "../../../models/pageQuiz";
 import {QuizService} from "../../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../../models/quiz";
+import {PageChangedEvent} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-quiz-editing',
@@ -14,7 +15,7 @@ export class QuizEditingComponent implements OnInit {
   private quizList: Quiz[] = []
   private subscriptions: Subscription[] = [];
   private curPage: number = 1;
-  private pageSize: number = 20;
+  private pageSize: number = 10;
 
   constructor(private quizService: QuizService) { }
 
@@ -27,5 +28,10 @@ export class QuizEditingComponent implements OnInit {
       this.pageQuiz = resp as PageQuiz;
       this.quizList = this.pageQuiz.content;
     }));
+  }
+
+  pageChanged(event: PageChangedEvent) {
+    this.curPage = event.page;
+    this.getAllQuiz(this.curPage-1, this.pageSize);
   }
 }

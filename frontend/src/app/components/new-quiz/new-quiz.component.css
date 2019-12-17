@@ -72,3 +72,8 @@
 .er-right {
   float: right;
 }
+
+.fa-times-circle {
+  margin-left: 7px;
+  color: #dc3545;
+}

@@ -39,8 +39,9 @@ public class QuizDataController {
     @RequestMapping(value = "/api/newQuiz", method = RequestMethod.POST)
     public ResponseEntity<QuizWithQuestionsModel> saveNewQuiz(@RequestBody @Valid QuizWithQuestionsModel newQuiz) {
         if(newQuiz != null) {
-            if (quizDataService.saveNewQuiz(newQuiz) != null) {
-                return ResponseEntity.ok(quizDataService.saveNewQuiz(newQuiz));
+            QuizWithQuestionsModel quiz = quizDataService.saveNewQuiz(newQuiz);
+            if (quiz != null) {
+                return ResponseEntity.ok(quiz);
             } else {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }

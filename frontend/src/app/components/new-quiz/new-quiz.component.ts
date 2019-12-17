@@ -137,7 +137,7 @@ export class NewQuizComponent implements OnInit {
   private validateQuiz():void {
     let val = true;
     let result = 'Your quiz has been submitted for moderation';
-    let regEx = new RegExp("^[a-zA-Z0-9!?,._\\s-]+$");
+    let regEx = new RegExp("^[a-zA-Z0-9!?,._-][a-zA-Z0-9!?,._\\s-]+$");
     if (this.quizName.length == 0 || !(regEx.test(this.quizName)) || this.quizName.length > 100) {
       result = 'Please, check the entered quiz name!'
       val = false;

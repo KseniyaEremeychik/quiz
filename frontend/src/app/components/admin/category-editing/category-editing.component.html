@@ -31,6 +31,9 @@
   <div class="modal-body">
     <label>Enter the name: </label>
     <input class="form-control" #categoryName>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      <span>{{errorMessage}}</span>
+    </div>
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
     <button type="button" class="btn btn-danger m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>

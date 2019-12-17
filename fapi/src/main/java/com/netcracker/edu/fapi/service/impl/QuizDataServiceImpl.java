@@ -102,7 +102,7 @@ public class QuizDataServiceImpl implements QuizDataService {
             quiz.setUserId(newQuiz.getUserId());
 
             RestTemplate restTemplate = new RestTemplate();
-            QuizViewModel savedQuiz = restTemplate.postForEntity(backendServerURL + "api/newQuiz", newQuiz, QuizViewModel.class).getBody();
+            QuizViewModel savedQuiz = restTemplate.postForEntity(backendServerURL + "api/newQuiz", quiz, QuizViewModel.class).getBody();
 
             List<QuestionViewModel> questionList = new ArrayList<>(newQuiz.getQuestions());
             List<QuestionViewModel> savedQuestionList = new ArrayList<>();

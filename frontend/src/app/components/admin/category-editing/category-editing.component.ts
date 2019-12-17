@@ -18,6 +18,8 @@ export class CategoryEditingComponent implements OnInit {
   private sortFormatId: string = 'desc';
   private sortFormatName: string = 'desc';
   private curCategoryId: number;
+  private isValid: boolean = true;
+  private errorMessage: string = null;
 
   constructor(private categoryService: CategoryService,
               private modalService: BsModalService) { }
@@ -62,11 +64,16 @@ export class CategoryEditingComponent implements OnInit {
   }
 
   public addCategory(name: string): void {
-    this.category.name = name;
-    this.subscriptions.push(this.categoryService.addCategory(this.category).subscribe(() => {
-      this.updateCategories();
-    }));
-    this.modalRef.hide();
+    this.validateNewCategory(name);
+    if(this.isValid) {
+      this.category.name = name;
+      this.subscriptions.push(this.categoryService.addCategory(this.category).subscribe(() => {
+        this.updateCategories();
+      }));
+      this.modalRef.hide();
+    } else {
+      this.errorMessage = 'Invalid format for category name!';
+    }
   }
 
   public updateCategories(): void {
@@ -79,6 +86,16 @@ export class CategoryEditingComponent implements OnInit {
   }
 
   openModalAdd(template: TemplateRef<any>) {
+    this.errorMessage = null;
     this.modalRef = this.modalService.show(template);
+  }
+
+  private validateNewCategory(categoryName: string): void {
+    let val = true;
+    let regEx = new RegExp("^[a-zA-Z0-9!?,._-][a-zA-Z0-9!?,._\\s-]+$");
+    if(categoryName.length == 0 || categoryName.length > 100 || !(regEx.test(categoryName))) {
+      val = false;
+    }
+    this.isValid = val;
   }
 }
