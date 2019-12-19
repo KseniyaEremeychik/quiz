@@ -4,21 +4,21 @@ import {Observable} from "rxjs";
 import {UserService} from "../services/user.service";
 
 @Injectable()
-export class RoleGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
 
 
   constructor(private userService: UserService, private _router: Router) {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    const userRole = this.userService.currentUser.role;
+    const user = this.userService.currentUser;
 
-    if (userRole === next.data.role) {
+    if (user == null) {
       return true;
     }
 
-    // navigate to forbidden page
-    this._router.navigate(['/forbidden']);
+    // navigate to main page
+    this._router.navigate(['/']);
     return false;
   }
 

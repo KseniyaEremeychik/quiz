@@ -1,4 +1,13 @@
 <div class="container mt-lg-5">
+  <div class="btn-group ks-dropdown" dropdown>
+    <button id="button-user" dropdownToggle type="button" class="btn btn-danger dropdown-toggle er-margin2"
+            aria-controls="dropdown-animated">Status<span class="caret"></span>
+    </button>
+    <ul id="dropdown-user" *dropdownMenu class="dropdown-menu p-0" role="menu" aria-labelledby="button-animated">
+      <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('approved')">approved</a></li>
+      <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('unseen')">unseen</a></li>
+    </ul>
+  </div>
   <div class="row">
     <div class="col">
       <table class="table table-bordered ks-font">
@@ -7,8 +16,6 @@
           <th>Name<i class="btn dropdown-toggle"></i></th>
           <th>Question number<i class="btn dropdown-toggle"></i></th>
           <th>Creation date<i class="btn dropdown-toggle"></i></th>
-<!--          <th >Category<i class="btn dropdown-toggle ks-color"></i></th>-->
-<!--          <th >Status<i class="btn dropdown-toggle ks-color"></i></th>-->
           <th>User<i class="btn dropdown-toggle"></i></th>
           <th>Editing<i class="btn dropdown-toggle ks-color"></i></th>
         </tr>
@@ -21,7 +28,7 @@
           <td>{{quiz?.userName}}</td>
           <td>
             <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin">Delete</button>
-            <button type="button" class="btn btn-outline-danger ks-margin"
+            <button type="button" class="btn btn-outline-danger ks-margin" (click)="getQuiz(quiz.id, quiz.name)"
                     routerLink="/passQuiz">View</button>
             <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin">Approve</button>
             <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin">Reject</button>

@@ -26,7 +26,7 @@
               <div *ngFor="let ans of questions[i].answers; let j = index">
                 <label>{{j + 1}}.</label>
                 <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}} #answerText>
-                <i *ngIf="j>1" class="far fa-times-circle"></i>
+                <i *ngIf="j>1" class="far fa-times-circle" (click)="onDeleteAns(i, j)"></i>
               </div>
               <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 5">Add answer</button>
             </div>

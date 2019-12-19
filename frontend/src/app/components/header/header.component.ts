@@ -51,4 +51,8 @@ export class HeaderComponent implements OnInit {
       this.search.nativeElement.value = '';
     }));
   }
+
+  public cleanStatus(): void {
+    this.quizService.status = null;
+  }
 }

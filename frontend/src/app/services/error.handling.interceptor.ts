@@ -23,11 +23,6 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
       }, err => {
         if (err instanceof HttpErrorResponse) {
           if(err.status == 401) {
-            /*console.log(req.url);
-            if(req.url == '/api/userLogin') {
-              console.log('123');
-              //this.router.navigate(['/']);;
-            }*/
             this.router.navigate(['/login']);
           } else if(err.status == 404) {
             this.router.navigate(['/notFound']);

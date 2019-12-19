@@ -15,12 +15,16 @@ export class QuizEditingComponent implements OnInit {
   private quizList: Quiz[] = []
   private subscriptions: Subscription[] = [];
   private curPage: number = 1;
-  private pageSize: number = 10;
+  private pageSize: number = 9;
 
   constructor(private quizService: QuizService) { }
 
   ngOnInit() {
-    this.getAllQuiz(this.curPage, this.pageSize);
+    if(this.quizService.status) {
+      this.getQuizByStatus(this.quizService.status);
+    } else {
+      this.getAllQuiz(this.curPage, this.pageSize);
+    }
   }
 
   public getAllQuiz(page: number, size: number): void {
@@ -30,8 +34,28 @@ export class QuizEditingComponent implements OnInit {
     }));
   }
 
+  public getQuiz(quizId: number, quizName: string): void {
+    localStorage.setItem("quizId", '' + quizId);
+    localStorage.setItem("quizName", quizName);
+  }
+
+  public getQuizByStatus(status: string) {
+    if(!(this.quizService.status === status)) {
+      this.curPage = 1;
+    }
+    this.quizService.status = status;
+      this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage-1, this.pageSize).subscribe(resp => {
+      this.pageQuiz = resp as PageQuiz;
+      this.quizList = this.pageQuiz.content;
+    }));
+  }
+
   pageChanged(event: PageChangedEvent) {
     this.curPage = event.page;
-    this.getAllQuiz(this.curPage-1, this.pageSize);
+    if(this.quizService.status) {
+      this.getQuizByStatus(this.quizService.status);
+    } else {
+      this.getAllQuiz(this.curPage-1, this.pageSize);
+    }
   }
 }

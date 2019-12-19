@@ -35,3 +35,11 @@ a.page-link, .page-link:hover{
   /*border-color: #dc3545;*/
 }
 
+.dropdown-menu {
+  min-width: 6rem;
+}
+
+.mt-lg-5 {
+  margin-top: 1rem!important;
+}
+

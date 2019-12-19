@@ -94,6 +94,10 @@ export class NewQuizComponent implements OnInit {
     this.questions[i].answers[k-1].isRight = 1;
   }
 
+  onDeleteAns(i, j): void {
+    //this.questions[i].answers[j] = null;
+  }
+
   public createNewQuiz(categoryName: string, template: TemplateRef<any>): void {
     this.validateQuiz();
     if(this.isValid) {

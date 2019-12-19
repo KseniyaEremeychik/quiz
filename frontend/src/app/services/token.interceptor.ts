@@ -22,6 +22,10 @@ export class AuthInterceptor implements HttpInterceptor {
     });
 
     if(token) {
+      /*if(this.router.url === '/login') {
+        console.log(this.router.url);
+        this.router.navigate(['/']);
+      }*/
       return next.handle(authReq)
     } else if (req.url === "/api/catAll" || req.url === "/api/userLogin" || req.url === "/api/user" || req.url === "/api/getTop") {
       return next.handle(req);

@@ -24,3 +24,15 @@ table td, .table th {
 .er-right {
   float: right;
 }
+
+.ks-dropdown {
+  margin-bottom: 60px;
+}
+
+.ks-w {
+  height: 25px;
+}
+
+a:active {
+  background-color: lightgray;
+}

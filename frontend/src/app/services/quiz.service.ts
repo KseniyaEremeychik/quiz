@@ -11,6 +11,7 @@ export class QuizService {
   public currQuiz: Quiz = null;
   public quizPage: PageQuiz = null;
   public searchParam: string = null;
+  public status: string = null;
   constructor(private http: HttpClient) {
   }
 

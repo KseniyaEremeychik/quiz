@@ -40,11 +40,16 @@ import {User} from "./models/user";
 import {StatisticsComponent} from './components/admin/statistics/statistics.component';
 import {QuizEditingComponent} from './components/admin/quiz-editing/quiz-editing.component';
 import {RoleGuard} from "./guards/route.guard";
+import {AuthGuard} from "./guards/auth.guard";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {
+    path: 'login', component: LoginComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'register', component: RegisterComponent, canActivate: [AuthGuard]
+  },
   {path: 'quiz', component: QuizComponent},
   {
     path: 'newQuiz', component: NewQuizComponent, canActivate: [RoleGuard],
@@ -143,6 +148,7 @@ export function initApp(http: HttpClient, user: UserService) {
     StatisticsService,
     RatingService,
     RoleGuard,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
