@@ -54,5 +54,6 @@ export class HeaderComponent implements OnInit {
 
   public cleanStatus(): void {
     this.quizService.status = null;
+    this.router.navigate(['/quizEditing']);
   }
 }

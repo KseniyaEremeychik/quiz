@@ -19,4 +19,5 @@ public interface QuizDataService {
     Page<QuizViewModel> getQuizByPageAndStatus(Integer categoryId, Integer page, Integer size, String status);
     Page<QuizViewModel> getAllQuiz(Integer page, Integer size);
     Page<QuizViewModel> getAllQuizWithStatus(Integer page, Integer size, String status);
+    QuizViewModel editQuizStatus(QuizViewModel quiz);
 }

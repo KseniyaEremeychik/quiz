@@ -49,6 +49,14 @@ public class QuizDataController {
         return null;
     }
 
+    @RequestMapping(value = "/api/editStatus", method = RequestMethod.POST)
+    public ResponseEntity<QuizViewModel> editQuizStatus(@RequestBody QuizViewModel quiz) {
+        if(quiz !=null) {
+            return ResponseEntity.ok(quizDataService.editQuizStatus(quiz));
+        }
+        return null;
+    }
+
     @RequestMapping(value = "/api/quizDel/{quizId}", method = RequestMethod.DELETE)
     public void deleteQuizById(@PathVariable(name = "quizId") String quizId) {
         quizDataService.deleteQuizById(Integer.valueOf(quizId));

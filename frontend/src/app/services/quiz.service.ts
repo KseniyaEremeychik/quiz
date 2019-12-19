@@ -39,6 +39,10 @@ export class QuizService {
     return this.http.post<Quiz>('/api/newQuiz', quiz);
   }
 
+  editStatus(quiz: Quiz): Observable<Quiz> {
+    return this.http.post<Quiz>('/api/editStatus', quiz);
+  }
+
   deleteQuiz(quizId: number): Observable<void> {
     return this.http.delete<void>('/api/quizDel/' + quizId);
   }

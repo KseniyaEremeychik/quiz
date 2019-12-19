@@ -6,7 +6,7 @@
         <tr>
           <th scope="row">Id<i class="btn dropdown-toggle" (click)="getAllSortedCategories('id')"></i></th>
           <th>Name<i class="btn dropdown-toggle" (click)="getAllSortedCategories('name')"></i></th>
-          <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin" (click)="openModalAdd(template)">Add new category</button></th>
+          <th class="w-50">Editing <button type="button" class="btn btn-success er-margin" (click)="openModalAdd(template)">Add new category</button></th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
     </div>
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
-    <button type="button" class="btn btn-danger m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>
+    <button type="button" class="btn btn-success m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>
   </div>
 </ng-template>
 

@@ -28,3 +28,8 @@ table td, .table th {
 .er-right {
   float: right;
 }
+
+.btn-outline-warning:hover, .btn-outline-warning:not(:disabled):not(.disabled):active{
+  color: white;
+}
+

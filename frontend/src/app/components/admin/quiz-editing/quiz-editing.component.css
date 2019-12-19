@@ -26,7 +26,7 @@ table td, .table th {
 }
 
 .ks-dropdown {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .ks-w {
@@ -35,4 +35,18 @@ table td, .table th {
 
 a:active {
   background-color: lightgray;
+}
+
+.btn-outline-warning:hover, .btn-outline-warning:not(:disabled):not(.disabled):active{
+  color: white;
+}
+
+.btn._red {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn._green {
+  background-color: #28a745;
+  color: white;
 }

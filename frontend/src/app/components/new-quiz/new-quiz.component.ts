@@ -59,16 +59,13 @@ export class NewQuizComponent implements OnInit {
   getNewAnswer(isRight: number): Answer {
     let newAnswer: Answer = new Answer();
     newAnswer.text = '';
-    newAnswer.ordering = 1;
     newAnswer.isRight = isRight;
     return newAnswer;
   }
 
   onAddAnswer(ind) {
-    let order = this.questions[ind].answers.length + 1;
     let newAnswer: Answer = new Answer();
     newAnswer.text = '';
-    newAnswer.ordering = order;
     newAnswer.isRight = 0;
     this.questions[ind].answers.push(newAnswer);
   }
@@ -95,7 +92,23 @@ export class NewQuizComponent implements OnInit {
   }
 
   onDeleteAns(i, j): void {
-    //this.questions[i].answers[j] = null;
+    let isRightSelected = false;
+    this.questions[i].answers.forEach(ans => function(ans){
+      if(ans.isRight == 1) {
+        isRightSelected = true;
+      }
+    })
+
+    if(isRightSelected) {
+      if(j == 0) {
+        this.questions[i].answers[j+1].isRight = 1;
+      }
+    }
+    this.questions[i].answers.splice(j, 1);
+  }
+
+  onDeleteQuestion(i: number): void {
+    this.questions.splice(i, 1);
   }
 
   public createNewQuiz(categoryName: string, template: TemplateRef<any>): void {

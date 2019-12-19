@@ -21,10 +21,10 @@
             <td>{{quiz?.categoryName}}</td>
             <td>{{quiz?.isConfirmed}}</td>
             <td>
-              <button type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">Delete</button>
-              <button type="button" class="btn btn-outline-danger"
+              <button type="button" class="btn btn-outline-warning ks-margin"
                       (click)="showQuiz(quiz.id, quiz.name, userService.currentUser.userName)"
                       routerLink="/passQuiz">View</button>
+              <button type="button" class="btn btn-danger" (click)="openModal(template, quiz.id)">Delete</button>
             </td>
           </tr>
           </tbody>

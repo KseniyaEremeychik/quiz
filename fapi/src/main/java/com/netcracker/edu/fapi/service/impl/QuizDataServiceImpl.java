@@ -140,6 +140,12 @@ public class QuizDataServiceImpl implements QuizDataService {
     }
 
     @Override
+    public QuizViewModel editQuizStatus(QuizViewModel quiz) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerURL + "api/newQuiz", quiz, QuizViewModel.class).getBody();
+    }
+
+    @Override
     public void deleteQuizById(Integer quizId) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerURL + "/api/deleteQuizBe/" + quizId);

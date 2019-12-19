@@ -112,20 +112,5 @@ public class QuizViewModel {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
-
-    @Override
-    public String toString() {
-        return "QuizViewModel{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                ", name='" + name + '\'' +
-                ", questionNumber=" + questionNumber +
-                ", isConfirmed='" + isConfirmed + '\'' +
-                ", creationDate='" + creationDate + '\'' +
-                ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                '}';
-    }
 }
 
