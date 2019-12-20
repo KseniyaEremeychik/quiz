@@ -20,6 +20,10 @@ export class QuizEditingComponent implements OnInit {
   private curQuizId: number;
   private buttonText: string;
   private curQuiz: Quiz = new Quiz();
+  private sortParam: string = null;
+
+  //1 - asc, -1 - desc
+  private sortFormat: number = 1;
 
   constructor(private quizService: QuizService,
               private modalService: BsModalService) { }
@@ -33,7 +37,7 @@ export class QuizEditingComponent implements OnInit {
   }
 
   public getAllQuiz(page: number, size: number): void {
-    this.subscriptions.push(this.quizService.getAllQuiz(this.curPage-1, this.pageSize).subscribe(resp => {
+    this.subscriptions.push(this.quizService.getAllQuiz(this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
       this.pageQuiz = resp as PageQuiz;
       this.quizList = this.pageQuiz.content;
     }));
@@ -49,7 +53,7 @@ export class QuizEditingComponent implements OnInit {
       this.curPage = 1;
     }
     this.quizService.status = status;
-      this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage-1, this.pageSize).subscribe(resp => {
+    this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
       this.pageQuiz = resp as PageQuiz;
       this.quizList = this.pageQuiz.content;
     }));
@@ -111,5 +115,14 @@ export class QuizEditingComponent implements OnInit {
     } else {
       this.getAllQuiz(this.curPage, this.pageSize);
     }
+  }
+
+  public setSortParam(param: string): void {
+    if(this.sortParam === param) {
+      this.sortFormat = -this.sortFormat;
+    } else {
+      this.sortParam = param;
+    }
+    this.updateQuiz();
   }
 }

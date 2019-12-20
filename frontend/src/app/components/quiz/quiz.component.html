@@ -6,7 +6,7 @@
   <div class="fix-width flex ks-fix">
     <div *ngFor="let quiz of quizService?.currQuizList" class="card border-secondary text-center ks-card flex">
       <div class="card-header text-white border-secondary p-1 bg-danger">
-        <b>{{quiz.name}}</b>
+        <b><i class="fas fa-book-open"></i> {{quiz.name}}</b>
       </div>
       <div class="card-body text-left p-2 er-float">
         <ul class="p-0">
@@ -16,7 +16,9 @@
         </ul>
       </div>
       <div class="card-footer p-1">
-        <a class="btn btn-outline-danger" routerLink="/passQuiz" (click)="getQuizById(quiz)"><b>{{buttonText}}</b></a>
+        <a class="btn" routerLink="/passQuiz" (click)="getQuizById(quiz)"><b>
+          {{buttonText}} <i class="far fa-play-circle"></i>
+        </b></a>
       </div>
     </div>
   </div>

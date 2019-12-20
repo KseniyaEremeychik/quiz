@@ -17,7 +17,7 @@ public interface QuizDataService {
     void deleteQuizById(Integer quizId);
     Page<QuizViewModel> getQuizByPage(Integer categoryId, Integer page, Integer size);
     Page<QuizViewModel> getQuizByPageAndStatus(Integer categoryId, Integer page, Integer size, String status);
-    Page<QuizViewModel> getAllQuiz(Integer page, Integer size);
-    Page<QuizViewModel> getAllQuizWithStatus(Integer page, Integer size, String status);
+    Page<QuizViewModel> getAllQuiz(Integer page, Integer size, String sortParam, Integer sortFormat);
+    Page<QuizViewModel> getAllQuizWithStatus(Integer page, Integer size, String status, String sortParam, Integer sortFormat);
     QuizViewModel editQuizStatus(QuizViewModel quiz);
 }

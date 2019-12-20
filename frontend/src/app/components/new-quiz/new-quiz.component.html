@@ -16,7 +16,7 @@
       </div>
       <div class="er-questions-container">
         <div *ngFor="let question of questions; let i = index">
-          <span>Question {{i + 1}}: <i *ngIf="questions.length > 1" class="far fa-times-circle" (click)="onDeleteQuestion(i)"></i></span><br>
+          <span>Question {{i + 1}}: <i *ngIf="questions.length > 1" class="fas fa-times-circle" (click)="onDeleteQuestion(i)"></i></span><br>
           <div class="er-question">
             <span>text:</span>
             <input #onChangeText name="quiz-question-text" class="form-control" (change)="onChangeQuestionText(i, onChangeText.value)">
@@ -26,9 +26,11 @@
               <div *ngFor="let ans of questions[i].answers; let j = index">
                 <label>{{j + 1}}.</label>
                 <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}} #answerText>
-                <i *ngIf="questions[i].answers.length > 2" class="far fa-times-circle" (click)="onDeleteAns(i, j)"></i>
+                <i *ngIf="questions[i].answers.length > 2" class="fas fa-times-circle" (click)="onDeleteAns(i, j)"></i>
               </div>
-              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 5">Add answer</button>
+              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 5">
+                Add answer <i class="fas fa-plus-circle"></i>
+              </button>
             </div>
             <br>
             <div class="er-flex-right-answer">
@@ -39,9 +41,13 @@
               </div>
           </div>
         </div>
-        <button class="btn btn-danger" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">Add question</button>
+        <button class="btn btn-danger" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">
+          Add question <i class="fas fa-plus-circle"></i>
+        </button>
       </div>
-      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value, template)">Create</button>
+      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value, template)">
+        Create <i class="fas fa-paper-plane"></i>
+      </button>
       </div>
     </form>
   </div>

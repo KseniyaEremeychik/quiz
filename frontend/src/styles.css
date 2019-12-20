@@ -32,7 +32,6 @@ body {
 
 a.page-link, .page-link:hover{
   color: #dc3545;
-  /*border-color: #dc3545;*/
 }
 
 .dropdown-menu {
@@ -41,5 +40,10 @@ a.page-link, .page-link:hover{
 
 .mt-lg-5 {
   margin-top: 1rem!important;
+}
+
+table {
+  border-radius: 0.35em;
+  overflow: hidden;
 }
 

@@ -15,7 +15,7 @@
         <div class="btn-group" dropdown>
           <button id="button-user" dropdownToggle type="button" class="btn btn-danger btn-lg dropdown-toggle er-margin2"
                   aria-controls="dropdown-animated">
-            {{userService.currentUser.userName}} <span class="caret"></span>
+            <i class="fas fa-user er-margin2"></i> {{userService.currentUser.userName}} <span class="caret"></span>
           </button>
           <ul id="dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
             <li role="menuitem"><a class="dropdown-item" routerLink="/userProfile">Profile</a></li>
@@ -29,7 +29,7 @@
         <div class="btn-group" dropdown>
           <button id="button-animated" dropdownToggle type="button"
                   class="btn btn-danger btn-lg dropdown-toggle er-margin2" aria-controls="dropdown-animated">
-            Admin <span class="caret"></span>
+            <i class="fas fa-user-tie er-margin2"></i>  Admin <span class="caret"></span>
           </button>
           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
             <li role="menuitem"><a class="dropdown-item" routerLink="/userEditing">User</a></li>

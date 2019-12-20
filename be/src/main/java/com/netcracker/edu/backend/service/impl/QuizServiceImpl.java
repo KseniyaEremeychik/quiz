@@ -6,6 +6,8 @@ import com.netcracker.edu.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -79,16 +81,31 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public Page<Quiz> getAll(Integer page, Integer size) {
-        return quizRepository.findAll(PageRequest.of(page, size));
+    public Page<Quiz> getAll(Integer page, Integer size, String sortParam, Integer sortFormat) {
+        if (sortParam == null) {
+            return quizRepository.findAll(PageRequest.of(page, size));
+        } else if(sortFormat == 1) {
+            return quizRepository.findAll(PageRequest.of(page, size, Sort.by(sortParam).ascending()));
+        } else {
+            return quizRepository.findAll(PageRequest.of(page, size, Sort.by(sortParam).descending()));
+        }
     }
 
     @Override
-    public Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status) {
-        if(status.equals("approved")) {
-            return quizRepository.findByIsConfirmed(Quiz.Confirmation.approved, PageRequest.of(page, size));
+    public Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status, String sortParam, Integer sortFormat) {
+        Pageable pageable = null;
+        if(sortParam == null) {
+            pageable = PageRequest.of(page, size);
+        } else if(sortFormat == 1){
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).ascending());
         } else {
-            return quizRepository.findByIsConfirmed(Quiz.Confirmation.unseen, PageRequest.of(page, size));
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).descending());
+        }
+
+        if(status.equals("approved")) {
+            return quizRepository.findByIsConfirmed(Quiz.Confirmation.approved, pageable);
+        } else {
+            return quizRepository.findByIsConfirmed(Quiz.Confirmation.unseen, pageable);
         }
     }
 }

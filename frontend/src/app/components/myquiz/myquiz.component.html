@@ -12,7 +12,9 @@
             <th>Name<i class="btn dropdown-toggle"></i></th>
             <th >Category<i class="btn dropdown-toggle ks-color"></i></th>
             <th >Status<i class="btn dropdown-toggle ks-color"></i></th>
-            <th class="w-50">Editing <button type="button" class="btn btn-danger er-margin" routerLink="/newQuiz">Create new quiz</button></th>
+            <th class="w-50">Editing <button type="button" class="btn btn-success er-margin" routerLink="/newQuiz">
+              <i class="far fa-edit"></i> Create new quiz
+            </button></th>
           </tr>
           </thead>
           <tbody>
@@ -23,8 +25,12 @@
             <td>
               <button type="button" class="btn btn-outline-warning ks-margin"
                       (click)="showQuiz(quiz.id, quiz.name, userService.currentUser.userName)"
-                      routerLink="/passQuiz">View</button>
-              <button type="button" class="btn btn-danger" (click)="openModal(template, quiz.id)">Delete</button>
+                      routerLink="/passQuiz">
+                <i class="far fa-eye"></i> View
+              </button>
+              <button type="button" class="btn btn-danger" (click)="openModal(template, quiz.id)">
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
             </td>
           </tr>
           </tbody>

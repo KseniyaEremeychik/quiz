@@ -1,7 +1,7 @@
 <div class="container mt-lg-5">
   <div class="btn-group ks-dropdown" dropdown>
     <button id="button-user" dropdownToggle type="button" class="btn btn-danger dropdown-toggle er-margin2"
-            aria-controls="dropdown-animated">Status<span class="caret"></span>
+            aria-controls="dropdown-animated"><i class="fas fa-filter"></i> Status<span class="caret"></span>
     </button>
     <ul id="dropdown-user" *dropdownMenu class="dropdown-menu p-0" role="menu" aria-labelledby="button-animated">
       <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('approved')">approved</a></li>
@@ -14,9 +14,9 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>Name<i class="btn dropdown-toggle"></i></th>
-          <th>Question number<i class="btn dropdown-toggle"></i></th>
-          <th>Creation date<i class="btn dropdown-toggle"></i></th>
+          <th>Name<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('name')"></i></th>
+          <th>Question number<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('questionNumber')"></i></th>
+          <th>Creation date<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('creationDate')"></i></th>
           <th>User<i class="btn dropdown-toggle ks-color"></i></th>
           <th>Editing<i class="btn dropdown-toggle ks-color"></i></th>
         </tr>
@@ -29,10 +29,18 @@
           <td>{{quiz?.userName}}</td>
           <td>
             <button type="button" class="btn btn-outline-warning ks-margin" (click)="getQuiz(quiz.id, quiz.name)"
-                    routerLink="/passQuiz">View</button>
-            <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">Delete</button>
-            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin" (click)="openEditModal('Approve', quiz, template1)">Approve</button>
-            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin" (click)="openEditModal('Reject', quiz, template1)">Reject</button>
+                    routerLink="/passQuiz">
+              <i class="far fa-eye"></i> View
+            </button>
+            <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin" (click)="openEditModal('Approve', quiz, template1)">
+              <i class="far fa-thumbs-up"></i> Approve
+            </button>
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin" (click)="openEditModal('Reject', quiz, template1)">
+              <i class="far fa-thumbs-down"></i> Reject
+            </button>
           </td>
         </tr>
         </tbody>

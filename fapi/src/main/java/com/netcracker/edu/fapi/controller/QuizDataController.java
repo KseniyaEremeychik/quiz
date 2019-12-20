@@ -79,14 +79,18 @@ public class QuizDataController {
 
     @RequestMapping("/api/allQuiz")
     public Page<QuizViewModel>  getAllQuiz(@RequestParam(name = "page") Integer page,
-                                           @RequestParam(name = "size") Integer size) {
-        return quizDataService.getAllQuiz(page, size);
+                                           @RequestParam(name = "size") Integer size,
+                                           @RequestParam(name = "sortParam", required = false) String sortParam,
+                                           @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return quizDataService.getAllQuiz(page, size, sortParam, sortFormat);
     }
 
     @RequestMapping("/api/allQuizWithStatus")
     public Page<QuizViewModel>  getAllQuizWithStatus(@RequestParam(name = "page") Integer page,
                                                      @RequestParam(name = "size") Integer size,
-                                                     @RequestParam(name = "status") String status) {
-        return quizDataService.getAllQuizWithStatus(page, size, status);
+                                                     @RequestParam(name = "status") String status,
+                                                     @RequestParam(name = "sortParam", required = false) String sortParam,
+                                                     @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return quizDataService.getAllQuizWithStatus(page, size, status, sortParam, sortFormat);
     }
 }

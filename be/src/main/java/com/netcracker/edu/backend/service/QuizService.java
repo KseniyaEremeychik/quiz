@@ -16,6 +16,6 @@ public interface QuizService {
     Optional<Quiz> getQuizById(Integer id);
     Page<Quiz> getQuizByPage(Integer categoryId, Integer page, Integer size);
     Page<Quiz> getQuizByPageAndStatus(String status, Integer categoryId, Integer page, Integer size);
-    Page<Quiz> getAll(Integer page, Integer size);
-    Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status);
+    Page<Quiz> getAll(Integer page, Integer size, String sortParam, Integer sortFormat);
+    Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status, String sortParam, Integer sortFormat);
 }

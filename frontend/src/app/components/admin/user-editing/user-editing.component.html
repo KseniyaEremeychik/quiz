@@ -13,7 +13,9 @@
         <tr *ngFor="let user of users">
           <td>{{user.userName}}</td>
           <td>{{user.email}}</td>
-          <td><button type="button" class="btn btn-danger" (click)="openModal(template, user.id)">Delete</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="openModal(template, user.id)">
+            <i class="fas fa-trash-alt"></i> Delete
+          </button></td>
         </tr>
         </tbody>
       </table>

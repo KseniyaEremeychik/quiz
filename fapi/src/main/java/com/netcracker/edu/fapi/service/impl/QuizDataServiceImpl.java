@@ -172,22 +172,29 @@ public class QuizDataServiceImpl implements QuizDataService {
     }
 
     @Override
-    public Page<QuizViewModel> getAllQuiz(Integer page, Integer size) {
+    public Page<QuizViewModel> getAllQuiz(Integer page, Integer size, String sortParam, Integer sortFormat) {
+        Page<QuizViewModel> quizList = null;
         RestTemplate restTemplate = new RestTemplate();
-        Page<QuizViewModel> quizList = restTemplate.getForObject(backendServerURL + "api/allQuizBe/?page=" + page + "&size=" + size, RestPageImpl.class);
-
+        if(sortParam == null) {
+            quizList = restTemplate.getForObject(backendServerURL + "api/allQuizBe/?page=" + page + "&size=" + size, RestPageImpl.class);
+        } else {
+            quizList = restTemplate.getForObject(backendServerURL + "api/allQuizBe/?page=" + page + "&size=" + size + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
+        }
         quizList = PageableExecutionUtils.getPage(quizConverter.collectionTransform.apply(quizList.getContent()), PageRequest.of(page, size), quizList::getTotalElements);
-
         return quizList;
     }
 
     @Override
-    public Page<QuizViewModel> getAllQuizWithStatus(Integer page, Integer size, String status) {
+    public Page<QuizViewModel> getAllQuizWithStatus(Integer page, Integer size, String status, String sortParam, Integer sortFormat) {
         RestTemplate restTemplate = new RestTemplate();
-        Page<QuizViewModel> quizList = restTemplate.getForObject(backendServerURL + "api/allQuizWithStatus/?page=" + page + "&size=" + size + "&status=" + status, RestPageImpl.class);
+        Page<QuizViewModel> quizList = null;
 
+        if(sortParam == null) {
+            quizList = restTemplate.getForObject(backendServerURL + "api/allQuizWithStatus/?page=" + page + "&size=" + size + "&status=" + status, RestPageImpl.class);
+        } else {
+            quizList = restTemplate.getForObject(backendServerURL + "api/allQuizWithStatus/?page=" + page + "&size=" + size + "&status=" + status + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
+        }
         quizList = PageableExecutionUtils.getPage(quizConverter.collectionTransform.apply(quizList.getContent()), PageRequest.of(page, size), quizList::getTotalElements);
-
         return quizList;
     }
 
