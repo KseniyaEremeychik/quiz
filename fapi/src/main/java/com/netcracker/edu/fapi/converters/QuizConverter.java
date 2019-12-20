@@ -20,11 +20,11 @@ public class QuizConverter {
         return quiz;
     }
 
-    public Function<List<QuizViewModel>, List<QuizViewModel>> collectionTransform= sourceList -> {
+    public Function<List<QuizViewModel>, List<QuizViewModel>> collectionTransform = sourceList -> {
         ObjectMapper m = new ObjectMapper();
-        List<QuizViewModel> quizList=new ArrayList<>();
-        for(int i=0;i<sourceList.size();i++){
-            quizList.add(addUserNameToQuiz(m.convertValue(sourceList.get(i),QuizViewModel.class)));
+        List<QuizViewModel> quizList = new ArrayList<>();
+        for (int i = 0; i < sourceList.size(); i++) {
+            quizList.add(addUserNameToQuiz(m.convertValue(sourceList.get(i), QuizViewModel.class)));
         }
         return quizList;
     };

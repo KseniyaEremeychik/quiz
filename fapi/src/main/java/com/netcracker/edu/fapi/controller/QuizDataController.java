@@ -38,7 +38,7 @@ public class QuizDataController {
 
     @RequestMapping(value = "/api/newQuiz", method = RequestMethod.POST)
     public ResponseEntity<QuizWithQuestionsModel> saveNewQuiz(@RequestBody @Valid QuizWithQuestionsModel newQuiz) {
-        if(newQuiz != null) {
+        if (newQuiz != null) {
             QuizWithQuestionsModel quiz = quizDataService.saveNewQuiz(newQuiz);
             if (quiz != null) {
                 return ResponseEntity.ok(quiz);
@@ -51,7 +51,7 @@ public class QuizDataController {
 
     @RequestMapping(value = "/api/editStatus", method = RequestMethod.POST)
     public ResponseEntity<QuizViewModel> editQuizStatus(@RequestBody QuizViewModel quiz) {
-        if(quiz !=null) {
+        if (quiz != null) {
             return ResponseEntity.ok(quizDataService.editQuizStatus(quiz));
         }
         return null;
@@ -78,19 +78,19 @@ public class QuizDataController {
     }
 
     @RequestMapping("/api/allQuiz")
-    public Page<QuizViewModel>  getAllQuiz(@RequestParam(name = "page") Integer page,
-                                           @RequestParam(name = "size") Integer size,
-                                           @RequestParam(name = "sortParam", required = false) String sortParam,
-                                           @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+    public Page<QuizViewModel> getAllQuiz(@RequestParam(name = "page") Integer page,
+                                          @RequestParam(name = "size") Integer size,
+                                          @RequestParam(name = "sortParam", required = false) String sortParam,
+                                          @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
         return quizDataService.getAllQuiz(page, size, sortParam, sortFormat);
     }
 
     @RequestMapping("/api/allQuizWithStatus")
-    public Page<QuizViewModel>  getAllQuizWithStatus(@RequestParam(name = "page") Integer page,
-                                                     @RequestParam(name = "size") Integer size,
-                                                     @RequestParam(name = "status") String status,
-                                                     @RequestParam(name = "sortParam", required = false) String sortParam,
-                                                     @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+    public Page<QuizViewModel> getAllQuizWithStatus(@RequestParam(name = "page") Integer page,
+                                                    @RequestParam(name = "size") Integer size,
+                                                    @RequestParam(name = "status") String status,
+                                                    @RequestParam(name = "sortParam", required = false) String sortParam,
+                                                    @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
         return quizDataService.getAllQuizWithStatus(page, size, status, sortParam, sortFormat);
     }
 }

@@ -3,7 +3,7 @@ import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../models/quiz";
 import {Question} from "../../models/question";
-import {PageQuiz} from "../../models/pageQuiz";
+import {PageObject} from "../../models/pageObject";
 import {PageChangedEvent} from "ngx-bootstrap";
 import {UserService} from "../../services/user.service";
 
@@ -37,7 +37,7 @@ export class QuizComponent implements OnInit {
 
   public getAllQuiz(categoryId: number, page: number, size: number): void {
     this.subscriptions.push(this.quizService.getQuizByPageAndStatus(categoryId, this.curPage-1, this.pageSize, 'approved').subscribe(resp => {
-      this.quizService.quizPage = resp as PageQuiz;
+      this.quizService.quizPage = resp as PageObject;
       this.quizService.currQuizList = this.quizService.quizPage.content;
     }));
   }
@@ -65,7 +65,7 @@ export class QuizComponent implements OnInit {
 
   public getQuizLike(searchParam: string, page: number, size: number): void {
     this.subscriptions.push(this.quizService.findQuizLike(searchParam, page, size).subscribe(quizPage => {
-      this.quizService.quizPage = quizPage as PageQuiz;
+      this.quizService.quizPage = quizPage as PageObject;
       this.quizService.currQuizList = this.quizService.quizPage.content;
     }));
   }

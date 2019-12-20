@@ -13,9 +13,11 @@ public class UserEditingController {
     private UserService userService;
 
     @Autowired
-    public UserEditingController(UserService userService) { this.userService = userService; }
+    public UserEditingController(UserService userService) {
+        this.userService = userService;
+    }
 
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<User> getAllUsers() {
         return userService.getAllUsers();
     }

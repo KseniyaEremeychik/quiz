@@ -33,10 +33,15 @@ public class CategoryController {
     @RequestMapping(value = "api/categoryName", method = RequestMethod.GET)
     public ResponseEntity<Category> getCategoryById(@RequestParam(name = "categoryId") Integer id) {
         Optional<Category> category = categoryService.getCategoryById(id);
-        if(category.isPresent()) {
+        if (category.isPresent()) {
             return ResponseEntity.ok(category.get());
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @RequestMapping(value = "/api/categoryCheckName", method = RequestMethod.GET)
+    public Boolean isCategoryExist(@RequestParam(name = "categoryName") String categoryName) {
+        return this.categoryService.isCategoryExist(categoryName);
     }
 }

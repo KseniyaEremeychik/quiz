@@ -32,18 +32,18 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> err = new HashMap();
         Boolean isUserNameExist = restTemplate.getForObject(backendServerURL + "/api/userCheckName/?userName=" + user.getUserName(), Boolean.class);
-        Boolean isEmailExist = restTemplate.getForObject(backendServerURL + "/api/usersCheckEmail/?email=" + user.getEmail(), Boolean.class);;
-        if(isUserNameExist) {
+        Boolean isEmailExist = restTemplate.getForObject(backendServerURL + "/api/usersCheckEmail/?email=" + user.getEmail(), Boolean.class);
+        if (isUserNameExist) {
             user = new UserViewModel();
             err.put("userName", "This username already exists");
         }
 
-        if(isEmailExist) {
+        if (isEmailExist) {
             user = new UserViewModel();
             err.put("email", "You are already registered");
         }
 
-        if(err.size() == 0) {
+        if (err.size() == 0) {
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             UserViewModel newUser = restTemplate.postForEntity(backendServerURL + "/api/users", user, UserViewModel.class).getBody();
             newUser.setErrors(null);
@@ -54,32 +54,12 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
         }
     }
 
-    /*@Override
-    public UserViewModel findByEmail(String email, String password) {
-        RestTemplate restTemplate = new RestTemplate();
-        Map<String, String> err = new HashMap<>();
-        UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
-        if(user != null) {
-            if(!user.getPassword().equals(password)) {
-                user = new UserViewModel();
-                err.put("password", "Password is incorrect");
-            } else {
-                err = null;
-            }
-        } else {
-            user = new UserViewModel();
-            err.put("email", "Email not found");
-        }
-        user.setErrors(err);
-        return user;
-    }*/
-
     @Override
     public UserViewModel findByEmail(String email) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> err = new HashMap<>();
         UserViewModel user = restTemplate.getForObject(backendServerURL + "/api/users/?email=" + email, UserViewModel.class);
-        if(user != null) {
+        if (user != null) {
             err = null;
         } else {
             user = new UserViewModel();
@@ -113,7 +93,7 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserViewModel user = findByEmail(email);
-        if(user.getErrors() != null) {
+        if (user.getErrors() != null) {
             throw new UsernameNotFoundException("User with email: " + email + " not found");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthority(user));

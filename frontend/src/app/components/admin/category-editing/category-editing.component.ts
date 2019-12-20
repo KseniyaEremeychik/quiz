@@ -15,14 +15,14 @@ export class CategoryEditingComponent implements OnInit {
   private modalRef: BsModalRef;
   public categories: Category[];
   private subscriptions: Subscription[] = [];
-  private sortFormatId: string = 'desc';
   private sortFormatName: string = 'desc';
   private curCategoryId: number;
   private isValid: boolean = true;
   private errorMessage: string = null;
 
   constructor(private categoryService: CategoryService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService) {
+  }
 
   ngOnInit() {
     this.getAllCategories();
@@ -35,25 +35,14 @@ export class CategoryEditingComponent implements OnInit {
   }
 
   public getAllSortedCategories(sortParam: string): void {
-    if(sortParam == 'name') {
-      if(this.sortFormatName == 'desc') {
-        this.sortFormatName = 'asc';
-      } else {
-        this.sortFormatName = 'desc';
-      }
-      this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam, this.sortFormatName).subscribe(sortedCategories => {
-        this.categories = sortedCategories as Category[];
-      }));
+    if (this.sortFormatName == 'desc') {
+      this.sortFormatName = 'asc';
     } else {
-      if(this.sortFormatId == 'desc') {
-        this.sortFormatId = 'asc';
-      } else {
-        this.sortFormatId = 'desc';
-      }
-      this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam, this.sortFormatId).subscribe(sortedCategories => {
-        this.categories = sortedCategories as Category[];
-      }));
+      this.sortFormatName = 'desc';
     }
+    this.subscriptions.push(this.categoryService.getAllSortedCategories(sortParam, this.sortFormatName).subscribe(sortedCategories => {
+      this.categories = sortedCategories as Category[];
+    }));
   }
 
   public deleteCategory(id: number): void {
@@ -63,12 +52,19 @@ export class CategoryEditingComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  public addCategory(name: string): void {
+  public addCategory(name: string, template: TemplateRef<any>): void {
     this.validateNewCategory(name);
-    if(this.isValid) {
+    if (this.isValid) {
       this.category.name = name;
       this.subscriptions.push(this.categoryService.addCategory(this.category).subscribe(() => {
         this.updateCategories();
+      }, error => {
+        if (error == null) {
+          this.modalRef.hide();
+        } else if (error.status == 400) {
+          this.errorMessage = 'This category is already exist!';
+          this.modalRef = this.modalService.show(template);
+        }
       }));
       this.modalRef.hide();
     } else {
@@ -93,7 +89,7 @@ export class CategoryEditingComponent implements OnInit {
   private validateNewCategory(categoryName: string): void {
     let val = true;
     let regEx = new RegExp("^[a-zA-Z0-9!?,._-][a-zA-Z0-9!?,._\\s-]+$");
-    if(categoryName.length == 0 || categoryName.length > 100 || !(regEx.test(categoryName))) {
+    if (categoryName.length == 0 || categoryName.length > 100 || !(regEx.test(categoryName))) {
       val = false;
     }
     this.isValid = val;

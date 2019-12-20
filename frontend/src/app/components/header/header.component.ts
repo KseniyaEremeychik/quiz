@@ -5,7 +5,7 @@ import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../models/quiz";
 import {Router} from "@angular/router";
-import {PageQuiz} from "../../models/pageQuiz";
+import {PageObject} from "../../models/pageObject";
 
 @Component({
   selector: 'app-header',
@@ -43,9 +43,8 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem("categoryId");
     this.quizService.quizPage = null;
     this.quizService.searchParam = searchParam;
-    //this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.findQuizLike(searchParam, 0, 8).subscribe(quizPage => {
-      this.quizService.quizPage = quizPage as PageQuiz;
+      this.quizService.quizPage = quizPage as PageObject;
       this.quizService.currQuizList = this.quizService.quizPage.content;
       this.router.navigate(['/quiz']);
       this.search.nativeElement.value = '';

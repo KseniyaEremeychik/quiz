@@ -32,7 +32,14 @@ public class CategoryDataServiceImpl implements CategoryDataService {
     @Override
     public CategoryViewModel addCategory(CategoryViewModel category) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerURL + "/api/categories", category, CategoryViewModel.class).getBody();
+        Boolean isCategoryExist = restTemplate.getForObject(backendServerURL + "/api/categoryCheckName/?categoryName=" + category.getName(), Boolean.class);
+
+        if (isCategoryExist) {
+            return null;
+        } else {
+            RestTemplate restTemplate1 = new RestTemplate();
+            return restTemplate.postForEntity(backendServerURL + "/api/categories", category, CategoryViewModel.class).getBody();
+        }
     }
 
     @Override

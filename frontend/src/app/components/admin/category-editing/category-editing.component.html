@@ -4,7 +4,6 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th scope="row">Id<i class="btn dropdown-toggle" (click)="getAllSortedCategories('id')"></i></th>
           <th>Name<i class="btn dropdown-toggle" (click)="getAllSortedCategories('name')"></i></th>
           <th class="w-50">Editing <button type="button" class="btn btn-success er-margin" (click)="openModalAdd(template)">
             <i class="far fa-edit"></i> Add new category
@@ -13,7 +12,6 @@
         </thead>
         <tbody>
         <tr *ngFor="let category of categories">
-          <td scope="row">{{category.id}}</td>
           <td>{{category.name}}</td>
           <td><button type="button" class="btn btn-danger" (click)="openModalDelete(template1, category.id)">
             <i class="fas fa-trash-alt"></i> Delete
@@ -40,7 +38,7 @@
     </div>
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
-    <button type="button" class="btn btn-success m-1 er-right" (click)="addCategory(categoryName.value)">Add</button>
+    <button type="button" class="btn btn-success m-1 er-right" (click)="addCategory(categoryName.value, template2)">Add</button>
   </div>
 </ng-template>
 
@@ -56,5 +54,19 @@
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
     <button type="button" class="btn btn-danger m-1 er-right" (click)="deleteCategory(curCategoryId)">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h3 class="modal-title pull-left">Denied</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <label>{{errorMessage}}</label>
+    <br>
+    <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">OK</button>
   </div>
 </ng-template>

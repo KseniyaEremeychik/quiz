@@ -3,6 +3,7 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.Statistic;
 import com.netcracker.edu.backend.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,10 @@ public class StatisticController {
     }
 
     @RequestMapping(value = "api/fullStatBe", method = RequestMethod.GET)
-    public Iterable<Statistic> getFullStatistic() {
-        return statisticService.getFullStatistic();
+    public Page<Statistic> getFullStatistic(@RequestParam(name = "page") Integer page,
+                                            @RequestParam(name = "size") Integer size,
+                                            @RequestParam(name = "sortParam", required = false) String sortParam,
+                                            @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return statisticService.getFullStatistic(page, size, sortParam, sortFormat);
     }
 }

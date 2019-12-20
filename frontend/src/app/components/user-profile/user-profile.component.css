@@ -30,3 +30,7 @@ table {
   border-radius: 0.35em;
   overflow: hidden;
 }
+
+.ks-color {
+  color: transparent;
+}

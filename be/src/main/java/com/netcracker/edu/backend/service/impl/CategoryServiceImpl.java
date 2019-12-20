@@ -36,16 +36,20 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Iterable<Category> getAllSortedCategories(String sortParam, String sortFormat) {
-        if(sortFormat.equals("asc")) {
+        if (sortFormat.equals("asc")) {
             return categoryRepository.findAll(Sort.by(sortParam).ascending());
         } else {
             return categoryRepository.findAll(Sort.by(sortParam).descending());
         }
-        /*return categoryRepository.findAll(PageRequest.of(0, 2)).getContent();*/
     }
 
     @Override
     public Optional<Category> getCategoryById(Integer id) {
         return categoryRepository.findById(id);
+    }
+
+    @Override
+    public Boolean isCategoryExist(String categoryName) {
+        return this.categoryRepository.existsCategoryByName(categoryName);
     }
 }

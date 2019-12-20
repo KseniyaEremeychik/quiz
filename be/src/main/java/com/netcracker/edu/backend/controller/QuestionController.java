@@ -14,7 +14,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @RequestMapping(value = "/api/questionsBe",  method = RequestMethod.GET)
+    @RequestMapping(value = "/api/questionsBe", method = RequestMethod.GET)
     public Iterable<Question> getAllQuestionsByQuizId(@RequestParam(name = "quizId") Integer id) {
         return this.questionService.findAllQuestionsByQuizId(id);
     }

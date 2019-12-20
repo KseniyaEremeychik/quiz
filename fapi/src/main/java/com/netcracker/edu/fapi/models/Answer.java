@@ -25,13 +25,6 @@ public class Answer {
         this.isRight = isRight;
     }
 
-    /*public Answer(int id, int questionId, int order, String text) {
-        this.id = id;
-        this.questionId = questionId;
-        this.order = order;
-        this.text = text;
-    }*/
-
     public int getId() {
         return id;
     }

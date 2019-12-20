@@ -25,21 +25,22 @@ public class AnswerDataServiceImpl implements AnswerDataService {
         List<Integer> rightAnswers = new ArrayList<>();
 
         byte isRightByte = 1;
-        for(Integer questionId: questionsId) {
+        for (Integer questionId : questionsId) {
             Answer rightAnswer = restTemplate.getForObject(backendServerURL + "api/rightAnswers/?questionId=" + questionId + "&isRight=" + isRightByte, Answer.class);
             rightAnswers.add(rightAnswer.getId());
         }
 
         List<Boolean> isRight = new ArrayList<>();
         double sum = 0.0;
-        for(int i = 0; i < userAnswers.size(); i++) {
-            if(userAnswers.get(i) == rightAnswers.get(i)) {
-                sum+=1;
+        for (int i = 0; i < userAnswers.size(); i++) {
+            if (userAnswers.get(i).equals(rightAnswers.get(i))) {
+                sum += 1;
                 isRight.add(true);
             } else {
                 isRight.add(false);
             }
         }
+        System.out.println(sum);
         double percent = Double.valueOf(new DecimalFormat(".##").format(sum / questionsId.size() * 100));
 
 

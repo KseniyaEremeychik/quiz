@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {PageQuiz} from "../../../models/pageQuiz";
+import {PageObject} from "../../../models/pageObject";
 import {QuizService} from "../../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../../models/quiz";
@@ -12,7 +12,7 @@ import {BsModalRef, BsModalService, PageChangedEvent} from "ngx-bootstrap";
 })
 export class QuizEditingComponent implements OnInit {
   private modalRef: BsModalRef;
-  private pageQuiz: PageQuiz;
+  private pageQuiz: PageObject;
   private quizList: Quiz[] = []
   private subscriptions: Subscription[] = [];
   private curPage: number = 1;
@@ -38,7 +38,7 @@ export class QuizEditingComponent implements OnInit {
 
   public getAllQuiz(page: number, size: number): void {
     this.subscriptions.push(this.quizService.getAllQuiz(this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
-      this.pageQuiz = resp as PageQuiz;
+      this.pageQuiz = resp as PageObject;
       this.quizList = this.pageQuiz.content;
     }));
   }
@@ -54,14 +54,13 @@ export class QuizEditingComponent implements OnInit {
     }
     this.quizService.status = status;
     this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
-      this.pageQuiz = resp as PageQuiz;
+      this.pageQuiz = resp as PageObject;
       this.quizList = this.pageQuiz.content;
     }));
   }
 
   pageChanged(event: PageChangedEvent) {
     this.curPage = event.page;
-    console.log()
     if(this.quizService.status) {
       this.getQuizByStatus(this.quizService.status);
     } else {
@@ -105,7 +104,6 @@ export class QuizEditingComponent implements OnInit {
   public editStatus(quiz: Quiz) {
     quiz.isConfirmed = 'approved';
     this.subscriptions.push(this.quizService.editStatus(quiz).subscribe(resp => {
-      console.log(resp);
     }));
   }
 

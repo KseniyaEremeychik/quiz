@@ -12,7 +12,6 @@ public class QuizViewModel {
     private String categoryName;
     private String name;
     private int questionNumber;
-    //private Integer time;
     private String isConfirmed;
     private String creationDate;
     private int userId;
@@ -64,14 +63,6 @@ public class QuizViewModel {
     public void setQuestionNumber(int questionNumber) {
         this.questionNumber = questionNumber;
     }
-
-    /*public Integer getTime() {
-        return time;
-    }
-
-    public void setTime(Integer time) {
-        this.time = time;
-    }*/
 
     public String getIsConfirmed() {
         return isConfirmed;

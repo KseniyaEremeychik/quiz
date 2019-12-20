@@ -35,7 +35,7 @@ public class UserDataController {
 
     @RequestMapping(value = "/api/user", method = RequestMethod.POST)
     public ResponseEntity<UserViewModel> saveUser(@RequestBody @Valid UserViewModel user) {
-        if(user != null) {
+        if (user != null) {
             return ResponseEntity.ok(userDataService.saveUser(user));
         }
         return null;
@@ -69,7 +69,7 @@ public class UserDataController {
         return new UserWithAuthToken(signedUser, token);
     }
 
-    @RequestMapping(value="/api/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable String id) {
         userDataService.deleteUser(Integer.valueOf(id));
     }

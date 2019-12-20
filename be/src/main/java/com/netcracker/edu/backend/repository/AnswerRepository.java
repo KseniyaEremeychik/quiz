@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnswerRepository extends CrudRepository<Answer, Integer> {
     Iterable<Answer> findByQuestionId(Integer id);
+
     Answer findByQuestionIdAndIsRight(Integer id, byte isRight);
 }

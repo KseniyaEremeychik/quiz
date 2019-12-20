@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {InfoForStat} from "../models/infoForStat";
 import {Observable} from "rxjs";
+import {PageObject} from "../models/pageObject";
 
 @Injectable()
 export class StatisticsService {
@@ -16,7 +17,11 @@ export class StatisticsService {
     return this.http.get<InfoForStat[]>(`/api/userStat/?userId=${userId}`);
   }
 
-  getFullStatistic(): Observable<InfoForStat[]> {
-    return this.http.get<InfoForStat[]>('/api/fullStat');
+  getFullStatistic(page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
+    if(sortParam) {
+      return this.http.get<PageObject>(`/api/fullStat/?page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
+    } else {
+      return this.http.get<PageObject>(`/api/fullStat/?page=${page}&size=${size}`);
+    }
   }
 }

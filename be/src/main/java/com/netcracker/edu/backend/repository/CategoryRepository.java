@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository extends PagingAndSortingRepository<Category, Integer> {
+    Boolean existsCategoryByName(String name);
 }

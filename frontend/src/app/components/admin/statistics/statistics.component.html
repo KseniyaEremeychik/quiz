@@ -4,10 +4,10 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>User<i class="btn dropdown-toggle"></i></th>
-          <th>Quiz<i class="btn dropdown-toggle"></i></th>
-          <th>%<i class="btn dropdown-toggle"></i></th>
-          <th>Date of passage<i class="btn dropdown-toggle"></i></th>
+          <th>User<i class="btn dropdown-toggle ks-color"></i></th>
+          <th>Quiz<i class="btn dropdown-toggle ks-color"></i></th>
+          <th>%<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('rightAnswersPercent')"></i></th>
+          <th>Date of passage<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('passageDate')"></i></th>
         </tr>
         </thead>
         <tbody>
@@ -21,4 +21,10 @@
       </table>
     </div>
   </div>
+</div>
+
+<div *ngIf="pageStat?.totalElements > 10" class="qwe">
+  <pagination
+    [itemsPerPage]="pageSize"  [totalItems]="pageStat?.totalElements" (pageChanged)="pageChanged($event)"
+  ></pagination>
 </div>

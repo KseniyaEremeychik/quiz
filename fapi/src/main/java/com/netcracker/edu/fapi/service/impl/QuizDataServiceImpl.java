@@ -24,40 +24,16 @@ public class QuizDataServiceImpl implements QuizDataService {
     @Autowired
     private QuizConverter quizConverter;
 
-    /*@Override
-    public List<QuizViewModel> findAllQuizByCategoryId(Integer id) {
-        RestTemplate restTemplate = new RestTemplate();
-        QuizViewModel[] quizViewModelsResponse = restTemplate.getForObject(backendServerURL + "api/quizBe/?categoryId=" + id, QuizViewModel[].class);
-
-        List<QuizViewModel> allQuiz = quizViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(quizViewModelsResponse);
-        List<QuizViewModel> approvedQuiz = new ArrayList<>();
-        for(int i=0; i<allQuiz.size(); i++) {
-            if(allQuiz.get(i).getIsConfirmed().equals("approved")) {
-                approvedQuiz.add(allQuiz.get(i));
-            }
-        }
-
-        for(int i=0; i<approvedQuiz.size(); i++) {
-            RestTemplate restTemplate1 = new RestTemplate();
-            Integer userId =  approvedQuiz.get(i).getUserId();
-            UserViewModel user = restTemplate1.getForObject(backendServerURL + "api/userBe/?userId=" + userId, UserViewModel.class);
-            approvedQuiz.get(i).setUserName(user.getUserName());
-        }
-
-        return approvedQuiz;
-        //return quizViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(quizViewModelsResponse);
-    }*/
-
     @Override
     public List<QuestionViewModel> getAllQuestionsByQuizId(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
         QuestionViewModel[] questionViewModels = restTemplate.getForObject(backendServerURL + "api/questionsBe/?quizId=" + id, QuestionViewModel[].class);
 
         RestTemplate restTemplate1 = new RestTemplate();
-        for(int i=0; i<questionViewModels.length; i++) {
+        for (int i = 0; i < questionViewModels.length; i++) {
             Answer[] answers = restTemplate1.getForObject(backendServerURL + "api/answersBe/?questionId=" + questionViewModels[i].getId(), Answer[].class);
-            for(Answer ans: answers) {
-                ans.setIsRight((byte)0);
+            for (Answer ans : answers) {
+                ans.setIsRight((byte) 0);
             }
             questionViewModels[i].setAnswers(Arrays.asList(answers));
         }
@@ -79,18 +55,18 @@ public class QuizDataServiceImpl implements QuizDataService {
         RestTemplate restTemplate = new RestTemplate();
         QuizViewModel[] quizViewModels = restTemplate.getForObject(backendServerURL + "api/quizByUser/?userId=" + id, QuizViewModel[].class);
 
-        for(int i=0; i < quizViewModels.length; i++) {
+        for (int i = 0; i < quizViewModels.length; i++) {
             RestTemplate restTemplate1 = new RestTemplate();
             CategoryViewModel category = restTemplate1.getForObject(backendServerURL + "api/categoryName/?categoryId=" + quizViewModels[i].getCategoryId(), CategoryViewModel.class);
             quizViewModels[i].setCategoryName(category.getName());
         }
 
-        return quizViewModels == null ? Collections.emptyList(): Arrays.asList(quizViewModels);
+        return quizViewModels == null ? Collections.emptyList() : Arrays.asList(quizViewModels);
     }
 
     @Override
     public QuizWithQuestionsModel saveNewQuiz(QuizWithQuestionsModel newQuiz) {
-        if(!validateNewQuiz(newQuiz.getQuestions())) {
+        if (!validateNewQuiz(newQuiz.getQuestions())) {
             return null;
         } else {
             QuizViewModel quiz = new QuizViewModel();
@@ -106,14 +82,14 @@ public class QuizDataServiceImpl implements QuizDataService {
 
             List<QuestionViewModel> questionList = new ArrayList<>(newQuiz.getQuestions());
             List<QuestionViewModel> savedQuestionList = new ArrayList<>();
-            for(QuestionViewModel question: questionList) {
+            for (QuestionViewModel question : questionList) {
                 question.setQuizId(savedQuiz.getId());
 
                 RestTemplate restTemplate1 = new RestTemplate();
                 QuestionViewModel qst = restTemplate1.postForEntity(backendServerURL + "api/saveQuestion", question, QuestionViewModel.class).getBody();
 
                 List<Answer> savedAnswers = new ArrayList<>();
-                for(Answer ans: question.getAnswers()) {
+                for (Answer ans : question.getAnswers()) {
                     ans.setQuestionId(qst.getId());
 
                     RestTemplate restTemplate2 = new RestTemplate();
@@ -154,7 +130,7 @@ public class QuizDataServiceImpl implements QuizDataService {
     @Override
     public Page<QuizViewModel> getQuizByPage(Integer categoryId, Integer page, Integer size) {
         RestTemplate restTemplate = new RestTemplate();
-        Page<QuizViewModel> quiz =restTemplate.getForObject(backendServerURL + "api/quizPage/?categoryId=" + categoryId + "&page=" + page + "&size=" + size, RestPageImpl.class);
+        Page<QuizViewModel> quiz = restTemplate.getForObject(backendServerURL + "api/quizPage/?categoryId=" + categoryId + "&page=" + page + "&size=" + size, RestPageImpl.class);
 
         quiz = PageableExecutionUtils.getPage(quizConverter.collectionTransform.apply(quiz.getContent()), PageRequest.of(page, size), quiz::getTotalElements);
 
@@ -175,7 +151,7 @@ public class QuizDataServiceImpl implements QuizDataService {
     public Page<QuizViewModel> getAllQuiz(Integer page, Integer size, String sortParam, Integer sortFormat) {
         Page<QuizViewModel> quizList = null;
         RestTemplate restTemplate = new RestTemplate();
-        if(sortParam == null) {
+        if (sortParam == null) {
             quizList = restTemplate.getForObject(backendServerURL + "api/allQuizBe/?page=" + page + "&size=" + size, RestPageImpl.class);
         } else {
             quizList = restTemplate.getForObject(backendServerURL + "api/allQuizBe/?page=" + page + "&size=" + size + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
@@ -189,7 +165,7 @@ public class QuizDataServiceImpl implements QuizDataService {
         RestTemplate restTemplate = new RestTemplate();
         Page<QuizViewModel> quizList = null;
 
-        if(sortParam == null) {
+        if (sortParam == null) {
             quizList = restTemplate.getForObject(backendServerURL + "api/allQuizWithStatus/?page=" + page + "&size=" + size + "&status=" + status, RestPageImpl.class);
         } else {
             quizList = restTemplate.getForObject(backendServerURL + "api/allQuizWithStatus/?page=" + page + "&size=" + size + "&status=" + status + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
@@ -198,13 +174,19 @@ public class QuizDataServiceImpl implements QuizDataService {
         return quizList;
     }
 
+    @Override
+    public QuizViewModel getQuizById(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerURL + "api/quizById/?quizId=" + id, QuizViewModel.class);
+    }
+
     private boolean validateNewQuiz(List<QuestionViewModel> questions) {
-        for(QuestionViewModel question: questions) {
-            if(question.getText().length() == 0 || question.getText().length() > 250 || !question.getText().matches("^[a-zA-Z0-9!?,._\\s-]+$")) {
+        for (QuestionViewModel question : questions) {
+            if (question.getText().length() == 0 || question.getText().length() > 250 || !question.getText().matches("^[a-zA-Z0-9!?,._\\s-]+$")) {
                 return false;
             } else {
-                for(Answer answer: question.getAnswers()) {
-                    if(answer.getText().length() == 0 || answer.getText().length() > 100 || !answer.getText().matches("^[a-zA-Z0-9!?,._\\s-]+$")) {
+                for (Answer answer : question.getAnswers()) {
+                    if (answer.getText().length() == 0 || answer.getText().length() > 100 || !answer.getText().matches("^[a-zA-Z0-9!?,._\\s-]+$")) {
                         return false;
                     }
                 }

@@ -19,15 +19,10 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @RequestMapping(value = "/api/quizBe",  method = RequestMethod.GET)
+    @RequestMapping(value = "/api/quizBe", method = RequestMethod.GET)
     public Iterable<Quiz> findAllQuizByCategoryId(@RequestParam(name = "categoryId") Integer id) {
         return this.quizService.findAllQuizByCategoryId(id);
     }
-
-    /*@RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
-    public Iterable<Quiz> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam) {
-        return this.quizService.findAllQuizLike(searchParam);
-    }*/
 
     @RequestMapping(value = "/api/quizLike", method = RequestMethod.GET)
     public Page<Quiz> findAllQuizLike(@RequestParam(name = "searchParam") String searchParam,
@@ -54,7 +49,7 @@ public class QuizController {
     @RequestMapping(value = "api/quizById", method = RequestMethod.GET)
     public ResponseEntity<Quiz> getQuizById(@RequestParam(name = "quizId") Integer id) {
         Optional<Quiz> quiz = quizService.getQuizById(id);
-        if(quiz.isPresent()) {
+        if (quiz.isPresent()) {
             return ResponseEntity.ok(quiz.get());
         } else {
             return ResponseEntity.notFound().build();

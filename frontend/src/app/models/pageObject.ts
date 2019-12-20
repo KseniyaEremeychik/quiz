@@ -1,7 +1,7 @@
 import {Quiz} from "./quiz";
 
-export class PageQuiz {
-  content: Quiz[];
+export class PageObject {
+  content: any[];
   last: boolean;
   first: boolean;
   totalElements: number;

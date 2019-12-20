@@ -41,12 +41,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthenticationFilter authenticationTokenFilterBean(){
+    public JwtAuthenticationFilter authenticationTokenFilterBean() {
         return new JwtAuthenticationFilter();
     }
 
     @Bean
-    public BCryptPasswordEncoder encoder(){
+    public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -56,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/userLogin", "/api/user", "/api/catAll", "/api/getTop").permitAll()
-                .antMatchers("/api/catAdd", "/api/userEditing").hasRole("admin")
+                .antMatchers("/api/userLogin/**", "/api/user/**", "/api/catAll/**", "/api/getTop/**").permitAll()
+                .antMatchers("/api/catDel/**", "/api/catAdd/**", "/api/userEditing/**", "/api/user/**", "/api/fullStat/**", "/api/editStatus/**").hasRole("admin")
                 .antMatchers().hasRole("user")
                 .anyRequest().authenticated()
                 .and()

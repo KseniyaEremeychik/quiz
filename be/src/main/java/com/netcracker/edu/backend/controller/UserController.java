@@ -36,7 +36,7 @@ public class UserController {
     @RequestMapping(value = "/api/userBe/", method = RequestMethod.GET)
     public ResponseEntity<User> getUserById(@RequestParam(name = "userId") Integer id) {
         Optional<User> user = userService.getUserById(id);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
         } else {
             return ResponseEntity.notFound().build();

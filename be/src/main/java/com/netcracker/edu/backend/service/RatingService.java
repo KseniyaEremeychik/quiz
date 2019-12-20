@@ -4,6 +4,8 @@ import com.netcracker.edu.backend.entity.Rating;
 
 public interface RatingService {
     Rating getRatingByUserId(Integer userId);
+
     Rating saveRating(Rating rating);
+
     Iterable<Rating> getTopTen();
 }

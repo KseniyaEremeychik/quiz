@@ -19,7 +19,7 @@ public class UserViewModel {
     private String userName;
 
     @NotEmpty(message = "Email is required")
-    @Pattern(regexp = "[a-zA-Z_.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}", message="Email is invalid")
+    @Pattern(regexp = "[a-zA-Z_.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}", message = "Email is invalid")
     private String email;
 
     @NotEmpty(message = "Password is required")

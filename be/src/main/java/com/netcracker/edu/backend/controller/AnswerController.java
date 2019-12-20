@@ -20,7 +20,8 @@ public class AnswerController {
     }
 
     @RequestMapping(value = "/api/rightAnswers")
-    public Answer getRightAnswers(@RequestParam(name = "questionId") Integer questionId, @RequestParam(name = "isRight") byte isRight) {
+    public Answer getRightAnswers(@RequestParam(name = "questionId") Integer questionId,
+                                  @RequestParam(name = "isRight") byte isRight) {
         return answerService.getRightAnswers(questionId, isRight);
     }
 

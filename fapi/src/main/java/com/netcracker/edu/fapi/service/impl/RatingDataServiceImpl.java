@@ -23,7 +23,7 @@ public class RatingDataServiceImpl implements RatingDataService {
         RatingViewModel[] ratingViewResponse = restTemplate.getForObject(backendServerURL + "api/topTen", RatingViewModel[].class);
 
 
-        for(RatingViewModel rating: ratingViewResponse) {
+        for (RatingViewModel rating : ratingViewResponse) {
             RestTemplate restTemplate1 = new RestTemplate();
             UserViewModel user = restTemplate1.getForObject(backendServerURL + "api/userBe/?userId=" + rating.getUserId(), UserViewModel.class);
             rating.setUserName(user.getUserName());

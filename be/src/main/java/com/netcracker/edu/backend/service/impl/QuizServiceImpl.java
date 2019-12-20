@@ -26,21 +26,6 @@ public class QuizServiceImpl implements QuizService {
         return quizRepository.findByCategoryId(id);
     }
 
-    /*@Override
-    public Iterable<Quiz> findAllQuizLike(String searchParam) {
-        return quizRepository.findByNameContaining(searchParam);
-    }*/
-
-    /*@Override
-    public Page<Quiz> findAllQuizLike(String searchParam, Integer page, Integer size) {
-        return quizRepository.findByNameContaining(searchParam, PageRequest.of(page, size));
-    }*/
-
-    /*@Override
-    public Page<Quiz> findAllQuizLike(String searchParam, Integer page, Integer size, String status) {
-        return quizRepository.findByNameContainingAndIsConfirmed(searchParam, status, PageRequest.of(page, size));
-    }*/
-
     @Override
     public Iterable<Quiz> findAllQuizByUserId(Integer id) {
         return quizRepository.findByUserId(id);
@@ -73,7 +58,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Page<Quiz> getQuizByPageAndStatus(String status, Integer categoryId, Integer page, Integer size) {
-        if(status.equals("approved")) {
+        if (status.equals("approved")) {
             return quizRepository.findByCategoryIdAndIsConfirmed(categoryId, Quiz.Confirmation.approved, PageRequest.of(page, size));
         } else {
             return quizRepository.findByCategoryIdAndIsConfirmed(categoryId, Quiz.Confirmation.unseen, PageRequest.of(page, size));
@@ -84,7 +69,7 @@ public class QuizServiceImpl implements QuizService {
     public Page<Quiz> getAll(Integer page, Integer size, String sortParam, Integer sortFormat) {
         if (sortParam == null) {
             return quizRepository.findAll(PageRequest.of(page, size));
-        } else if(sortFormat == 1) {
+        } else if (sortFormat == 1) {
             return quizRepository.findAll(PageRequest.of(page, size, Sort.by(sortParam).ascending()));
         } else {
             return quizRepository.findAll(PageRequest.of(page, size, Sort.by(sortParam).descending()));
@@ -94,15 +79,15 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public Page<Quiz> getAllQuizWithStatus(Integer page, Integer size, String status, String sortParam, Integer sortFormat) {
         Pageable pageable = null;
-        if(sortParam == null) {
+        if (sortParam == null) {
             pageable = PageRequest.of(page, size);
-        } else if(sortFormat == 1){
+        } else if (sortFormat == 1) {
             pageable = PageRequest.of(page, size, Sort.by(sortParam).ascending());
         } else {
             pageable = PageRequest.of(page, size, Sort.by(sortParam).descending());
         }
 
-        if(status.equals("approved")) {
+        if (status.equals("approved")) {
             return quizRepository.findByIsConfirmed(Quiz.Confirmation.approved, pageable);
         } else {
             return quizRepository.findByIsConfirmed(Quiz.Confirmation.unseen, pageable);

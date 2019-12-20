@@ -5,7 +5,7 @@ import {CategoryService} from "../../services/category.service";
 import {Quiz} from "../../models/quiz";
 import {QuizService} from "../../services/quiz.service";
 import {Router} from "@angular/router";
-import {PageQuiz} from "../../models/pageQuiz";
+import {PageObject} from "../../models/pageObject";
 
 @Component({
   selector: 'app-category',
@@ -44,7 +44,7 @@ export class CategoryComponent implements OnInit {
     localStorage.setItem("categoryId", '' + id);
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.getQuizByPageAndStatus(id, 0, 8, 'approved').subscribe(resp => {
-      this.quizService.quizPage = resp as PageQuiz;
+      this.quizService.quizPage = resp as PageObject;
       this.quizService.currQuizList = this.quizService.quizPage.content;
     }));
   }

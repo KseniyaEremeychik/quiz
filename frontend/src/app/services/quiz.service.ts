@@ -3,13 +3,13 @@ import {Quiz} from "../models/quiz";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Question} from "../models/question";
-import {PageQuiz} from "../models/pageQuiz";
+import {PageObject} from "../models/pageObject";
 
 @Injectable()
 export class QuizService {
   public currQuizList: Quiz[] = null;
   public currQuiz: Quiz = null;
-  public quizPage: PageQuiz = null;
+  public quizPage: PageObject = null;
   public searchParam: string = null;
   public status: string = null;
   constructor(private http: HttpClient) {
@@ -23,8 +23,8 @@ export class QuizService {
     return this.http.get<Question[]>(`/api/quiz/?quizId=${id}`);
   }
 
-  findQuizLike(searchParam: string, page: number, size: number): Observable<PageQuiz> {
-    return this.http.get<PageQuiz>(`/api/quizLike/?searchParam=${searchParam}&page=${page}&size=${size}`);
+  findQuizLike(searchParam: string, page: number, size: number): Observable<PageObject> {
+    return this.http.get<PageObject>(`/api/quizLike/?searchParam=${searchParam}&page=${page}&size=${size}`);
   }
 
   getAllQuizByUserId(id: number): Observable<Quiz[]> {
@@ -43,27 +43,27 @@ export class QuizService {
     return this.http.delete<void>('/api/quizDel/' + quizId);
   }
 
-  getQuizByPage(categoryId: number, page: number, size: number): Observable<PageQuiz> {
-    return this.http.get<PageQuiz>(`/api/quizByPage/?categoryId=${categoryId}&page=${page}&size=${size}`);
+  getQuizByPage(categoryId: number, page: number, size: number): Observable<PageObject> {
+    return this.http.get<PageObject>(`/api/quizByPage/?categoryId=${categoryId}&page=${page}&size=${size}`);
   }
 
-  getQuizByPageAndStatus(categoryId: number, page: number, size: number, status: string): Observable<PageQuiz> {
-    return this.http.get<PageQuiz>(`/api/quizByPageAndStatus/?categoryId=${categoryId}&page=${page}&size=${size}&status=${status}`);
+  getQuizByPageAndStatus(categoryId: number, page: number, size: number, status: string): Observable<PageObject> {
+    return this.http.get<PageObject>(`/api/quizByPageAndStatus/?categoryId=${categoryId}&page=${page}&size=${size}&status=${status}`);
   }
 
-  getAllQuiz(page: number, size: number, sortParam: string, sortFormat: number): Observable<PageQuiz> {
+  getAllQuiz(page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
     if(sortParam) {
-      return this.http.get<PageQuiz>(`/api/allQuiz/?page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
+      return this.http.get<PageObject>(`/api/allQuiz/?page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
     } else {
-      return this.http.get<PageQuiz>(`/api/allQuiz/?page=${page}&size=${size}`);
+      return this.http.get<PageObject>(`/api/allQuiz/?page=${page}&size=${size}`);
     }
   }
 
-  getAllQuizWithStatus(status: string, page: number, size: number, sortParam: string, sortFormat: number): Observable<PageQuiz> {
+  getAllQuizWithStatus(status: string, page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
     if(sortParam) {
-      return this.http.get<PageQuiz>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
+      return this.http.get<PageObject>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
     } else {
-      return this.http.get<PageQuiz>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}`);
+      return this.http.get<PageObject>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}`);
     }
   }
 }

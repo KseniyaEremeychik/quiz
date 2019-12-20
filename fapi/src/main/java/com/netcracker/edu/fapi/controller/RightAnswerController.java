@@ -22,10 +22,10 @@ public class RightAnswerController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<RightAnswerModel> getRightAnswer(@RequestBody Map<String, String> userAnswersMap) {
-        if(userAnswersMap != null) {
+        if (userAnswersMap != null) {
             List<Integer> questionsId = new ArrayList<>();
             List<Integer> userAnswers = new ArrayList<>();
-            for(Map.Entry<String, String> entry: userAnswersMap.entrySet()) {
+            for (Map.Entry<String, String> entry : userAnswersMap.entrySet()) {
                 questionsId.add(Integer.valueOf(entry.getKey()));
                 userAnswers.add(Integer.valueOf(entry.getValue()));
             }
