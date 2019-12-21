@@ -13,12 +13,16 @@ export class StatisticsService {
     return this.http.post<InfoForStat>('/api/newStat', newStat);
   }
 
-  getUserStatistic(userId: number): Observable<InfoForStat[]> {
-    return this.http.get<InfoForStat[]>(`/api/userStat/?userId=${userId}`);
+  getUserStatistic(userId: number, page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
+    if (sortParam) {
+      return this.http.get<PageObject>(`/api/userStat/?userId=${userId}&page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
+    } else {
+      return this.http.get<PageObject>(`/api/userStat/?userId=${userId}&page=${page}&size=${size}`);
+    }
   }
 
   getFullStatistic(page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
-    if(sortParam) {
+    if (sortParam) {
       return this.http.get<PageObject>(`/api/fullStat/?page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
     } else {
       return this.http.get<PageObject>(`/api/fullStat/?page=${page}&size=${size}`);

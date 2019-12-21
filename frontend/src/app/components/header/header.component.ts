@@ -11,7 +11,7 @@ import {PageObject} from "../../models/pageObject";
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
+  providers: [{provide: BsDropdownConfig, useValue: {isAnimated: true, autoClose: true}}]
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('search') search: ElementRef;
@@ -21,13 +21,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(private userService: UserService,
               private quizService: QuizService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   public isLogin(): boolean {
-    if(this.userService.currentUser != null) {
+    if (this.userService.currentUser != null) {
       this.userName = this.userService.currentUser.userName;
       return true;
     }

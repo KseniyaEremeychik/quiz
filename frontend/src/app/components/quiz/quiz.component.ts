@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {Quiz} from "../../models/quiz";
@@ -24,11 +24,11 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem("categoryId")) {
+    if (localStorage.getItem("categoryId")) {
       this.getAllQuiz(+localStorage.getItem("categoryId"), this.curPage, this.pageSize);
     }
 
-    if(this.userService.currentUser.role === 'admin') {
+    if (this.userService.currentUser.role === 'admin') {
       this.buttonText = 'View quiz';
     } else {
       this.buttonText = 'Start quiz';
@@ -36,7 +36,7 @@ export class QuizComponent implements OnInit {
   }
 
   public getAllQuiz(categoryId: number, page: number, size: number): void {
-    this.subscriptions.push(this.quizService.getQuizByPageAndStatus(categoryId, this.curPage-1, this.pageSize, 'approved').subscribe(resp => {
+    this.subscriptions.push(this.quizService.getQuizByPageAndStatus(categoryId, this.curPage - 1, this.pageSize, 'approved').subscribe(resp => {
       this.quizService.quizPage = resp as PageObject;
       this.quizService.currQuizList = this.quizService.quizPage.content;
     }));
@@ -56,10 +56,10 @@ export class QuizComponent implements OnInit {
 
   pageChanged(event: PageChangedEvent) {
     this.curPage = event.page;
-    if(localStorage.getItem("categoryId")) {
-      this.getAllQuiz(+localStorage.getItem("categoryId"), this.curPage-1, this.pageSize);
+    if (localStorage.getItem("categoryId")) {
+      this.getAllQuiz(+localStorage.getItem("categoryId"), this.curPage - 1, this.pageSize);
     } else {
-      this.getQuizLike(this.quizService.searchParam, this.curPage-1, this.pageSize);
+      this.getQuizLike(this.quizService.searchParam, this.curPage - 1, this.pageSize);
     }
   }
 

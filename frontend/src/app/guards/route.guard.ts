@@ -17,7 +17,6 @@ export class RoleGuard implements CanActivate {
       return true;
     }
 
-    // navigate to forbidden page
     this._router.navigate(['/forbidden']);
     return false;
   }

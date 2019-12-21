@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Category} from "src/app/models/category";
-import {Quiz} from "../models/quiz";
 
 @Injectable()
 export class CategoryService {

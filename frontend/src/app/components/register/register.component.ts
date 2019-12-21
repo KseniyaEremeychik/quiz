@@ -48,10 +48,9 @@ export class RegisterComponent implements OnInit {
 
     this.subscriptions.push(this.userService.saveUser(this.user).subscribe((user) => {
       this.userService.userForRegister = user as User;
-      if(this.userService.userForRegister.errors != null) {
+      if (this.userService.userForRegister.errors != null) {
         this.router.navigate(['/register']);
-      }
-      else {
+      } else {
         this.router.navigate(['/login']);
         this.modalRef = this.modalService.show(template);
       }

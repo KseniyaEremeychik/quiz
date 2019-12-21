@@ -8,7 +8,7 @@ import java.util.List;
 public interface StatisticService {
     Statistic saveNewStat(Statistic newStat);
 
-    Iterable<Statistic> getUserStatistic(Integer userId);
+    Page<Statistic> getUserStatistic(Integer userId, Integer page, Integer size, String sortParam, Integer sortFormat);
 
     Page<Statistic> getFullStatistic(Integer page, Integer size, String sortParam, Integer sortFormat);
 }

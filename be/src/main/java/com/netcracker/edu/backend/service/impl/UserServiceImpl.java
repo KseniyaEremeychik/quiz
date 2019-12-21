@@ -4,6 +4,10 @@ import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -28,8 +32,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+    public Page<User> getAllUsers(Integer page, Integer size, String sortParam, Integer sortFormat) {
+        Pageable pageable = null;
+        if (sortParam == null) {
+            pageable = PageRequest.of(page, size);
+        } else if (sortFormat == 1) {
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).ascending());
+        } else {
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).descending());
+        }
+
+        return userRepository.findAll(pageable);
     }
 
     @Override

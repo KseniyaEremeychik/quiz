@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
     this.subscriptions.push(this.userService.findUserByEmail(this.userLoginData).subscribe(userWithToken => {
       this.userService.currentUser = userWithToken.user as User;
       localStorage.setItem("token", userWithToken.token);
-      if(this.userService.currentUser.errors == null) {
+      if (this.userService.currentUser.errors == null) {
         this.router.navigate(['/']);
       }
     }, error => {
-      if(error.status == 401) {
+      if (error.status == 401) {
         this.unauthorizedError = 'Bad credentials';
         this.email.nativeElement.value = '';
         this.password.nativeElement.value = '';

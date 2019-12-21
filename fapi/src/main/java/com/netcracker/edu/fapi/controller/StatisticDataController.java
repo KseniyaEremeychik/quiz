@@ -23,8 +23,12 @@ public class StatisticDataController {
     }
 
     @RequestMapping(value = "/api/userStat", method = RequestMethod.GET)
-    public ResponseEntity<List<StatisticViewModel>> getUserStatistic(@RequestParam(name = "userId") Integer userId) {
-        return ResponseEntity.ok(statisticDataService.getUserStatistic(userId));
+    public Page<StatisticViewModel> getUserStatistic(@RequestParam(name = "userId") Integer userId,
+                                                                     @RequestParam(name = "page") Integer page,
+                                                                     @RequestParam(name = "size") Integer size,
+                                                                     @RequestParam(name = "sortParam", required = false) String sortParam,
+                                                                     @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return statisticDataService.getUserStatistic(userId, page, size, sortParam, sortFormat);
     }
 
     @RequestMapping(value = "/api/fullStat", method = RequestMethod.GET)

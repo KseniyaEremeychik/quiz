@@ -15,7 +15,7 @@ export class CategoryEditingComponent implements OnInit {
   private modalRef: BsModalRef;
   public categories: Category[];
   private subscriptions: Subscription[] = [];
-  private sortFormatName: string = 'desc';
+  private sortFormatName: string = 'asc';
   private curCategoryId: number;
   private isValid: boolean = true;
   private errorMessage: string = null;

@@ -5,17 +5,21 @@
         <thead class="thead-light">
         <tr>
           <th>Name<i class="btn dropdown-toggle" (click)="getAllSortedCategories('name')"></i></th>
-          <th class="w-50">Editing <button type="button" class="btn btn-success er-margin" (click)="openModalAdd(template)">
-            <i class="far fa-edit"></i> Add new category
-          </button></th>
+          <th class="w-50">Editing
+            <button type="button" class="btn btn-success er-margin" (click)="openModalAdd(template)">
+              <i class="far fa-edit"></i> Add new category
+            </button>
+          </th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let category of categories">
           <td>{{category.name}}</td>
-          <td><button type="button" class="btn btn-danger" (click)="openModalDelete(template1, category.id)">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button></td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="openModalDelete(template1, category.id)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -38,7 +42,9 @@
     </div>
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
-    <button type="button" class="btn btn-success m-1 er-right" (click)="addCategory(categoryName.value, template2)">Add</button>
+    <button type="button" class="btn btn-success m-1 er-right" (click)="addCategory(categoryName.value, template2)">
+      Add
+    </button>
   </div>
 </ng-template>
 

@@ -27,8 +27,17 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
-    public Iterable<Statistic> getUserStatistic(Integer userId) {
-        return statisticRepository.findByUserId(userId);
+    public Page<Statistic> getUserStatistic(Integer userId, Integer page, Integer size, String sortParam, Integer sortFormat) {
+        Pageable pageable = null;
+        if (sortParam == null) {
+            pageable = PageRequest.of(page, size);
+        } else if (sortFormat == 1) {
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).ascending());
+        } else {
+            pageable = PageRequest.of(page, size, Sort.by(sortParam).descending());
+        }
+
+        return statisticRepository.findByUserId(userId, pageable);
     }
 
     @Override

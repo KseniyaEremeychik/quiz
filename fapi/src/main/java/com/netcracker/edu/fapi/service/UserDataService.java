@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.service;
 
 import com.netcracker.edu.fapi.models.UserViewModel;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface UserDataService {
 
     UserViewModel getUserByToken(String emailByToken);
 
-    List<UserViewModel> getAll();
+    Page<UserViewModel> getAll(Integer page, Integer size, String sortParam, Integer sortFormat);
 
     void deleteUser(Integer id);
 

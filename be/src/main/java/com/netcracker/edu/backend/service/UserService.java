@@ -1,6 +1,7 @@
 package com.netcracker.edu.backend.service;
 
 import com.netcracker.edu.backend.entity.User;
+import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
@@ -9,7 +10,7 @@ public interface UserService {
 
     User findByEmail(String email);
 
-    Iterable<User> getAllUsers();
+    Page<User> getAllUsers(Integer page, Integer size, String sortParam, Integer sortFormat);
 
     void deleteUser(Integer id);
 

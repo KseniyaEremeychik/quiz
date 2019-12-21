@@ -5,8 +5,10 @@
       <thead>
       <tr>
         <th>Quiz name<i class="btn dropdown-toggle ks-color"></i></th>
-        <th>Right answer percent<i class="btn dropdown-toggle"></i></th>
-        <th>Date<i class="btn dropdown-toggle"></i></th>
+        <th>Right answer percent<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                                   (click)="setSortParam('rightAnswersPercent')"></i></th>
+        <th>Date<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                   (click)="setSortParam('passageDate')"></i></th>
       </tr>
       </thead>
       <tbody>
@@ -19,4 +21,10 @@
     </table>
   </div>
   <app-leader-rating class="ks-float"></app-leader-rating>
+</div>
+
+<div *ngIf="pageStat?.totalElements > 10">
+  <pagination
+    [itemsPerPage]="pageSize" [totalItems]="pageStat?.totalElements" (pageChanged)="pageChanged($event)"
+  ></pagination>
 </div>

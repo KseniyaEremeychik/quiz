@@ -7,7 +7,6 @@ export class Quiz {
   name: string;
   questionNumber: number;
   isConfirmed: string;
-  //time: string;
   creationDate: string;
   userId: number;
   userName: string;

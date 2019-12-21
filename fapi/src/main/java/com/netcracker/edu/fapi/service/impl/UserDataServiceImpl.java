@@ -4,6 +4,9 @@ import com.netcracker.edu.fapi.models.UserViewModel;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -78,10 +81,17 @@ public class UserDataServiceImpl implements UserDataService, UserDetailsService 
     }
 
     @Override
-    public List<UserViewModel> getAll() {
+    public Page<UserViewModel> getAll(Integer page, Integer size, String sortParam, Integer sortFormat) {
         RestTemplate restTemplate = new RestTemplate();
-        UserViewModel[] userViewModelsResponse = restTemplate.getForObject(backendServerURL + "/api/usersEditing", UserViewModel[].class);
-        return userViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(userViewModelsResponse);
+        Page<UserViewModel> users = null;
+
+        if (sortParam == null) {
+            users = restTemplate.getForObject(backendServerURL + "api/usersEditing?page=" + page + "&size=" + size, RestPageImpl.class);
+        } else {
+            users = restTemplate.getForObject(backendServerURL + "api/usersEditing?page=" + page + "&size=" + size + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
+        }
+
+        return users;
     }
 
     @Override

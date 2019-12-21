@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../../services/quiz.service";
-import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {Subscription} from "rxjs";
 import {AnswerService} from "../../services/answer.service";
 import {RightAnswers} from "../../models/rightAnswers";
@@ -25,10 +24,11 @@ export class QuizPassingComponent implements OnInit {
   constructor(private quizService: QuizService,
               private answerService: AnswerService,
               private userService: UserService,
-              private statisticService: StatisticsService) { }
+              private statisticService: StatisticsService) {
+  }
 
   ngOnInit() {
-    if(localStorage.getItem("quizId")) {
+    if (localStorage.getItem("quizId")) {
       this.quizService.currQuiz = null;
       this.subscriptions.push(this.quizService.getQuizById(+localStorage.getItem("quizId")).subscribe(questions => {
         this.quizService.currQuiz = new Quiz();

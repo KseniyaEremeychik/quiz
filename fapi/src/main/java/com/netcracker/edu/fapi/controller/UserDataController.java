@@ -5,6 +5,7 @@ import com.netcracker.edu.fapi.models.UserWithAuthToken;
 import com.netcracker.edu.fapi.security.JwtTokenProvider;
 import com.netcracker.edu.fapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -78,5 +79,13 @@ public class UserDataController {
     public UserViewModel findUserByToken(@RequestBody String token) {
         String emailByToken = tokenProvider.getUsernameFromToken(token);
         return userDataService.getUserByToken(emailByToken);
+    }
+
+    @RequestMapping(value = "api/userEditing")
+    public Page<UserViewModel> getAllUsers(@RequestParam(name = "page") Integer page,
+                                           @RequestParam(name = "size") Integer size,
+                                           @RequestParam(name = "sortParam", required = false) String sortParam,
+                                           @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return userDataService.getAll(page, size, sortParam, sortFormat);
     }
 }

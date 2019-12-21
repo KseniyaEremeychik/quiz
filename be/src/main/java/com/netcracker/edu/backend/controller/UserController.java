@@ -3,6 +3,7 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.User;
 import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,5 +52,13 @@ public class UserController {
     @RequestMapping(value = "/api/usersCheckEmail", method = RequestMethod.GET)
     public Boolean isEmailExist(@RequestParam(name = "email") String email) {
         return userService.isEmailExist(email);
+    }
+
+    @RequestMapping(value = "/api/usersEditing", method = RequestMethod.GET)
+    public Page<User> getAllUsers(@RequestParam(name = "page") Integer page,
+                                  @RequestParam(name = "size") Integer size,
+                                  @RequestParam(name = "sortParam", required = false) String sortParam,
+                                  @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return userService.getAllUsers(page, size, sortParam, sortFormat);
     }
 }

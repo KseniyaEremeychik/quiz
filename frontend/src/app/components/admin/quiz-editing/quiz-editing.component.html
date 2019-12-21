@@ -4,7 +4,8 @@
             aria-controls="dropdown-animated"><i class="fas fa-filter"></i> Status<span class="caret"></span>
     </button>
     <ul id="dropdown-user" *dropdownMenu class="dropdown-menu p-0" role="menu" aria-labelledby="button-animated">
-      <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('approved')">approved</a></li>
+      <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('approved')">approved</a>
+      </li>
       <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getQuizByStatus('unseen')">unseen</a></li>
       <li role="menuitem" class="ks-w"><a class="dropdown-item ks-w" (click)="getAllFilter()">all</a></li>
     </ul>
@@ -14,9 +15,12 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>Name<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('name')"></i></th>
-          <th>Question number<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('questionNumber')"></i></th>
-          <th>Creation date<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle" (click)="setSortParam('creationDate')"></i></th>
+          <th>Name<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                     (click)="setSortParam('name')"></i></th>
+          <th>Question number<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                                (click)="setSortParam('questionNumber')"></i></th>
+          <th>Creation date<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                              (click)="setSortParam('creationDate')"></i></th>
           <th>User<i class="btn dropdown-toggle ks-color"></i></th>
           <th>Editing<i class="btn dropdown-toggle ks-color"></i></th>
         </tr>
@@ -32,13 +36,16 @@
                     routerLink="/passQuiz">
               <i class="far fa-eye"></i> View
             </button>
-            <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin" (click)="openModal(template, quiz.id)">
+            <button *ngIf="quiz?.isConfirmed === 'approved'" type="button" class="btn btn-danger ks-margin"
+                    (click)="openModal(template, quiz.id)">
               <i class="fas fa-trash-alt"></i> Delete
             </button>
-            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin" (click)="openEditModal('Approve', quiz, template1)">
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-success ks-margin"
+                    (click)="openEditModal('Approve', quiz, template1)">
               <i class="far fa-thumbs-up"></i> Approve
             </button>
-            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin" (click)="openEditModal('Reject', quiz, template1)">
+            <button *ngIf="quiz?.isConfirmed === 'unseen'" type="button" class="btn btn-danger ks-margin"
+                    (click)="openEditModal('Reject', quiz, template1)">
               <i class="far fa-thumbs-down"></i> Reject
             </button>
           </td>
@@ -49,9 +56,9 @@
   </div>
 </div>
 
-<div *ngIf="pageQuiz?.totalElements > 10" class="qwe">
+<div *ngIf="pageQuiz?.totalElements > 10">
   <pagination
-    [itemsPerPage]="pageSize"  [totalItems]="pageQuiz?.totalElements" (pageChanged)="pageChanged($event)"
+    [itemsPerPage]="pageSize" [totalItems]="pageQuiz?.totalElements" (pageChanged)="pageChanged($event)"
   ></pagination>
 </div>
 
@@ -81,6 +88,7 @@
     <label>Are you sure? </label>
     <br>
     <button type="button" class="btn btn-outline-danger m-1 er-right" (click)="modalRef.hide()">Cancel</button>
-    <button [ngClass]="buttonText === 'Approve' ? '_green' : '_red'" type="button" class="btn m-1 er-right" (click)="changeStatus()">{{buttonText}}</button>
+    <button [ngClass]="buttonText === 'Approve' ? '_green' : '_red'" type="button" class="btn m-1 er-right"
+            (click)="changeStatus()">{{buttonText}}</button>
   </div>
 </ng-template>

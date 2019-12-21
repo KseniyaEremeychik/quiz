@@ -4,8 +4,10 @@
       <table class="table table-bordered ks-font">
         <thead class="thead-light">
         <tr>
-          <th>Username<i class="btn dropdown-toggle"></i></th>
-          <th>E-mail<i class="btn dropdown-toggle"></i></th>
+          <th>Username<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                         (click)="setSortParam('userName')"></i></th>
+          <th>E-mail<i [ngClass]="curPage > 1 ? 'ks-color' : ''" class="btn dropdown-toggle"
+                       (click)="setSortParam('email')"></i></th>
           <th>Editing</th>
         </tr>
         </thead>
@@ -13,14 +15,22 @@
         <tr *ngFor="let user of users">
           <td>{{user.userName}}</td>
           <td>{{user.email}}</td>
-          <td><button type="button" class="btn btn-danger" (click)="openModal(template, user.id)">
-            <i class="fas fa-trash-alt"></i> Delete
-          </button></td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="openModal(template, user.id)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
+</div>
+
+<div *ngIf="pageUsers?.totalElements > 12" class="qwe">
+  <pagination
+    [itemsPerPage]="pageSize" [totalItems]="pageUsers?.totalElements" (pageChanged)="pageChanged($event)"
+  ></pagination>
 </div>
 
 <ng-template #template>

@@ -44,4 +44,10 @@ public class CategoryController {
     public Boolean isCategoryExist(@RequestParam(name = "categoryName") String categoryName) {
         return this.categoryService.isCategoryExist(categoryName);
     }
+
+    @RequestMapping(value = "/api/categoriesSort", method = RequestMethod.GET)
+    public Iterable<Category> getAllSortedCategories(@RequestParam(name = "sort") String sortParam,
+                                                     @RequestParam(name = "format") String sortFormat) {
+        return categoryService.getAllSortedCategories(sortParam, sortFormat);
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Category} from "../../models/category";
 import {Subscription} from "rxjs";
 import {CategoryService} from "../../services/category.service";
@@ -32,15 +32,8 @@ export class CategoryComponent implements OnInit {
     }));
   }
 
-  /*public findAllQuizByCategoryId(id: number): void {
-    localStorage.setItem("categoryId", '' + id);
-    this.quizService.currQuizList = null;
-    this.subscriptions.push(this.quizService.findAllQuizByCategoryId(id).subscribe(quiz => {
-      this.quizService.currQuizList = quiz as Quiz[];
-    }));
-  }*/
-
   public findAllQuizByCategoryId(id: number): void {
+    this.quizService.searchParam = null;
     localStorage.setItem("categoryId", '' + id);
     this.quizService.currQuizList = null;
     this.subscriptions.push(this.quizService.getQuizByPageAndStatus(id, 0, 8, 'approved').subscribe(resp => {

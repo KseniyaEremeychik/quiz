@@ -3,6 +3,10 @@
     <app-category></app-category>
   </div>
 
+  <div *ngIf="quizService.searchParam != null && quizService.currQuizList.length == 0" class="ks-m">
+    <br>
+    <h1>Nothing found for request "{{this.quizService.searchParam}}"</h1>
+  </div>
   <div class="fix-width flex ks-fix">
     <div *ngFor="let quiz of quizService?.currQuizList" class="card border-secondary text-center ks-card flex">
       <div class="card-header text-white border-secondary p-1 bg-danger">
@@ -24,9 +28,10 @@
   </div>
 </div>
 
-<div *ngIf="quizService.quizPage?.totalElements > 8" class="qwe">
-  <pagination
-    [itemsPerPage]="pageSize"  [totalItems]="quizService.quizPage?.totalElements" (pageChanged)="pageChanged($event)"
+<div *ngIf="quizService.quizPage?.totalElements > 8">
+  <pagination class="quiz"
+              [itemsPerPage]="pageSize" [totalItems]="quizService.quizPage?.totalElements"
+              (pageChanged)="pageChanged($event)"
   ></pagination>
 </div>
 

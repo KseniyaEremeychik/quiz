@@ -12,6 +12,7 @@ export class QuizService {
   public quizPage: PageObject = null;
   public searchParam: string = null;
   public status: string = null;
+
   constructor(private http: HttpClient) {
   }
 
@@ -52,7 +53,7 @@ export class QuizService {
   }
 
   getAllQuiz(page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
-    if(sortParam) {
+    if (sortParam) {
       return this.http.get<PageObject>(`/api/allQuiz/?page=${page}&size=${size}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
     } else {
       return this.http.get<PageObject>(`/api/allQuiz/?page=${page}&size=${size}`);
@@ -60,7 +61,7 @@ export class QuizService {
   }
 
   getAllQuizWithStatus(status: string, page: number, size: number, sortParam: string, sortFormat: number): Observable<PageObject> {
-    if(sortParam) {
+    if (sortParam) {
       return this.http.get<PageObject>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}&sortParam=${sortParam}&sortFormat=${sortFormat}`);
     } else {
       return this.http.get<PageObject>(`/api/allQuizWithStatus/?page=${page}&size=${size}&status=${status}`);

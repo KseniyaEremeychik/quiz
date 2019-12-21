@@ -1,53 +1,59 @@
 <div class="er-outer-container">
   <div class="er-width-outer">
-    <form  class="border-danger er-width"
-           autocomplete="off">
+    <form class="border-danger er-width"
+          autocomplete="off">
       <h2>Create new quiz</h2>
       <div class="er-overflow-scroll">
-      <div>
-        <label for="quiz-category">Choose category</label>
-        <select id="quiz-category" class="form-control" #selectedCategory>
-          <option *ngFor="let category of categories">{{category.name}}</option>
-        </select>
-      </div>
-      <div>
-        <label for="quiz-name">Enter quiz name: </label><br>
-        <input #quizName id="quiz-name" name="name" (change)="onChangeQuizName(quizName.value)" class="form-control">
-      </div>
-      <div class="er-questions-container">
-        <div *ngFor="let question of questions; let i = index">
-          <span>Question {{i + 1}}: <i *ngIf="questions.length > 1" class="fas fa-times-circle" (click)="onDeleteQuestion(i)"></i></span><br>
-          <div class="er-question">
-            <span>text:</span>
-            <input #onChangeText name="quiz-question-text" class="form-control" (change)="onChangeQuestionText(i, onChangeText.value)">
-            <br>
-            <span>answers:</span>
-            <div class="er-answers">
-              <div *ngFor="let ans of questions[i].answers; let j = index">
-                <label>{{j + 1}}.</label>
-                <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}} value={{questions[i].answers[j].text}} #answerText>
-                <i *ngIf="questions[i].answers.length > 2" class="fas fa-times-circle" (click)="onDeleteAns(i, j)"></i>
-              </div>
-              <button class="btn btn-danger" type="button" (click)="onAddAnswer(i)" [disabled]="questions[i].answers.length >= 5">
-                Add answer <i class="fas fa-plus-circle"></i>
-              </button>
-            </div>
-            <br>
-            <div class="er-flex-right-answer">
-            <span>right answer:</span>
-            <select id="right-answer" class="form-control er-right-answer-input" #rightAnswer (click)="onChangeRightAnswer(i, rightAnswer.value)">
-              <option *ngFor="let ans of questions[i].answers; let k = index">{{k+1}}</option>
-            </select>
-              </div>
-          </div>
+        <div>
+          <label for="quiz-category">Choose category</label>
+          <select id="quiz-category" class="form-control" #selectedCategory>
+            <option *ngFor="let category of categories">{{category.name}}</option>
+          </select>
         </div>
-        <button class="btn btn-danger" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">
-          Add question <i class="fas fa-plus-circle"></i>
+        <div>
+          <label for="quiz-name">Enter quiz name: </label><br>
+          <input #quizName id="quiz-name" name="name" (change)="onChangeQuizName(quizName.value)" class="form-control">
+        </div>
+        <div class="er-questions-container">
+          <div *ngFor="let question of questions; let i = index">
+            <span>Question {{i + 1}}: <i *ngIf="questions.length > 1" class="fas fa-times-circle ks-color"
+                                         (click)="onDeleteQuestion(i)"></i></span><br>
+            <div class="er-question">
+              <span>text:</span>
+              <input #onChangeText name="quiz-question-text" class="form-control"
+                     (change)="onChangeQuestionText(i, onChangeText.value)">
+              <br>
+              <span>answers:</span>
+              <div class="er-answers">
+                <div *ngFor="let ans of questions[i].answers; let j = index">
+                  <label>{{j + 1}}.</label>
+                  <input class="er-answer-input" (change)="onChangeAns($event, i, j)" name={{j}}
+                         value={{questions[i].answers[j].text}} #answerText>
+                  <i *ngIf="questions[i].answers.length > 2" class="fas fa-times-circle ks-color"
+                     (click)="onDeleteAns(i, j)"></i>
+                </div>
+                <button class="btn" type="button" (click)="onAddAnswer(i)"
+                        [disabled]="questions[i].answers.length >= 5">
+                  Add answer <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+              <br>
+              <div class="er-flex-right-answer">
+                <span>right answer:</span>
+                <select id="right-answer" class="form-control er-right-answer-input" #rightAnswer
+                        (click)="onChangeRightAnswer(i, rightAnswer.value)">
+                  <option *ngFor="let ans of questions[i].answers; let k = index">{{k + 1}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="btn" type="button" (click)="onAddQuestion()" [disabled]="questions.length >= 15">
+            Add question <i class="fas fa-plus-circle"></i>
+          </button>
+        </div>
+        <button class="btn er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value, template)">
+          Create <i class="fas fa-paper-plane"></i>
         </button>
-      </div>
-      <button class="btn btn-danger er-full-width" type="submit" (click)="createNewQuiz(selectedCategory.value, template)">
-        Create <i class="fas fa-paper-plane"></i>
-      </button>
       </div>
     </form>
   </div>
@@ -63,6 +69,6 @@
   <div class="modal-body">
     <label>{{modalMessage}}</label>
     <br>
-    <button type="button" class="btn btn-danger m-1 er-right" (click)="modalRef.hide()">OK</button>
+    <button type="button" class="btn m-1 er-right" (click)="modalRef.hide()">OK</button>
   </div>
 </ng-template>

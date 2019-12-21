@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Category} from "../../models/category";
 import {Subscription} from "rxjs";
 import {CategoryService} from "../../services/category.service";
@@ -7,7 +7,6 @@ import {Answer} from "../../models/answer";
 import {Quiz} from "../../models/quiz";
 import {UserService} from "../../services/user.service";
 import {QuizService} from "../../services/quiz.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
@@ -16,10 +15,6 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap";
   styleUrls: ['./new-quiz.component.css']
 })
 export class NewQuizComponent implements OnInit {
-  /*@ViewChild('quizName') quizNameInput: ElementRef;
-  @ViewChild('onChangeText') questionInput: ElementRef;
-  @ViewChild('answerText') answerInput: ElementRef;*/
-
   public categories: Category[];
   private subscriptions: Subscription[] = [];
   private quiz: Quiz = new Quiz();
@@ -88,20 +83,20 @@ export class NewQuizComponent implements OnInit {
 
   onChangeRightAnswer(i, k) {
     this.questions[i].answers.forEach(ans => ans.isRight = 0);
-    this.questions[i].answers[k-1].isRight = 1;
+    this.questions[i].answers[k - 1].isRight = 1;
   }
 
   onDeleteAns(i, j): void {
     let isRightSelected = false;
-    this.questions[i].answers.forEach(ans => function(ans){
-      if(ans.isRight == 1) {
+    this.questions[i].answers.forEach(ans => function (ans) {
+      if (ans.isRight == 1) {
         isRightSelected = true;
       }
     })
 
-    if(isRightSelected) {
-      if(j == 0) {
-        this.questions[i].answers[j+1].isRight = 1;
+    if (isRightSelected) {
+      if (j == 0) {
+        this.questions[i].answers[j + 1].isRight = 1;
       }
     }
     this.questions[i].answers.splice(j, 1);
@@ -113,13 +108,10 @@ export class NewQuizComponent implements OnInit {
 
   public createNewQuiz(categoryName: string, template: TemplateRef<any>): void {
     this.validateQuiz();
-    if(this.isValid) {
+    if (this.isValid) {
       this.modalTitle = 'Success';
-      /*this.quizNameInput.nativeElement.value = '';
-      this.questionInput.nativeElement.value = '';
-      this.answerInput.nativeElement.value = '';*/
-      let curCategory = this.categories.filter(function(category) {
-        if(category.name == categoryName) {
+      let curCategory = this.categories.filter(function (category) {
+        if (category.name == categoryName) {
           return category;
         }
       })
@@ -140,7 +132,7 @@ export class NewQuizComponent implements OnInit {
 
       this.subscriptions.push(this.quizService.saveNewQuiz(this.quiz).subscribe((newQuiz) => {
       }, error => {
-        if(error.status == 400) {
+        if (error.status == 400) {
           this.modalTitle = 'Invalid input format';
           this.modalMessage = 'Please, check entered fields!';
         }
@@ -151,7 +143,7 @@ export class NewQuizComponent implements OnInit {
     this.openModal(template);
   }
 
-  private validateQuiz():void {
+  private validateQuiz(): void {
     let val = true;
     let result = 'Your quiz has been submitted for moderation';
     let regEx = new RegExp("^[a-zA-Z0-9!?,._-][a-zA-Z0-9!?,._\\s-]+$");
@@ -159,13 +151,13 @@ export class NewQuizComponent implements OnInit {
       result = 'Please, check the entered quiz name!'
       val = false;
     } else {
-      this.questions.forEach(function(question, index) {
-        if(question.text.length == 0 || !(regEx.test(question.text)) || question.text.length > 250) {
+      this.questions.forEach(function (question, index) {
+        if (question.text.length == 0 || !(regEx.test(question.text)) || question.text.length > 250) {
           result = 'Please, check the entered questions!'
           val = false;
         } else {
           question.answers.forEach(function (answer, index) {
-            if(answer.text.length == 0 || !(regEx.test(answer.text)) || answer.text.length > 100) {
+            if (answer.text.length == 0 || !(regEx.test(answer.text)) || answer.text.length > 100) {
               result = 'Please, check the entered answers!'
               val = false;
             }

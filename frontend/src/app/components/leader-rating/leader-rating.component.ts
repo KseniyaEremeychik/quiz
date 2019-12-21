@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RatingService} from "../../services/rating.service";
 import {Subscription} from "rxjs";
 import {Rating} from "../../models/rating";
@@ -12,7 +12,8 @@ export class LeaderRatingComponent implements OnInit {
   private topTen: Rating[] = [];
   private subscriptions: Subscription[] = [];
 
-  constructor(private ratingService: RatingService) { }
+  constructor(private ratingService: RatingService) {
+  }
 
   ngOnInit() {
     this.getTopTen();

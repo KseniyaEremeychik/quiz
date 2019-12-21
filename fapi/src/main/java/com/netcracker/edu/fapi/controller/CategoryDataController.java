@@ -42,4 +42,10 @@ public class CategoryDataController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/api/catSort")
+    public ResponseEntity<List<CategoryViewModel>> getAllSortedCategories(@RequestParam(name = "sort") String sortParam,
+                                                                          @RequestParam(name = "format") String sortFormat) {
+        return ResponseEntity.ok(categoryDataService.getAllSortedCategories(sortParam, sortFormat));
+    }
 }

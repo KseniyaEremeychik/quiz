@@ -22,8 +22,12 @@ public class StatisticController {
     }
 
     @RequestMapping(value = "api/userStatBe", method = RequestMethod.GET)
-    public Iterable<Statistic> getUserStatistic(@RequestParam(name = "userId") Integer userId) {
-        return statisticService.getUserStatistic(userId);
+    public Page<Statistic> getUserStatistic(@RequestParam(name = "userId") Integer userId,
+                                            @RequestParam(name = "page") Integer page,
+                                            @RequestParam(name = "size") Integer size,
+                                            @RequestParam(name = "sortParam", required = false) String sortParam,
+                                            @RequestParam(name = "sortFormat", required = false) Integer sortFormat) {
+        return statisticService.getUserStatistic(userId, page, size, sortParam, sortFormat);
     }
 
     @RequestMapping(value = "api/fullStatBe", method = RequestMethod.GET)

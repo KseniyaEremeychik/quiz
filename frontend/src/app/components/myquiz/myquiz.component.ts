@@ -3,7 +3,6 @@ import {Quiz} from "../../models/quiz";
 import {QuizService} from "../../services/quiz.service";
 import {Subscription} from "rxjs";
 import {UserService} from "../../services/user.service";
-import {CategoryService} from "../../services/category.service";
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 
 @Component({
@@ -19,7 +18,8 @@ export class MyquizComponent implements OnInit {
 
   constructor(private quizService: QuizService,
               private userService: UserService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService) {
+  }
 
   ngOnInit() {
     this.getAllUsersQuiz();

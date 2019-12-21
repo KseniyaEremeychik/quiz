@@ -14,19 +14,21 @@ import {UserService} from "./user.service";
 
 @Injectable()
 export class ErrorHandlingInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private userService: UserService){}
+  constructor(private router: Router, private userService: UserService) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(event => {
-        if (event instanceof HttpResponse) {}
+        if (event instanceof HttpResponse) {
+        }
       }, err => {
         if (err instanceof HttpErrorResponse) {
-          if(err.status == 401) {
+          if (err.status == 401) {
             this.router.navigate(['/login']);
-          } else if(err.status == 404) {
+          } else if (err.status == 404) {
             this.router.navigate(['/notFound']);
-          } else if(err.status == 403) {
+          } else if (err.status == 403) {
             this.router.navigate(['/forbidden']);
           }
         }

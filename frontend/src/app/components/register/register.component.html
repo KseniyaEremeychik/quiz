@@ -24,7 +24,8 @@
                 <input name="email" class="form-control" formControlName="userEmail" #email>
                 <div class="alert alert-danger"
                      *ngIf="(registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched) || userService.userForRegister?.errors['email']">
-                  <span *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
+                  <span
+                    *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">
                     Incorrect email<br/>
                   </span>
                   <span *ngIf="userService.userForRegister?.errors['email']">
@@ -37,7 +38,8 @@
                 <input type="password" name="password" class="form-control" formControlName="userPassword" #password>
                 <div class="alert alert-danger"
                      *ngIf="(registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched) || userService.userForRegister?.errors['password']">
-                  <span *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
+                  <span
+                    *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
                     Incorrect password<br/>
                   </span>
                   <span *ngIf="userService.userForRegister?.errors['password']">
@@ -48,14 +50,17 @@
               <div class="form-group">
                 <label class="text-danger">Repeat password:</label><br>
                 <input type="password" name="password" class="form-control" formControlName="userPassword2" #password2>
-                <div class="alert alert-danger" *ngIf="password.value!=password2.value && registerForm.controls['userPassword2'].touched">
+                <div class="alert alert-danger"
+                     *ngIf="password.value!=password2.value && registerForm.controls['userPassword2'].touched">
                   Passwords do not match
                 </div>
               </div>
               <div class="form-group">
                 <a routerLink="/">
-                  <button class="btn btn-danger" (click)="addUser(username.value, email.value, password.value, template)" [disabled]="registerForm.invalid || password.value!=password2.value">
-                  Register
+                  <button class="btn btn-danger"
+                          (click)="addUser(username.value, email.value, password.value, template)"
+                          [disabled]="registerForm.invalid || password.value!=password2.value">
+                    Register
                   </button>
                 </a>
               </div>

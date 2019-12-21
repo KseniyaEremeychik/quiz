@@ -26,10 +26,11 @@ export class QuizEditingComponent implements OnInit {
   private sortFormat: number = 1;
 
   constructor(private quizService: QuizService,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService) {
+  }
 
   ngOnInit() {
-    if(this.quizService.status) {
+    if (this.quizService.status) {
       this.getQuizByStatus(this.quizService.status);
     } else {
       this.getAllQuiz(this.curPage, this.pageSize);
@@ -37,7 +38,7 @@ export class QuizEditingComponent implements OnInit {
   }
 
   public getAllQuiz(page: number, size: number): void {
-    this.subscriptions.push(this.quizService.getAllQuiz(this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
+    this.subscriptions.push(this.quizService.getAllQuiz(this.curPage - 1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
       this.pageQuiz = resp as PageObject;
       this.quizList = this.pageQuiz.content;
     }));
@@ -49,11 +50,11 @@ export class QuizEditingComponent implements OnInit {
   }
 
   public getQuizByStatus(status: string) {
-    if(!(this.quizService.status === status)) {
+    if (!(this.quizService.status === status)) {
       this.curPage = 1;
     }
     this.quizService.status = status;
-    this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage-1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
+    this.subscriptions.push(this.quizService.getAllQuizWithStatus(status, this.curPage - 1, this.pageSize, this.sortParam, this.sortFormat).subscribe(resp => {
       this.pageQuiz = resp as PageObject;
       this.quizList = this.pageQuiz.content;
     }));
@@ -61,10 +62,10 @@ export class QuizEditingComponent implements OnInit {
 
   pageChanged(event: PageChangedEvent) {
     this.curPage = event.page;
-    if(this.quizService.status) {
+    if (this.quizService.status) {
       this.getQuizByStatus(this.quizService.status);
     } else {
-      this.getAllQuiz(this.curPage-1, this.pageSize);
+      this.getAllQuiz(this.curPage - 1, this.pageSize);
     }
   }
 
@@ -87,10 +88,10 @@ export class QuizEditingComponent implements OnInit {
   }
 
   public changeStatus(): void {
-    if(this.buttonText === 'Approve') {
+    if (this.buttonText === 'Approve') {
       this.editStatus(this.curQuiz);
       this.modalRef.hide();
-    } else if(this.buttonText === 'Reject') {
+    } else if (this.buttonText === 'Reject') {
       this.deleteQuiz(this.curQuiz.id);
       this.modalRef.hide();
     }
@@ -108,7 +109,7 @@ export class QuizEditingComponent implements OnInit {
   }
 
   private updateQuiz(): void {
-    if(this.quizService.status) {
+    if (this.quizService.status) {
       this.getQuizByStatus(this.quizService.status);
     } else {
       this.getAllQuiz(this.curPage, this.pageSize);
@@ -116,7 +117,7 @@ export class QuizEditingComponent implements OnInit {
   }
 
   public setSortParam(param: string): void {
-    if(this.sortParam === param) {
+    if (this.sortParam === param) {
       this.sortFormat = -this.sortFormat;
     } else {
       this.sortParam = param;

@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StatisticRepository extends PagingAndSortingRepository<Statistic, Integer> {
-    Iterable<Statistic> findByUserId(Integer userId);
+    Page<Statistic> findByUserId(Integer userId, Pageable pageable);
 }

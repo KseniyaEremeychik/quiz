@@ -52,17 +52,17 @@ public class StatisticDataServiceImpl implements StatisticDataService {
     }
 
     @Override
-    public List<StatisticViewModel> getUserStatistic(Integer userId) {
+    public Page<StatisticViewModel> getUserStatistic(Integer userId, Integer page, Integer size, String sortParam, Integer sortFormat) {
         RestTemplate restTemplate = new RestTemplate();
-        StatisticViewModel[] statisticResponse = restTemplate.getForObject(backendServerURL + "api/userStatBe/?userId=" + userId, StatisticViewModel[].class);
+        Page<StatisticViewModel> userStatistic = null;
 
-        for (StatisticViewModel stat : statisticResponse) {
-            RestTemplate restTemplate1 = new RestTemplate();
-            QuizViewModel quiz = restTemplate1.getForObject(backendServerURL + "api/quizById/?quizId=" + stat.getQuizId(), QuizViewModel.class);
-            stat.setQuizName(quiz.getName());
+        if (sortParam == null) {
+            userStatistic = restTemplate.getForObject(backendServerURL + "api/userStatBe/?userId=" + userId + "&page=" + page + "&size=" + size, RestPageImpl.class);
+        } else {
+            userStatistic = restTemplate.getForObject(backendServerURL + "api/userStatBe/?userId=" + userId + "&page=" + page + "&size=" + size + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
         }
-
-        return statisticResponse == null ? Collections.emptyList() : Arrays.asList(statisticResponse);
+        userStatistic = PageableExecutionUtils.getPage(statisticConverter.collectionTransform.apply(userStatistic.getContent()), PageRequest.of(page, size), userStatistic::getTotalElements);
+        return userStatistic;
     }
 
     @Override
@@ -75,17 +75,6 @@ public class StatisticDataServiceImpl implements StatisticDataService {
         } else {
             fullStatistic = restTemplate.getForObject(backendServerURL + "api/fullStatBe?page=" + page + "&size=" + size + "&sortParam=" + sortParam + "&sortFormat=" + sortFormat, RestPageImpl.class);
         }
-        /*for(StatisticViewModel stat: fullStatistic) {
-            RestTemplate restTemplate1 = new RestTemplate();
-            UserViewModel user = restTemplate1.getForObject(backendServerURL + "api/userBe/?userId=" + stat.getUserId(), UserViewModel.class);
-            stat.setUserName(user.getUserName());
-
-            RestTemplate restTemplate2 = new RestTemplate();
-            QuizViewModel quiz = restTemplate2.getForObject(backendServerURL + "api/quizById/?quizId=" + stat.getQuizId(), QuizViewModel.class);
-            stat.setQuizName(quiz.getName());
-        }
-        return fullStatistic == null ? Collections.emptyList() : Arrays.asList(fullStatistic);*/
-
         fullStatistic = PageableExecutionUtils.getPage(statisticConverter.collectionTransform.apply(fullStatistic.getContent()), PageRequest.of(page, size), fullStatistic::getTotalElements);
         return fullStatistic;
     }

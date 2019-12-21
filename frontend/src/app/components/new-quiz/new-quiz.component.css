@@ -16,8 +16,8 @@
 }
 
 .er-question {
-  margin-top:5px;
-  margin-bottom:10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   margin-left: 1rem;
   border: 1px solid #909090;
   padding: 5px 10px;
@@ -56,7 +56,7 @@
 }
 
 .er-flex-right-answer > .er-right-answer-input:focus {
-  box-shadow: 0 0 0 0.2rem rgba(206,212,218, 0.8);
+  box-shadow: 0 0 0 0.2rem rgba(206, 212, 218, 0.8);
   border-color: #ced4da;
 }
 
@@ -76,4 +76,25 @@
 .fa-times-circle {
   margin-left: 7px;
   color: #dc3545;
+}
+
+.btn {
+  background-color: transparent;
+  color: #bd4f6c;
+  border-color: #bd4f6c;
+}
+
+.btn:hover {
+  background-color: #bd4f6c;
+  background-image: linear-gradient(326deg, #bd4f6c 0%, #d7816a 74%);
+  color: white;
+  border: none;
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.ks-color {
+  color: #bd4f6c;
 }
