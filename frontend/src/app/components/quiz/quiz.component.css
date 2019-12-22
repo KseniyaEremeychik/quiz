@@ -47,8 +47,16 @@ ul {
   border: none;
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 .ks-m {
   margin: 25px 300px;
+}
+
+.card {
+  height: fit-content;
 }
 
 

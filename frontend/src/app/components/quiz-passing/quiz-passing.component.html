@@ -22,7 +22,7 @@
       </div>
     </div>
     <a *ngIf="this.quizService.currQuiz?.questions" routerLink="/passQuiz">
-      <button class="btn btn-danger ks-m"
+      <button class="btn ks-m"
               [disabled]="userAnswers.size < quizService.currQuiz.questions.length || rightAnswers || (quizService.currQuiz.userName == userService.currentUser.userName) || (userService.currentUser.role == 'admin')"
               (click)="finishPassing()">
         Finish
